@@ -1,0 +1,57 @@
+<div class="container">
+  <mat-drawer-container autosize>
+    <mat-drawer #drawer opened="true" mode="side" position="start" style="width: 320px;">
+      <mat-nav-list>
+        <div class="title-container">
+          <span class="title">Shopping Options</span>
+        </div>
+
+        <div class="title-container" (click)="toggleCategories()">
+          <span class="title">Categories
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{isExpanded ? 'expand_less' : 'expand_more'}}
+            </mat-icon> 
+          </span>     
+        </div>
+        <div class="filter-options" [style.display]="isExpanded ? 'block' : 'none'">
+          <div class="list-item">
+            <span>Recline Chair</span><span class="count">(5)</span>
+          </div>
+          <div class="list-item">
+            <span>Recline Chair</span><span class="count">(5)</span>
+          </div>
+          <div class="list-item">
+            <span>Recline Chair</span><span class="count">(5)</span>
+          </div>
+          <div class="list-item">
+            <span>Recline Chair</span><span class="count">(5)</span>
+          </div>
+        </div>
+
+        <div class="title-container filter-section">
+          <span class="title">Price</span>
+        </div>
+        <div class="title-container filter-section">
+          <span class="title">Color</span>
+        </div>
+        <div class="title-container filter-section">
+          <span class="title">Room</span>
+        </div>
+        <div class="title-container filter-section">
+          <span class="title">Style</span>
+        </div>
+        <div class="title-container filter-section">
+          <span class="title">Compare Products </span>
+        </div>
+        <div class="title-container filter-section">
+          <span class="title">My Wish List </span>
+        </div>
+      </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+      <div style="text-align: center; min-height: 1000px;">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>
