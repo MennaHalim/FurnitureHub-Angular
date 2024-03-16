@@ -9,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class DisplayallproductsComponent {
 
+  //for checked 
+  isChecked: number | null = null;
+
+  markChecked(index: number): void {
+    this.isChecked = index;
+}
+  //End for checked 
+
 }

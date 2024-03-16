@@ -1,1 +1,24 @@
-<p>displayallproducts works!</p>
+<div class="headCategory">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a (click)="markChecked(1)" [class.checked]="isChecked === 1" href="#home">living room</a>
+        </li>
+        <li class="active">
+            <a (click)="markChecked(2)" [class.checked]="isChecked === 2" href="#home">living room</a>
+        </li>
+    </ul>
+</div>
+<!--  -->
+<div class="childCategory">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a  href="#home">living room</a>
+        </li>
+        <li class="active">
+            <a  href="#home">living room</a>
+        </li>
+    </ul>
+</div>
+
+
+
