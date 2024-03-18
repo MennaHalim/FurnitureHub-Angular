@@ -1,6 +1,6 @@
 .title-container {
   position: relative;
-  
+
 }
 
 .title {
@@ -13,15 +13,15 @@
   margin-bottom: 30px;
   margin-top: 15px;
   font-family: "Poppins";
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
 }
 
 .mat-icon {
-  background-color: white; 
+  background-color: white;
   border: none;
-  border-radius: 0; 
-  margin-left: auto; 
+  border-radius: 0;
+  margin-left: auto;
   margin-right: 20px;
   margin-top: 5px;
   display: flex;
@@ -44,13 +44,13 @@
   width: 270;
   position: relative;
   margin-top: 30px;
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
 }
 
-.count{
+.count {
   color: #878787;
-  margin-left: auto; 
+  margin-left: auto;
   margin-right: 20px;
 }
 
@@ -68,9 +68,80 @@
   margin-bottom: 50px;
 }
 
-.filter-section{
-  /* padding-bottom: 10px; */
+.filter-section {
   padding-top: 25px;
 }
 
+mat-slider {
+  width: 220px;
+  --mdc-slider-handle-color: #c02234;
+  --mdc-slider-focus-handle-color: #c02234;
+  --mdc-slider-hover-handle-color: #c02234;
+  --mdc-slider-active-track-color: #c02234;
+}
 
+.go-badge{
+  background-color: #1a2854;
+  margin-right: 13px;
+  font-family: "Poppins";
+  font-weight: lighter;
+  width: 40px;
+  height: 25px;
+  font-size: small;
+  display: grid;
+  align-items: center;
+}
+
+.silder-container,
+.price-container{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.price-bedge{
+  background-color: #1a2854;
+  font-weight: 400;
+  font-size: smaller;
+  height: 20px; 
+  width: 75px;
+  position: flex;
+}
+
+.right-price{
+  margin-right: 83px;
+}
+.color-container{
+  margin-right: 10px;
+}
+.color-badge{
+  width: 27px;
+  height: 27px;
+  /* border-color: #1a2854; */
+  border-color: #1a2854;
+  border-style: solid;
+  border-width: 1px;
+  margin-right: 10px;
+  margin-bottom: 7px;
+}
+
+.form-check-label{
+  color: #1a2854;
+  margin-left: 5px;
+}
+
+mat-drawer-container,
+mat-sidenav{
+  height: 1200px;
+  border: none;
+}
+
+.close-sidenav {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .close-sidenav {
+    display: block;
+  }
+}

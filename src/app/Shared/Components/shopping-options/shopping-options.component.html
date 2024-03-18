@@ -1,57 +1,126 @@
 <div class="container">
-  <mat-drawer-container autosize>
-    <mat-drawer #drawer opened="true" mode="side" position="start" style="width: 320px;">
-      <mat-nav-list>
-        <div class="title-container">
-          <span class="title">Shopping Options</span>
-        </div>
+  <button class = "show-options-icon" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+  </button>
+  <mat-sidenav #sidenav="matSidenav" mode="side" opened>
+    <mat-drawer-container>
+      <mat-drawer #drawer opened="true" mode="side" position="start" style="width: 320px;">
+        <mat-nav-list>
+          <button class="show-options-icon close-sidenav" mat-icon-button *ngIf="sidenav.opened" (click)="sidenav.toggle()" >
+            <mat-icon>close</mat-icon>
+          </button>
 
-        <div class="title-container" (click)="toggleCategories()">
-          <span class="title">Categories
-            <mat-icon class="mat-icon-rtl-mirror">
-              {{isExpanded ? 'expand_less' : 'expand_more'}}
-            </mat-icon> 
-          </span>     
-        </div>
-        <div class="filter-options" [style.display]="isExpanded ? 'block' : 'none'">
-          <div class="list-item">
-            <span>Recline Chair</span><span class="count">(5)</span>
+          <div class="title-container">
+            <span class="title">Shopping Options</span>
           </div>
-          <div class="list-item">
-            <span>Recline Chair</span><span class="count">(5)</span>
+          <!-- category section  -->
+          <div class="title-container" (click)="toggleCategories()">
+            <span class="title">Categories
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{isCategoryExpanded ? 'expand_less' : 'expand_more'}}
+              </mat-icon>
+            </span>
           </div>
-          <div class="list-item">
-            <span>Recline Chair</span><span class="count">(5)</span>
+          <div class="filter-options" [style.display]="isCategoryExpanded ? 'block' : 'none'">
+            <div class="list-item">
+              <span>Recline Chair</span><span class="count">(5)</span>
+            </div>
+            <div class="list-item">
+              <span>Recline Chair</span><span class="count">(5)</span>
+            </div>
+            <div class="list-item">
+              <span>Recline Chair</span><span class="count">(5)</span>
+            </div>
+            <div class="list-item">
+              <span>Recline Chair</span><span class="count">(5)</span>
+            </div>
           </div>
-          <div class="list-item">
-            <span>Recline Chair</span><span class="count">(5)</span>
+          <!-- price section  -->
+          <div class="title-container filter-section" (click)="togglePrice()">
+            <span class="title">Price
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{isPriceExpanded ? 'expand_less' : 'expand_more'}}
+              </mat-icon>
+            </span>
           </div>
-        </div>
+          <div class="filter-options" [style.display]="isPriceExpanded ? 'block' : 'none'">
+            <div class="price-container">
+              <span class="price-bedge badge">{{startValue | currency: 'EGP' : 'symbol':'1.0-0'}}</span>
+              <span class="price-bedge badge right-price">{{endValue | currency: 'EGP': 'symbol':'1.0-0'}}</span>
+            </div>
+            <div class="silder-container">
+              <mat-slider class="custom-slider" [min]="minPrice" [max]="maxPrice">
+                <input [(ngModel)]="startValue" matSliderStartThumb>
+                <input [(ngModel)]="endValue" matSliderEndThumb>
+              </mat-slider>
+              <button class=" go-badge translate-middle badge rounded-pill">Go</button>
+            </div>
+          </div>
+          <!-- color section  -->
+          <div class="title-container filter-section" (click)="toggleColor()">
+            <span class="title">Color
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{isColorExpanded ? 'expand_less' : 'expand_more'}}
+              </mat-icon>
+            </span>
+          </div>
 
-        <div class="title-container filter-section">
-          <span class="title">Price</span>
+          <div class="filter-options" [style.display]="isColorExpanded ? 'block' : 'none'">
+            <div class="color-container">
+              @for (color of colors; track $index) {
+              <button class="color-badge badge rounded-circle" [ngStyle]="{'background-color': color}">
+                <span class="visually-hidden">color badge</span>
+              </button>
+              }
+            </div>
+          </div>
+          <!-- room section  -->
+          <div class="title-container filter-section" (click)="toggleRoom()">
+            <span class="title">Room
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{isRooEmxpanded ? 'expand_less' : 'expand_more'}}
+              </mat-icon>
+            </span>
+          </div>
+
+          <div class="filter-options" [style.display]="isRooEmxpanded ? 'block' : 'none'">
+            <div class="list-item">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+              <label class="form-check-label" for="flexCheckflexCheckDefault">
+                Living Room
+              </label>
+              <span class="count">(5)</span>
+            </div>
+          </div>
+
+          <!-- style section  -->
+          <div class="title-container filter-section" (click)="toggleStyle()">
+            <span class="title">Style
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{isStyleExpanded ? 'expand_less' : 'expand_more'}}
+              </mat-icon>
+            </span>
+          </div>
+
+          <div class="filter-options" [style.display]="isStyleExpanded ? 'block' : 'none'">
+            <div class="list-item">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+              <label class="form-check-label" for="flexCheckflexCheckDefault">
+                Modern
+              </label>
+              <span class="count">(5)</span>
+            </div>
+          </div>
+
+        </mat-nav-list>
+      </mat-drawer>
+      <mat-drawer-content>
+        <div style="text-align: center; min-height: 1000px;">
+          <router-outlet></router-outlet>
         </div>
-        <div class="title-container filter-section">
-          <span class="title">Color</span>
-        </div>
-        <div class="title-container filter-section">
-          <span class="title">Room</span>
-        </div>
-        <div class="title-container filter-section">
-          <span class="title">Style</span>
-        </div>
-        <div class="title-container filter-section">
-          <span class="title">Compare Products </span>
-        </div>
-        <div class="title-container filter-section">
-          <span class="title">My Wish List </span>
-        </div>
-      </mat-nav-list>
-    </mat-drawer>
-    <mat-drawer-content>
-      <div style="text-align: center; min-height: 1000px;">
-        <router-outlet></router-outlet>
-      </div>
-    </mat-drawer-content>
-  </mat-drawer-container>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </mat-sidenav>
+
 </div>
