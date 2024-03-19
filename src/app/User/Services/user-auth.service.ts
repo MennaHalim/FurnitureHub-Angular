@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { RegistrationUser } from '../Models/register/user';
 
 
 @Injectable({
@@ -10,6 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class UserAuthService {
   private AuthUrl: string = 'http://localhost:5016/api/Account/login';
+  private registerUrl: string = 'http://localhost:5016/api/Account/register';
   private isUserLoggedSubject: BehaviorSubject<boolean>;
   private jwtHelper = new JwtHelperService();
 
@@ -39,5 +41,15 @@ export class UserAuthService {
     console.log("Logging out...");
     localStorage.removeItem('token');
     this.isUserLoggedSubject.next(false);
+  }
+
+  register(user: RegistrationUser) {
+    return this.httpClient.post<any>(this.registerUrl, user).pipe(
+      tap((response) => {
+        console.log('Registration successful:', response);
+        //automatic login
+        this.login(user.email, user.password).subscribe();
+      })
+    );
   }
 }

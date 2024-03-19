@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAuthService } from '../../../User/Services/user-auth.service';
+import { RegistrationUser } from '../../../User/Models/register/user';
+
 
 @Component({
   selector: 'app-test',
@@ -48,6 +50,10 @@ export class TestComponent {
   }
 
   logout() {
-    this.AuthService.logout();
+    // this.AuthService.logout();
+    this.AuthService.register(new RegistrationUser("user2", "user2", "user2@example.com", "string0A*", "string0A*"))
+    .subscribe(response => {
+      console.log(response);
+    });
   }
 }
