@@ -15,6 +15,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @Component({

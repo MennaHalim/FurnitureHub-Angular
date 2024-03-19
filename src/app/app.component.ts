@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ShoppingOptionsComponent } from './Shared/Components/shopping-options/shopping-options.component';
-import { DisplayallproductsComponent } from "./display_all_products/component/displayallproducts/displayallproducts.component";
+import { ShoppingOptionsComponent } from './Products/Components/shopping-options/shopping-options.component';
+import { DisplayallproductsComponent } from "./Products/Components/displayallproducts/displayallproducts.component";
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-root',
