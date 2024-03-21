@@ -1,7 +1,9 @@
 import { ICustomerReview } from "./icustomer-review";
+import { IItem } from "./iitem";
 
 export interface ISet {
-    id: number;
+  categoryItems: IItem[]
+  id: number;
   name: string;
   availability: string;
   price: number;

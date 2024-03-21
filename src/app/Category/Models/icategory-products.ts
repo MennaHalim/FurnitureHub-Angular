@@ -1,7 +1,7 @@
 import { IProduct } from "../../Products/Models/iproduct";
 
 export interface ICategoryProducts {
-    pageIndex: number;
+  pageIndex: number;
   pageSize: number;
   count: number;
   minimumPrice: number;

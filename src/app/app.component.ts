@@ -12,7 +12,7 @@ import { HeaderComponent } from './Shared/Components/Header/header/header.compon
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-        imports: [RouterOutlet, ShoppingOptionsComponent, DisplayallproductsComponent,HeaderComponent]
+    imports: [RouterOutlet, ShoppingOptionsComponent, DisplayallproductsComponent,HeaderComponent]
 
     // imports: [RouterOutlet, ShoppingOptionsComponent, DisplayallproductsComponent,BodyComponent,HeaderComponent]
 })
