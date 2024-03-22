@@ -15,15 +15,15 @@ export class CategoryServicesService {
   
   constructor(private httpClient: HttpClient) { }
 
-  getAllCategories(): Observable<ICategory> {
-    return this.httpClient.get<any>(`${this.categoriesUrl}/categories`)
+  getAllCategories(): Observable<ICategory[]> {
+    return this.httpClient.get<any>(`${this.categoriesUrl}`)
       .pipe(
         tap((data) => console.log('All', JSON.stringify(data)))
       );
   }
 
-  getCategoryTypes(categoryId: number, type: ProductsTypes): Observable<ICategoryWithSetsTypes | ICategoryWithItemsTypes> {
-    const url = `${this.typesBaseUrl}${type}s/${categoryId}`;
+  getCategoryTypes(categoryId: number, type: ProductsTypes): Observable<ICategoryWithSetsTypes > {
+    const url = `${this.typesBaseUrl}${type}s/types?categoryId=${categoryId}`;
     return this.httpClient.get<any>(url)
       .pipe(
         tap((data) => console.log('All', JSON.stringify(data)))

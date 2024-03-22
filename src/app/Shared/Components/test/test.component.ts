@@ -10,6 +10,8 @@ import { ICategoryWithItemsTypes } from '../../../Category/Models/icategory-with
 import { ICategoryProducts } from '../../../Category/Models/icategory-products';
 import { ProductServicesService } from '../../../Products/Services/product-services.service';
 import { ISet } from '../../../Products/Models/iset';
+import { ProductsTypes } from '../../../Products/Models/Enum/products-types';
+import { SortType } from '../../../Products/Models/Enum/sort-type';
 
 
 @Component({
@@ -66,11 +68,13 @@ export class TestComponent {
     // .subscribe(response => {
     //   console.log(response);
     // }); 
-    this.testgetSetById();
-    
+    // this.testgetSetById();
+    // this.testGetAllCategories();
+    // this.testgetCategorySetsType();
+    this.testgetCategorySets();    
   }
 
-  categories? : ICategory;
+  categories? : ICategory[];
 
   testGetAllCategories(){
     this.catServ.getAllCategories().subscribe(data => {
@@ -80,34 +84,24 @@ export class TestComponent {
     });
   }
 
-  // catwithsetstypes? : ICategoryWithSetsTypes; 
+  catwithsetstypes?: ICategoryWithSetsTypes;
 
-  // testgetCategorySetsType(){
-  //   this.catServ.getCategorySetsTypes(1).subscribe(data => {
-  //     this.catwithsetstypes = data;
+  testgetCategorySetsType(){
+    this.catServ.getCategoryTypes(2,ProductsTypes.Item).subscribe(data => {
+      this.catwithsetstypes = data;
 
-  //     console.log(this.catwithsetstypes.categorySetsTypes[0].name);
-  //   });
-  // }
+      console.log(this.catwithsetstypes);
+    });
+  }
 
-  // catwithitemstypes? : ICategoryWithItemsTypes; 
+  catproduct?:ICategoryProducts;
+  testgetCategorySets(){
+    this.productserv.getCategoryProducts(ProductsTypes.Item, null,null,null,null, "ch").subscribe(data => {
+      this.catproduct = data;
 
-  // testgetCategoryItemsType(){
-  //   this.catServ.getCategoryItemsTypes(1).subscribe(data => {
-  //     this.catwithitemstypes = data;
-
-  //     console.log(this.catwithitemstypes.categoryItemsTypes[0].name);
-  //   });
-  // }
-
-  // catproduct?:ICategoryProducts;
-  // testgetCategorySets(){
-  //   this.productserv.getCategorySets(1, 1).subscribe(data => {
-  //     this.catproduct = data;
-
-  //     console.log(this.catproduct);
-  //   });
-  // }
+      console.log(this.catproduct);
+    });
+  }
 
   set? : ISet
   testgetSetById(){

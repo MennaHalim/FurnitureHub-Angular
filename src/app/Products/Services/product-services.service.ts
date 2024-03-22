@@ -15,19 +15,20 @@ export class ProductServicesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCategoryProducts(categoryId: number,
-    productType: ProductsTypes,
-    setTypeId: number | null,
-    itemTypeId: number | null,
+  getCategoryProducts(productType: ProductsTypes,
+    categoryId: number | null = null,
+    setTypeId: number | null = null,
+    itemTypeId: number | null = null,
     sort: SortType | null = null,
-    search: string | null,
-    color: string | null,
-    minimumPrice: number | null,
-    maximumPrice: number | null,
+    search: string | null = null,
+    color: string | null = null,
+    minimumPrice: number | null = null,
+    maximumPrice: number | null = null,
     pageSize: number = 5,
     pageIndex: number = 1): Observable<ICategoryProducts> {
-    let url = `${this.baseUrl}${productType}?CategoryId=${categoryId}&pageIndex=${pageIndex}&pageSize=${pageSize}`;
+    let url = `${this.baseUrl}${productType}s?pageIndex=${pageIndex}&pageSize=${pageSize}`;
   
+    url += (categoryId !== null) ? `&categoryId=${minimumPrice}` : '';
     url += (setTypeId !== null && setTypeId !== undefined && productType === ProductsTypes.Set) ? `&SetTypeId=${setTypeId}` : '';
     url += (itemTypeId !== null && itemTypeId !== undefined) ? `&ItemTypeId=${itemTypeId}` : '';
     url += (sort && sort !== SortType.NameAsc) ? `&sort=${sort}` : '';
@@ -36,8 +37,8 @@ export class ProductServicesService {
     url += (minimumPrice !== null) ? `&minimumPrice=${minimumPrice}` : '';
     url += (maximumPrice !== null) ? `&maximumPrice=${maximumPrice}` : '';
   
-    return this.httpClient.get<any>(url).pipe(
-      tap((data) => console.log('All', JSON.stringify(data)))
+    return this.httpClient.get<ICategoryProducts>(url).pipe(
+      tap((data) => console.log(url))
     );
   }
 
