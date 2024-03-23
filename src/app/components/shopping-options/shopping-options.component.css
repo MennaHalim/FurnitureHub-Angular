@@ -1,3 +1,9 @@
+mat-drawer-container,
+mat-sidenav{
+  border: none;
+  position: relative;
+  margin: 3px;
+}
 .title-container {
   position: relative;
 
@@ -130,11 +136,6 @@ mat-slider {
   margin-left: 5px;
 }
 
-mat-drawer-container,
-mat-sidenav{
-  height: 1200px;
-  border: none;
-}
 
 .close-sidenav {
   display: none;
