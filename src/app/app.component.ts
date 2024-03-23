@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from './components/header/header.component';
-import { BodyComponent } from './components/body/body.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { RouterOutlet } from '@angular/router';
+import { FooterComponent } from './Shared/Components/footer/footer.component';
+import { HeaderComponent } from './Shared/Components/header/header.component';
 
 
 
@@ -10,7 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [HeaderComponent,BodyComponent,FooterComponent]
+    imports: [HeaderComponent,RouterOutlet,FooterComponent]
 
     // imports: [RouterOutlet, ShoppingOptionsComponent, DisplayallproductsComponent,BodyComponent,HeaderComponent]
 })
