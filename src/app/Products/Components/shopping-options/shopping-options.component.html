@@ -75,43 +75,6 @@
               }
             </div>
           </div>
-          <!-- room section  -->
-          <div class="title-container filter-section" (click)="toggleRoom()">
-            <span class="title">Room
-              <mat-icon class="mat-icon-rtl-mirror">
-                {{isRooEmxpanded ? 'expand_less' : 'expand_more'}}
-              </mat-icon>
-            </span>
-          </div>
-
-          <div class="filter-options" [style.display]="isRooEmxpanded ? 'block' : 'none'">
-            <div class="list-item">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-              <label class="form-check-label" for="flexCheckflexCheckDefault">
-                Living Room
-              </label>
-              <span class="count">(5)</span>
-            </div>
-          </div>
-
-          <!-- style section  -->
-          <div class="title-container filter-section" (click)="toggleStyle()">
-            <span class="title">Style
-              <mat-icon class="mat-icon-rtl-mirror">
-                {{isStyleExpanded ? 'expand_less' : 'expand_more'}}
-              </mat-icon>
-            </span>
-          </div>
-
-          <div class="filter-options" [style.display]="isStyleExpanded ? 'block' : 'none'">
-            <div class="list-item">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-              <label class="form-check-label" for="flexCheckflexCheckDefault">
-                Modern
-              </label>
-              <span class="count">(5)</span>
-            </div>
-          </div>
 
         </mat-nav-list>
       </mat-drawer>

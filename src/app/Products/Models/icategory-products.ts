@@ -1,4 +1,4 @@
-import { IProduct } from "../../Products/Models/iproduct";
+import { IProduct } from "./iproduct";
 
 export interface ICategoryProducts {
   pageIndex: number;
