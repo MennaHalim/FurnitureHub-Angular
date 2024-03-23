@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ForbiddenComponent } from './Components/forbidden/forbidden.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 
 
 export const routes: Routes = [
