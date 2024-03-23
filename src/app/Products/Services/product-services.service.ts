@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { ICategoryProducts } from '../../Category/Models/icategory-products';
+import { ICategoryProducts } from '../Models/icategory-products';
 import { ProductsTypes } from '../Models/Enum/products-types';
 import { SortType } from '../Models/Enum/sort-type';
 import { ISet } from '../Models/iset';

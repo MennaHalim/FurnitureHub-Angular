@@ -7,7 +7,7 @@ import { CategoryServicesService } from '../../../Category/Services/category-ser
 import {ICategory} from '../../../Category/Models/icategory'
 import { ICategoryWithSetsTypes } from '../../../Category/Models/icategory-with-sets-types';
 import { ICategoryWithItemsTypes } from '../../../Category/Models/icategory-with-items-types';
-import { ICategoryProducts } from '../../../Category/Models/icategory-products';
+import { ICategoryProducts } from '../../../Products/Models/icategory-products';
 import { ProductServicesService } from '../../../Products/Services/product-services.service';
 import { ISet } from '../../../Products/Models/iset';
 

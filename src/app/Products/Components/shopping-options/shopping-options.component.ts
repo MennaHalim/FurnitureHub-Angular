@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, input } from '@angular/core';
 import {MatBadgeModule} from '@angular/material/badge'
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatListModule} from '@angular/material/list'
@@ -15,8 +15,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 
 @Component({
@@ -43,17 +41,18 @@ export class ShoppingOptionsComponent implements OnInit  {
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
+
   
   isCategoryExpanded: boolean = false;
   isPriceExpanded: boolean = false;
   isColorExpanded: boolean = false;
   isRooEmxpanded: boolean = false;
   isStyleExpanded: boolean = false;
-  minPrice:number = 0;
-  maxPrice:number = 20000;
+  @Input() minPrice:number = 0;
+  @Input()maxPrice:number = 200000;
   startValue = this.minPrice;
   endValue = this.maxPrice;
-  colors: string[] = ['#e6b77a', '#cccccc', '#0042b3', '#000000', '#ffffff', '#db1818', '#2a6273', '#7d687a', ''];
+  @Input() colors: string[] = ['#e6b77a', '#cccccc', '#0042b3', '#000000', '#ffffff', '#db1818', '#2a6273', '#7d687a', ''];
   private readonly destroy$ = new Subject<void>();
 
   constructor(private breakpointObserver: BreakpointObserver) {}
