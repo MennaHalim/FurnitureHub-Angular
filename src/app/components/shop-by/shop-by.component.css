@@ -1,0 +1,130 @@
+.scrollable-tabs-container {
+    background-color: #000;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.scrollable-tabs-container svg {
+    width: 35px;
+    height: 35px;
+    padding: 8px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 50%;
+}
+
+.scrollable-tabs-container ul {
+    display: flex;
+    gap: 16px;
+    padding: 12px 24px 0px;
+    list-style-type: none;
+    overflow-x: scroll;
+    -ms-overflow-stylee: none;
+    scrollbar-width: none;
+}
+
+.scrollable-tabs-container ul::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollable-tabs-container a {
+    color: white;
+    text-decoration: none;
+    background-color: #333;
+    padding: 4px 24px;
+    display: inline-block;
+    border-radius: 4px;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.scrollable-tabs-container .left-arrow,
+.scrollable-tabs-container .right-arrow {
+    position: absolute;
+    height: 100%;
+    width: 100px;
+    top: 0;
+    display: none;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.scrollable-tabs-container .right-arrow.active,
+.scrollable-tabs-container .left-arrow.active{
+    display: flex;
+}
+
+.scrollable-tabs-container .right-arrow {
+    right: 0;
+    background: linear-gradient(to left, #000 50%, transparent);
+    justify-content: flex-end;
+}
+
+.scrollable-tabs-container .left-arrow {
+    background: linear-gradient(to right, #000 50%, transparent);
+}
+
+.scrollable-tabs-container svg:hover {
+    background: #333;
+}
+
+.scrollable-tabs-container a.active{
+    background-color: #fff;
+    color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+}
+
+li {
+    margin-right: 25px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: #1A2954;
+}
+
+li a:hover {
+    color: rgba(255, 0, 0, 0.428);
+}
+
+.shop-by-btn {
+    border: 1px solid #1A2954;
+    padding: 10px 25px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.shop-by-btn:hover {
+    background-color: #1A2954;
+    color: white;
+}
+
+
+.wrapper {
+    
+    overflow-x: auto;
+    display: flex;
+} */

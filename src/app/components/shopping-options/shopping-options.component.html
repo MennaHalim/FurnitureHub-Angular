@@ -1,5 +1,5 @@
 <div class="container">
-  <button class = "show-options-icon" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+  <button class="show-options-icon" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
     <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
   </button>
@@ -7,7 +7,8 @@
     <mat-drawer-container>
       <mat-drawer #drawer opened="true" mode="side" position="start" style="width: 320px;">
         <mat-nav-list>
-          <button class="show-options-icon close-sidenav" mat-icon-button *ngIf="sidenav.opened" (click)="sidenav.toggle()" >
+          <button class="show-options-icon close-sidenav" mat-icon-button *ngIf="sidenav.opened"
+            (click)="sidenav.toggle()">
             <mat-icon>close</mat-icon>
           </button>
 
@@ -76,8 +77,11 @@
             </div>
           </div>
 
+
         </mat-nav-list>
+
       </mat-drawer>
+
       <mat-drawer-content>
         <div style="text-align: center; min-height: 1000px;">
           <router-outlet></router-outlet>
