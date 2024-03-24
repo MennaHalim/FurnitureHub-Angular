@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { ICategoryProducts } from '../Models/icategory-products';
-import { ProductsTypes } from '../Models/Enum/products-types';
-import { SortType } from '../Models/Enum/sort-type';
 import { ISet } from '../Models/iset';
 import { IItem } from '../Models/iitem';
+import { ProductsTypes } from '../Enums/products-types';
+import { SortType } from '../Enums/sort-type';
 
 @Injectable({
   providedIn: 'root'

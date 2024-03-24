@@ -4,7 +4,7 @@ import { Observable, tap } from 'rxjs';
 import { ICategory } from '../Models/icategory';
 import { ICategoryWithSetsTypes } from '../Models/icategory-with-sets-types';
 import { ICategoryWithItemsTypes } from '../Models/icategory-with-items-types';
-import {ProductsTypes} from '../../Products/Models/Enum/products-types'
+import { ProductsTypes } from '../Enums/products-types';
 
 @Injectable({
   providedIn: 'root'

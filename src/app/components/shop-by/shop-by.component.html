@@ -1,57 +1,38 @@
-<div class="shop-by-container">
+<div class="shop-by-select-container">
     <ul>
-        <li><a href="">Shop by Set</a></li>
-        <li><a href="">Shop by Item</a></li>
+        <li><a href="#" [class.select]="selectedTab === 'shopBySet'" (click)="selectTab('shopBySet')">Shop by Set</a></li>
+        <li><a href="#" [class.select]="selectedTab === 'shopByItem'" (click)="selectTab('shopByItem')">Shop by Item</a></li>
+    </ul>
+</div>
+
+<div class="scrollable-tabs-container">
+    <div class="left-arrow" (click)="onScroll('left')" [class.active]="scrollLeftActive">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        </svg>
+    </div>
+
+    <ul>
+        @if (selectedTab === "shopBySet") {
+            @for (item of categorySetsTypesData?.categorySetsTypes; track $index){
+                <li>
+                    <a href="#">{{ item.name }}</a>
+                </li>
+                }
+        }@else{
+            @for (item of categoryItemsTypesData?.categoryItemsTypes; track $index){
+                <li>
+                    <a href="#">{{ item.name }}</a>
+                </li>
+                }
+        }
     </ul>
 
-    <div class="scrollable-tabs-container">
-        <div class="left-arrow">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-            </svg>
-
-        </div>
-
-        <ul>
-            <li>
-                <a href="#">Sofa Set</a>
-            </li>
-            <li>
-                <a href="">U-Shape</a>
-            </li>
-            <li>
-                <a href="">L-Shape</a>
-            </li>
-            <li>
-                <a href="">Recliner Sofa Sets</a>
-            </li>
-            <li>
-                <a href="">TV Tables</a>
-            </li>
-
-
-            <li>
-                <a href="">Sofa Set</a>
-            </li>
-            <li>
-                <a href="">U-Shape</a>
-            </li>
-            <li>
-                <a href="">L-Shape</a>
-            </li>
-            <li>
-                <a href="">Recliner Sofa Sets</a>
-            </li>
-            <li>
-                <a href="">TV Tables</a>
-            </li>
-        </ul>
-
-        <div class="right-arrow active">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-            </svg>
-        </div>
+    <div class="right-arrow" (click)="onScroll('right')" [class.active]="scrollRightActive">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
     </div>
+</div>
