@@ -14,7 +14,6 @@ export class QueryParamGuard implements CanActivate {
     const categoryId = route.queryParams['categoryId'];
 
     if (typeof categoryId === 'undefined' || !this.isValidCategoryId(categoryId)) {
-      console.log("Here--------------------");
       this.router.navigate(['/notFound']);
       return false;
     }

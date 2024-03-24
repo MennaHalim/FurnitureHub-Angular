@@ -1,5 +1,4 @@
 import { ProductService } from './../../Shared/Services/product.service';
-import { ProductsComponent } from './../products/products.component';
 import { Subscription } from 'rxjs';
 import { ICategoryItemsTypes, ICategorySetsTypes } from '../../Shared/Models/category';
 import { ShopByService } from './../../Shared/Services/shop-by.service';
@@ -27,9 +26,6 @@ export class ShopByComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private router: Router, private shopByService: ShopByService,
     private ProductService: ProductService) { }
-
-
-
 
   ngOnInit(): void {
 
