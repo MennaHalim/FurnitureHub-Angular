@@ -1,0 +1,47 @@
+.sign-in-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .error {
+    color: red;
+    font-size: smaller;
+  }
+  
+  .social-login {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .btn-social {
+    background: none;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-facebook {
+    background-color: #3B5998;
+    color: white;
+  }
+  
+  .btn-google {
+    background-color: #DD4B39;
+    color: white;
+  }
+  
