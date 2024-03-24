@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ICategoryItemsTypes, ICategorySetsTypes } from '../../Shared/Models/category';
 import { ShopByService } from './../../Shared/Services/shop-by.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop-by',
@@ -14,6 +15,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class ShopByComponent implements OnInit, OnDestroy {
 
+  categoryId: number = 0;
+
   categorySetsTypesData: ICategorySetsTypes | null = null;
   categoryItemsTypesData: ICategoryItemsTypes | null = null;
   private categorySetsTypesSubscription: Subscription | undefined;
@@ -22,11 +25,33 @@ export class ShopByComponent implements OnInit, OnDestroy {
   scrollLeftActive: boolean = false;
   scrollRightActive: boolean = true;
 
-  constructor(private shopByService: ShopByService,
-    private ProductService : ProductService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private shopByService: ShopByService,
+    private ProductService: ProductService) { }
+
+
+
 
   ngOnInit(): void {
-    this.categorySetsTypesSubscription = this.shopByService.getCategorySetsTypes().subscribe(
+
+    this.getCategoryIdFromUrl();
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.getCategoryIdFromUrl();
+        this.loadComponentData();
+      };
+    });
+  }
+
+  private getCategoryIdFromUrl() {
+    this.route.queryParams.subscribe(params => {
+      this.categoryId = +params['categoryId'];
+      this.loadComponentData();
+    })
+  }
+
+  private loadComponentData(): void {
+    this.categorySetsTypesSubscription = this.shopByService.getCategorySetsTypes(this.categoryId).subscribe(
       (data) => {
         this.categorySetsTypesData = data;
       });
@@ -36,10 +61,14 @@ export class ShopByComponent implements OnInit, OnDestroy {
         console.log(response);
       }
     })
-
   }
 
+
   ngOnDestroy(): void {
+    this.unsubscribeSubscriptions();
+  }
+
+  private unsubscribeSubscriptions(): void {
     if (this.categorySetsTypesSubscription) {
       this.categorySetsTypesSubscription.unsubscribe();
     }
@@ -88,9 +117,13 @@ export class ShopByComponent implements OnInit, OnDestroy {
   selectTab(tab: string): void {
     this.selectedTab = tab;
 
-    this.categoryItemsTypesSubscription = this.shopByService.getCategoryItemsTypes().subscribe(
+    this.categoryItemsTypesSubscription = this.shopByService.getCategoryItemsTypes(this.categoryId).subscribe(
       (data) => {
         this.categoryItemsTypesData = data;
       });
   }
+}
+
+function callServiceMethod() {
+  throw new Error('Function not implemented.');
 }

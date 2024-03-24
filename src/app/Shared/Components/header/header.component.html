@@ -32,10 +32,10 @@
     <nav>
         <ul class="menu">
             <li class="dropdown">
-                <a href="#">Living Room</a>
+                <a routerLink='/products/sets' [queryParams]="{ categoryId: 1 }">Living Room</a>
                 <ul class="dropdown-menu">
                     <li class="sub-dropdown">
-                        <a href="#">Living Room Set</a>
+                        <a routerLink='/products/sets' [queryParams]="{ categoryId: 1 }">Living Room Set</a>
                         <ul class="dropdown-submenu">
                             <li><a href="#">Sofa set</a></li>
                             <li><a href="#">U-Shape</a></li>
@@ -60,10 +60,10 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#">bedroom</a>
+                <a routerLink='/products/sets' [queryParams]="{ categoryId: 2 }">bedroom</a>
                 <ul class="dropdown-menu">
                     <li class="sub-dropdown">
-                        <a href="#">Bedroom Set </a>
+                        <a routerLink='/products/sets' [queryParams]="{ categoryId: 2 }">Bedroom Set </a>
                         <ul class="dropdown-submenu">
                             <li><a href="#">King Bedroom Set</a></li>
                             <li><a href="#">King Bedroom Set</a></li>

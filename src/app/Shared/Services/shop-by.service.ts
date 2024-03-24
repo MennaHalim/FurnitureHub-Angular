@@ -8,17 +8,19 @@ import { Observable, tap } from 'rxjs';
 })
 export class ShopByService {
 
-  private getCategorySetsTypesTestUrl: string = 'http://localhost:5016/api/Products/sets/types?CategoryId=1';
-  private getCategoryItemsTypesTestUrl: string = 'http://localhost:5016/api/Products/items/types?CategoryId=1';
+  private getCategorySetsTypesUrl: string = 'http://localhost:5016/api/Products/sets/types';
+  private getCategoryItemsTypesUrl: string = 'http://localhost:5016/api/Products/items/types';
 
   constructor(private httpClient: HttpClient) { }
 
-  getCategorySetsTypes(): Observable<ICategorySetsTypes>{
-    return this.httpClient.get<any>(`${this.getCategorySetsTypesTestUrl}`);
+  getCategorySetsTypes(categoryId:number): Observable<ICategorySetsTypes>{
+    const url = `${this.getCategorySetsTypesUrl}?CategoryId=${categoryId}`
+    return this.httpClient.get<any>(url);
   }
 
-  getCategoryItemsTypes(): Observable<ICategoryItemsTypes>{
-    return this.httpClient.get<any>(`${this.getCategoryItemsTypesTestUrl}`);
+  getCategoryItemsTypes(categoryId:number): Observable<ICategoryItemsTypes>{
+    const url = `${this.getCategoryItemsTypesUrl}?CategoryId=${categoryId}`
+    return this.httpClient.get<any>(url);
   }
 
 }
