@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, input } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, OnDestroy, ChangeDetectorRef } from '@angular/core'; 
 import {MatBadgeModule} from '@angular/material/badge'
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatListModule} from '@angular/material/list'
@@ -37,7 +37,7 @@ import { Subject } from 'rxjs'
   templateUrl: './shopping-options.component.html',
   styleUrl: './shopping-options.component.css'
 })
-export class ShoppingOptionsComponent implements OnInit  {
+export class ShoppingOptionsComponent implements OnInit, OnDestroy  {
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -55,12 +55,16 @@ export class ShoppingOptionsComponent implements OnInit  {
   @Input() colors: string[] = ['#e6b77a', '#cccccc', '#0042b3', '#000000', '#ffffff', '#db1818', '#2a6273', '#7d687a', ''];
   private readonly destroy$ = new Subject<void>();
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.breakpointObserver.observe(['(max-width: 800px)'])
+  }
+
+  ngAfterViewInit(): void { 
+    this.breakpointObserver
+      .observe(['(max-width: 800px)'])
       .pipe(takeUntil(this.destroy$))
-      .subscribe(result => {
+      .subscribe((result) => {
         if (result.matches) {
           this.sidenav.mode = 'over';
           this.sidenav.close();
@@ -69,6 +73,8 @@ export class ShoppingOptionsComponent implements OnInit  {
           this.sidenav.open();
         }
       });
+
+      this.changeDetectorRef.detectChanges(); 
   }
 
   ngOnDestroy(): void {
