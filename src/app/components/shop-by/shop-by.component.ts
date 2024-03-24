@@ -56,11 +56,10 @@ export class ShopByComponent implements OnInit, OnDestroy {
         this.categorySetsTypesData = data;
       });
 
-    this.ProductService.getSets().subscribe({
-      next: (response) => {
-        console.log(response);
-      }
-    })
+    this.categoryItemsTypesSubscription = this.shopByService.getCategoryItemsTypes(this.categoryId).subscribe(
+      (data) => {
+        this.categoryItemsTypesData = data;
+      });
   }
 
 
@@ -122,8 +121,4 @@ export class ShopByComponent implements OnInit, OnDestroy {
         this.categoryItemsTypesData = data;
       });
   }
-}
-
-function callServiceMethod() {
-  throw new Error('Function not implemented.');
 }

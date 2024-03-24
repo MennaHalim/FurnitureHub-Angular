@@ -9,7 +9,8 @@ import { QueryParamGuard } from './Shared/Guards/query-param.guard';
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: BodyComponent, title: 'Home' },
-    { path: 'products/sets', component: BlankLayoutComponent, title: 'Home', canActivate: [QueryParamGuard] },
+    { path: 'products/categories', component: BlankLayoutComponent, title: 'Home', canActivate: [QueryParamGuard] },
+    { path: 'products/categories/sets', redirectTo: 'products/categories', pathMatch: 'full' },
     { path: 'notFound', component: NotFoundComponent, title: 'Not Found' },
     { path: '**', redirectTo: 'notFound' }
 ];

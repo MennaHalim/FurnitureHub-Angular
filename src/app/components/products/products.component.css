@@ -1,0 +1,57 @@
+.remove-border {
+    border: 0;
+}
+
+
+.handle-link {
+    text-decoration: none;
+    color: #1A2854;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+a:hover {
+    color: #C0223A;
+}
+
+img {
+    width: 250px;
+    height: 350px;
+    border-radius: 5px;
+}
+
+.cart-icon-container {
+    background-color: #fff;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    position: absolute;
+    top: 68%;
+    left: 73%;
+}
+
+.cart-icon-container svg {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 6%;
+    left: 10%;
+}
+
+.sale-container {
+    background-color: #FE9931;
+    color: #fff;
+    padding: 3px 22px;
+    position: absolute;
+    left: 62%;
+    top: 3%;
+}
+
+.sale-container p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.product-cart {
+    position: relative;
+}

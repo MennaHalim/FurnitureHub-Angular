@@ -26,4 +26,5 @@ export class QueryParamGuard implements CanActivate {
     const categoryIdNumber = Number(categoryId);
     return Number.isInteger(categoryIdNumber) && categoryIdNumber > 0;
   }
+
 }

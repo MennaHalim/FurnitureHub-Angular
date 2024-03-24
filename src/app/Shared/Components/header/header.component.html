@@ -31,118 +31,46 @@
     </div>
     <nav>
         <ul class="menu">
+
+            @for (item of categorySetsAndItemsTypesData; track $index) {
             <li class="dropdown">
-                <a routerLink='/products/sets' [queryParams]="{ categoryId: 1 }">Living Room</a>
+                <a routerLink='/products/categories' [queryParams]="{ categoryId: item.id }">{{item.name | capitalizeSpace}}</a>
                 <ul class="dropdown-menu">
+
+
                     <li class="sub-dropdown">
-                        <a routerLink='/products/sets' [queryParams]="{ categoryId: 1 }">Living Room Set</a>
+                        <!-- Living Room Set -->
+                        <a routerLink='/products/categories/sets' [queryParams]="{ categoryId: item.id }">{{item.name | capitalizeSpace}}
+                            set</a>
+
                         <ul class="dropdown-submenu">
-                            <li><a href="#">Sofa set</a></li>
-                            <li><a href="#">U-Shape</a></li>
-                            <li><a href="#">L-Shape</a></li>
-                            <li><a href="#">ReclinerSofa sets </a></li>
-                            <li><a href="#">Tv Tables</a></li>
+                            <!-- Sets -->
+                            @for (set of item.categorySetsTypes; track $index) {
+                            <li><a href="#">{{set.name}}</a></li>
+                            }
                         </ul>
                     </li>
+
+
+
                     <li class="sub-dropdown">
-                        <a href="#">Shop By Item</a>
+                        <!-- shop by item -->
+                        <a routerLink='/products/categories/items' [queryParams]="{ categoryId: item.id }">Shop By
+                            Item</a>
                         <ul class="dropdown-submenu">
-                            <li><a href="#">Recliner Chair</a></li>
-                            <li><a href="#">Sofa 3 Seaters</a></li>
-                            <li><a href="#">LoveSeat</a></li>
-                            <li><a href="#">Shoe rack</a></li>
-                            <li><a href="#">Coffee table</a></li>
-                            <li><a href="#">Side table</a></li>
-                            <li><a href="#">Message Chairs</a></li>
+                            @for (item of item.categoryItemsTypes; track $index) {
+                            <li><a href="#">{{item.name}}</a></li>
+                            }
+
                         </ul>
                     </li>
+
+
+
 
                 </ul>
             </li>
-            <li class="dropdown">
-                <a routerLink='/products/sets' [queryParams]="{ categoryId: 2 }">bedroom</a>
-                <ul class="dropdown-menu">
-                    <li class="sub-dropdown">
-                        <a routerLink='/products/sets' [queryParams]="{ categoryId: 2 }">Bedroom Set </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="#">King Bedroom Set</a></li>
-                            <li><a href="#">King Bedroom Set</a></li>
-                            <li><a href="#">Youth Bedrooms </a></li>
-                            <li><a href="#">Kids Bedrooms</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-dropdown">
-                        <a href="#">Shop By item</a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="#">King Bed</a></li>
-                            <li><a href="#">Queen Bed</a></li>
-                            <li><a href="#">Youth Beds</a></li>
-                            <li><a href="#">Bunk Bed</a></li>
-                            <li><a href="#">Wardrobe</a></li>
-                            <li><a href="#">Nights Stand</a></li>
-                            <li><a href="#">Dresser</a></li>
-                            <li><a href="#">Study Disk</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#">Dining Room</a>
-                <ul class="dropdown-menu">
-                    <li class="sub-dropdown">
-                        <a href="#">Dining Room sets</a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="#">Complete Dining Room sets</a></li>
-                            <li><a href="#">Dining Table with 8 chairs</a></li>
-                            <li><a href="#">Dining Table with 6 chairs</a></li>
-                            <li><a href="#">Dining Table with 4 chairs</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-dropdown">
-                        <a href="#">shop by item</a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="#">Dining table</a></li>
-                            <li><a href="#">Dining chair</a></li>
-                            <li><a href="#">Dining Bench</a></li>
-                            <li><a href="#">Display unit</a></li>
-                            <li><a href="#">Buffet</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#">Garden Furniture</a>
-                <ul class="dropdown-menu">
-                    <li class="sub-dropdown">
-                        <a href="#">Outdoor sofa set</a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="#">Outdoor table</a></li>
-
-                        </ul>
-                    </li>
-
-                    <li class="sub-dropdown">
-                        <a href="#">Outdoor Dining set</a>
-
-                    </li>
-                    <li class="sub-dropdown">
-                        <a href="#">Hammock</a>
-
-                    </li>
-                    <li class="sub-dropdown">
-                        <a href="#">Relax chair</a>
-
-                    </li>
-                    <li class="sub-dropdown">
-                        <a href="#">Swings</a>
-
-                    </li>
-
-                </ul>
-            </li>
-            <li><a href="#">Kitchens</a></li>
+            }
         </ul>
     </nav>
     <div class="icons">

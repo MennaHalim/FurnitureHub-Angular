@@ -1,3 +1,10 @@
+export interface ICategory {
+    id:number;
+    name: string;
+    categorySetsTypes: IType[];
+    categoryItemsTypes :IType[];
+}
+
 export interface IType {
     id: number,
     name: string
