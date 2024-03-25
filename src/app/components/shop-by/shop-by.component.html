@@ -17,13 +17,13 @@
         @if (selectedTab === "shopBySet") {
             @for (item of categorySetsTypesData?.categorySetsTypes; track $index){
                 <li>
-                    <a href="#">{{ item.name }}</a>
+                    <a href="#">{{ item?.name }}</a>
                 </li>
                 }
         }@else{
             @for (item of categoryItemsTypesData?.categoryItemsTypes; track $index){
                 <li>
-                    <a href="#">{{ item.name }}</a>
+                    <a href="#">{{ item?.name }}</a>
                 </li>
                 }
         }

@@ -34,12 +34,14 @@
 
             @for (item of categorySetsAndItemsTypesData; track $index) {
             <li class="dropdown">
-                <a routerLink='/products/categories' [queryParams]="{ categoryId: item.id }">{{item.name | capitalizeSpace}}</a>
+                <a routerLink='/products/categories' [queryParams]="{ categoryId: item.id }">{{item.name |
+                    capitalizeSpace}}</a>
                 <ul class="dropdown-menu">
 
                     <li class="sub-dropdown">
                         <!-- Living Room Set -->
-                        <a routerLink='/products/categories/sets' [queryParams]="{ categoryId: item.id }">{{item.name | capitalizeSpace}}
+                        <a routerLink='/products/categories/sets' [queryParams]="{ categoryId: item.id }">{{item.name |
+                            capitalizeSpace}}
                             set</a>
 
                         <ul class="dropdown-submenu">
@@ -92,7 +94,7 @@
             </div>
         </div>
         <a href="#"><i class="fa-regular fa-heart"></i></a>
-        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a routerLink="/basket"><i class="fa-solid fa-cart-shopping"></i></a>
     </div>
 
 </header>

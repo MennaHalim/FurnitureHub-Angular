@@ -1,6 +1,16 @@
-.product-imgs-container{
+.left-imgs-container {
     display: flex;
     justify-content: end;
 }
 
+.product-details-container {
+    margin: 20px 0;
+}
 
+.right-details-container {
+    padding-left: 10px;
+}
+
+.right-details-container .product-name {
+    font-size: 17px;
+}

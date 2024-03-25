@@ -2,13 +2,14 @@ import { ProductService } from './../../Shared/Services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ISet } from '../../Shared/Models/product';
+import { CapitalizeSpacePipe } from "../../Shared/Pipes/capitalize-space.pipe";
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [],
   templateUrl: './details.component.html',
-  styleUrl: './details.component.css'
+  styleUrl: './details.component.css',
+  imports: [CapitalizeSpacePipe]
 })
 export class DetailsComponent implements OnInit {
 

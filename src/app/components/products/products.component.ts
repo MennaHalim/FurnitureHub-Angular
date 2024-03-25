@@ -1,8 +1,10 @@
 import { ProductService } from './../../Shared/Services/product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { IPage } from '../../Shared/Models/product';
-import { Subscription } from 'rxjs';
+import { IPage, IProduct } from '../../Shared/Models/product';
+import { Subscription, concatWith } from 'rxjs';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { BasketService } from '../../Shared/Services/basket.service';
+import { Basket, IBasket, IBasketItem } from '../../Shared/Models/basket';
 
 @Component({
   selector: 'app-products',
@@ -18,11 +20,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private categorySetsSubscription: Subscription | undefined;
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private ProductService: ProductService) { }
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private ProductService: ProductService,
+    private _BasketService: BasketService) { }
 
   ngOnInit(): void {
     this.getCategoryIdFromUrl();
-
     this.getCategoryIdFromUrl();
     this.loadComponentData();
   }
@@ -30,6 +34,50 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribeSubscriptions();
+  }
+
+
+  addProductToCart(set: IProduct): void {
+    this.updateProductCount(set);
+    this._BasketService.addToCart(this._BasketService.basket).subscribe(
+      {
+        next: (basket) => {
+          console.log(basket);
+        }
+      }
+    );
+  }
+
+  private updateProductCount(set: IProduct) {
+    let basket = this._BasketService.basket;
+
+    if (basket !== null && basket.basketItems !== null) {
+      for (let item of basket.basketItems) {
+        if (item.productId == set.id) {
+          item.productQuantity += 1;
+          return;
+        }
+      };
+
+      let basketItem: IBasketItem = this.initializeBasketItemForAddingToCart(set)
+
+      basket.basketItems.push(basketItem);
+    }
+
+  }
+
+
+  initializeBasketItemForAddingToCart(set: IProduct): IBasketItem {
+    let basketItem: IBasketItem = {
+      productId: set.id,
+      productName: set.name,
+      productPrice: set.price,
+      productQuantity: 1,
+      productPictureUrl: set.productPictures[0],
+      category: set.type,
+      type: set.type
+    }
+    return basketItem;
   }
 
   private getCategoryIdFromUrl() {

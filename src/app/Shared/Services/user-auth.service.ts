@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { RegistrationUser } from '../Models/register/user';
+import { RegistrationUser } from '../Models/user';
 
 
 @Injectable({
