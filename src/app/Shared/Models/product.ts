@@ -15,3 +15,39 @@ export interface IProduct {
     price: number;
     productPictures: string[];
 }
+
+export interface ICustomerReview {
+    rate: number;
+    customerName: string;
+    review: string;
+}
+
+export interface IItem {
+    height: number;
+    depth: number;
+    width: number;
+    id: number;
+    name: string;
+    availability: string;
+    price: number;
+    color: string;
+    style: string;
+    suitability: string;
+    room: string;
+    productPictures: string[];
+    customerReviews?: ICustomerReview[];
+}
+
+export interface ISet {
+    categoryItems: IItem[]
+    id: number;
+    name: string;
+    availability: string;
+    price: number;
+    productPictures: string[];
+    color: string;
+    style: string;
+    suitability: string;
+    room: string;
+    customerReviews?: ICustomerReview[];
+}

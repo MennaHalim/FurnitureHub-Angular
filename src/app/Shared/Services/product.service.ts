@@ -7,11 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
 
-  constructor(private _HttpClient : HttpClient) { }
+  constructor(private _HttpClient: HttpClient) { }
 
-  baseUrl : string = 'http://localhost:5016/api/products/';
+  baseUrl: string = 'http://localhost:5016/api/products/';
 
-  getSetsByCategory(categoryId:number):Observable<any>{
+  getSetsByCategory(categoryId: number): Observable<any> {
     return this._HttpClient.get(this.baseUrl + `sets?categoryId=${categoryId}`);
   }
+
+  getProductDetails(setId: string | null): Observable<any> {
+    return this._HttpClient.get(this.baseUrl + `set?setId=${setId}`);
+  }
+
 }

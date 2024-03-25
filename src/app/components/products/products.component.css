@@ -55,3 +55,12 @@ img {
 .product-cart {
     position: relative;
 }
+
+.product-cart:hover .sale-container {
+    visibility: hidden;
+}
+
+.cart-icon-container:hover{
+    background-color: #1a2854c6;
+    color: #fff;
+}

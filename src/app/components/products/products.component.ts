@@ -2,12 +2,12 @@ import { ProductService } from './../../Shared/Services/product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IPage } from '../../Shared/Models/product';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
