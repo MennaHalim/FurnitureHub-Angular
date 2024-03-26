@@ -34,7 +34,7 @@
 
             @for (item of categorySetsAndItemsTypesData; track $index) {
             <li class="dropdown">
-                <a routerLink='/products/categories' [queryParams]="{ categoryId: item.id }">{{item.name |
+                <a routerLink='/products/categories/sets' [queryParams]="{ categoryId: item.id }">{{item.name |
                     capitalizeSpace}}</a>
                 <ul class="dropdown-menu">
 
