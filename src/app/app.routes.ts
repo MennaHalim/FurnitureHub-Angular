@@ -3,12 +3,12 @@ import { BlankLayoutComponent } from './Layouts/blank-layout/blank-layout.compon
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { BodyComponent } from './Components/body/body.component';
 import { QueryParamGuard } from './Shared/Guards/query-param.guard';
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DetailsComponent } from './Components/details/details.component';
 import { BasketComponent } from './Components/basket/basket.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { ShopByComponent } from './Components/shop-by/shop-by.component';
+import { SignInComponent } from './Components/sign-in/sign-in.component';
+import { SignUpComponent } from './Components/sign-up/sign-up.component';
 
 
 
