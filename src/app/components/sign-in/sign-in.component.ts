@@ -1,27 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in',
+  standalone: true,
+  imports: [FormsModule,CommonModule],
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  styleUrl: './sign-in.component.css'
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent {
+  email: string = '';
+  password: string = '';
 
-  signInForm: FormGroup;
-
-  constructor() { }
-
-  ngOnInit() {
-    this.signInForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    });
+  onSubmit(form:NgForm) {
+    console.log('Form submitted:', form.value);
+    // Replace with your actual sign-in logic (e.g., sending data to backend)
   }
-
-  onSubmit() {
-   
-    console.log(this.signInForm.value);
-  }
-
 }

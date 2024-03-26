@@ -7,6 +7,7 @@ import { BlankLayoutComponent } from "./Layouts/blank-layout/blank-layout.compon
 import { DetailsComponent } from "./Components/details/details.component";
 import { BasketComponent } from "./Components/basket/basket.component";
 
+
 @Component({
     selector: 'app-root',
     standalone: true,
