@@ -1,47 +1,84 @@
-.sign-in-form {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #20284f;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.sign-in-container {
+    width: 300px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    color: #20284f; 
+}
+
+.sign-in-container h4 {
+    margin: 0 0 20px 0;
+    color: #20284f; 
+}
+
+form {
     display: flex;
     flex-direction: column;
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .error {
-    color: red;
-    font-size: smaller;
-  }
-  
-  .social-login {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .btn-social {
-    background: none;
+    padding-top: 30vh;
+}
+
+label {
+    color: #20284f; 
+    margin-bottom: 5px; 
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 30vw; 
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 30px;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+    margin-bottom: 10px; 
+}
+
+input[type="checkbox"] + label {
+    color: #20284f;
+    font-size: 14px; 
+}
+
+button[type="submit"] {
+    background-color: #20284f;
+    color: white;
     border: none;
     padding: 10px;
-    margin: 5px;
+    border-radius: 20px;
     cursor: pointer;
-  }
-  
-  .btn-facebook {
-    background-color: #3B5998;
-    color: white;
-  }
-  
-  .btn-google {
-    background-color: #DD4B39;
-    color: white;
-  }
-  
+    margin-top: 10px;
+    width: 15vw; 
+}
+
+a {
+    color: #20284f; 
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.create-account {
+    margin-top: 20px;
+}
+
+.create-account h4 {
+    margin: 0 0 10px 0;
+}
+
+.create-account p {
+    margin: 0 0 10px 0;
+}
+.create-account {
+    padding-top: 30vh;
+}
