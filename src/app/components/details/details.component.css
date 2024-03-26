@@ -12,5 +12,153 @@
 }
 
 .right-details-container .product-name {
+    font-size: 23px;
+}
+
+.availability-text {
+    /* Default color */
+    color: red;
+    font-size: 13px;
+}
+
+.availability-text.available {
+    /* Color when availability is InStock */
+    color: green;
+}
+
+.product-price {
     font-size: 17px;
+}
+
+.wrapper-container {
+    display: flex;
+    justify-content: start;
+}
+
+.wrapper {
+    padding: 10px 5px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    border: 1px solid black;
+}
+
+.wrapper span {
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.wrapper span.num {
+    border-right: 2px solid rgba(0, 0, 0, 0.2);
+    border-left: 2px solid rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Standard */
+}
+
+.cart-options {
+    display: flex;
+    align-items: center;
+    gap: 3%;
+    margin-top: 4%;
+}
+
+.add-to-cart-option-container button {
+    background-color: #C02234;
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 25px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+}
+
+.add-to-cart-option-container button:hover {
+    background-color: #1A2854;
+}
+
+.add-to-wishlist-container svg {
+    width: 40px;
+}
+
+.add-to-wishlist-container svg:hover {
+    color: green;
+}
+
+.product-info-container {
+    margin-top: 25px;
+    display: flex;
+    gap: 12px;
+}
+
+.product-info-container button {
+    color: #1A2854;
+    font-size: 17px;
+    padding: 9px 20px;
+    border-radius: 20px;
+    border: 1px solid #1A2854;
+    transition: all 0.3s;
+}
+
+.product-info-container button:hover {
+    color: #C02234;
+}
+
+.product-info-container button.selected {
+    background-color: #1A2854;
+    color: #fff;
+}
+
+.size-guide,
+.more-info,
+.reviews {
+    display: none;
+}
+
+.size-guide.show,
+.more-info.show,
+.reviews.show {
+    display: block;
+}
+
+.info-tables-container {
+    margin-top: 20px;
+}
+
+.table-head th {
+    background-color: #E7E9EB;
+}
+
+.table-custome-guide {
+    font-size: 15px;
+}
+
+.table-custome-guide thead th,
+.table-custome-guide tbody th {
+    font-weight: 400;
+}
+
+.table-custome-guide tbody th {
+    background-color: #1A2854;
+    color: #fff;
+}
+
+.table-custome-info tbody th{
+    background-color: #E9E9E9;
+    font-weight: 400;
 }
