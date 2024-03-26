@@ -1,8 +1,8 @@
 import { ProductService } from './../../Shared/Services/product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IPage, IProduct } from '../../Shared/Models/product';
-import { Subscription, concatWith } from 'rxjs';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Subscription} from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { BasketService } from '../../Shared/Services/basket.service';
 import { Basket, IBasket, IBasketItem } from '../../Shared/Models/basket';
 
@@ -16,9 +16,11 @@ import { Basket, IBasket, IBasketItem } from '../../Shared/Models/basket';
 export class ProductsComponent implements OnInit, OnDestroy {
 
   categoryId: number = 0;
-  categorySets: IPage | null = null;
+  type:string = 'sets';
+  page: IPage | null = null;
   private categorySetsSubscription: Subscription | undefined;
-
+  private categoryItemsSubscription: Subscription | undefined;
+  private routeSubscription: Subscription | undefined;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -27,15 +29,46 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getCategoryIdFromUrl();
-    this.getCategoryIdFromUrl();
+    this.routeSubscription = this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.getCategoryIdFromUrl();
+      }
+    });
+    
+  }
+
+  private getCategoryIdFromUrl() {
+    this.route.queryParams.subscribe(params => {
+      this.categoryId = +params['categoryId'];
+    })
+    this.route.params.subscribe(params => {
+      this.type = params['type'];
+      if (!this.type) {
+        this.type = 'sets';
+      }
+    });
     this.loadComponentData();
+  }
+
+  private loadComponentData(): void {
+    if (this.type === 'sets') {
+      this.categorySetsSubscription = this.ProductService.getSetsByCategory(this.categoryId).subscribe(
+        (data) => {
+          this.page = data;
+        });
+    }
+    else if (this.type === 'items') {
+      this.categoryItemsSubscription = this.ProductService.getItemsByCategory(this.categoryId).subscribe(
+        (data) => {
+          this.page = data;
+        });
+    }
   }
 
 
   ngOnDestroy(): void {
     this.unsubscribeSubscriptions();
   }
-
 
   addProductToCart(set: IProduct): void {
     this.updateProductCount(set);
@@ -66,7 +99,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   }
 
-
   initializeBasketItemForAddingToCart(set: IProduct): IBasketItem {
     let basketItem: IBasketItem = {
       productId: set.id,
@@ -80,23 +112,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
     return basketItem;
   }
 
-  private getCategoryIdFromUrl() {
-    this.route.queryParams.subscribe(params => {
-      this.categoryId = +params['categoryId'];
-      this.loadComponentData();
-    })
-  }
-
-  private loadComponentData(): void {
-    this.categorySetsSubscription = this.ProductService.getSetsByCategory(this.categoryId).subscribe(
-      (data) => {
-        this.categorySets = data;
-      });
-  }
-
   private unsubscribeSubscriptions(): void {
     if (this.categorySetsSubscription) {
       this.categorySetsSubscription.unsubscribe();
+    }
+    if (this.categoryItemsSubscription) {
+      this.categoryItemsSubscription.unsubscribe();
     }
   }
 

@@ -43,7 +43,7 @@
         <!-- Your content -->
         <div class="info-tables-container">
             <div class="size-guide" [class.show]="selectedTab === 'size-guide'">
-                @if (setDetails?.items)
+                @if (setDetails?.items!.length > 0)
                 {
                 <table class="table table-bordered w-50 text-center table-custome-guide">
                     <thead>

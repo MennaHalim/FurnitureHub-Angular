@@ -15,6 +15,10 @@ export class ProductService {
     return this._HttpClient.get(this.baseUrl + `sets?categoryId=${categoryId}`);
   }
 
+  getItemsByCategory(categoryId: number): Observable<any> {
+    return this._HttpClient.get(this.baseUrl + `items?categoryId=${categoryId}`);
+  }
+
   getProductDetails(setId: string | null): Observable<any> {
     return this._HttpClient.get(this.baseUrl + `set?setId=${setId}`);
   }

@@ -3,12 +3,13 @@ import { Subscription } from 'rxjs';
 import { ICategoryItemsTypes, ICategorySetsTypes } from '../../Shared/Models/category';
 import { ShopByService } from './../../Shared/Services/shop-by.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-shop-by',
   standalone: true,
-  imports: [],
+  imports: [RouterModule, CommonModule],
   templateUrl: './shop-by.component.html',
   styleUrl: './shop-by.component.css'
 })
@@ -24,16 +25,16 @@ export class ShopByComponent implements OnInit, OnDestroy {
   scrollLeftActive: boolean = false;
   scrollRightActive: boolean = true;
 
-  constructor(private route: ActivatedRoute, private router: Router, private shopByService: ShopByService,
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private shopByService: ShopByService,
     private ProductService: ProductService) { }
 
   ngOnInit(): void {
-
     this.getCategoryIdFromUrl();
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.getCategoryIdFromUrl();
         this.loadComponentData();
       };
     });
@@ -111,10 +112,7 @@ export class ShopByComponent implements OnInit, OnDestroy {
 
   selectTab(tab: string): void {
     this.selectedTab = tab;
-
-    this.categoryItemsTypesSubscription = this.shopByService.getCategoryItemsTypes(this.categoryId).subscribe(
-      (data) => {
-        this.categoryItemsTypesData = data;
-      });
   }
+
+
 }

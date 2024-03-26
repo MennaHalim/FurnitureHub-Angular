@@ -11,5 +11,4 @@ import { ProductsComponent } from "../../Components/products/products.component"
     imports: [ShoppingOptionsComponent, ShopByComponent, ProductsComponent]
 })
 export class BlankLayoutComponent {
-
 }

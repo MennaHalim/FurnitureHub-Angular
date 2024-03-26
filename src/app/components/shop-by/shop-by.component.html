@@ -1,7 +1,12 @@
 <div class="shop-by-select-container">
     <ul>
-        <li><a role="button" [class.select]="selectedTab === 'shopBySet'" (click)="selectTab('shopBySet')">Shop by Set</a></li>
-        <li><a role="button" [class.select]="selectedTab === 'shopByItem'" (click)="selectTab('shopByItem')">Shop by Item</a></li>
+        <li><a (click)="selectTab('shopBySet')" [ngClass]="{ 'select': selectedTab == 'shopBySet'}"
+                routerLink='/products/categories/sets' [queryParams]="{ categoryId: categorySetsTypesData?.id}"
+                role="button">Shop by
+                Set</a></li>
+        <li><a (click)="selectTab('shopByItem')" [ngClass]="{ 'select': selectedTab == 'shopByItem'}"
+                routerLink='/products/categories/items' [queryParams]="{ categoryId: categoryItemsTypesData?.id}"
+                role="button">Shop by Item</a></li>
     </ul>
 </div>
 
@@ -15,17 +20,17 @@
 
     <ul>
         @if (selectedTab === "shopBySet") {
-            @for (item of categorySetsTypesData?.categorySetsTypes; track $index){
-                <li>
-                    <a href="#">{{ item?.name }}</a>
-                </li>
-                }
+        @for (item of categorySetsTypesData?.categorySetsTypes; track $index){
+        <li>
+            <a href="#">{{ item?.name }}</a>
+        </li>
+        }
         }@else{
-            @for (item of categoryItemsTypesData?.categoryItemsTypes; track $index){
-                <li>
-                    <a href="#">{{ item?.name }}</a>
-                </li>
-                }
+        @for (item of categoryItemsTypesData?.categoryItemsTypes; track $index){
+        <li>
+            <a href="#">{{ item?.name }}</a>
+        </li>
+        }
         }
     </ul>
 
