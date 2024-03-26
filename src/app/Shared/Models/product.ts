@@ -38,8 +38,15 @@ export interface IItem {
     customerReviews?: ICustomerReview[];
 }
 
+export interface ISetItem{
+    name: string,
+    height: number,
+    depth: number,
+    width: number
+}
+
 export interface ISet {
-    categoryItems: IItem[]
+    items: ISetItem[]
     id: number;
     name: string;
     availability: string;

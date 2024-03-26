@@ -1,15 +1,15 @@
 <div class="row product-details-container">
     <div class="left-imgs-container col-6">
-        <img [src]="setDetails!.productPictures" alt="set image">
+        <img [src]="setDetails?.productPictures" alt="set image">
     </div>
 
     <div class="right-details-container col-6">
-        <p class="product-name">{{setDetails!.name}}</p>
+        <p class="product-name">{{setDetails?.name}}</p>
         <p class="product-availability">Availability: <span class="availability-text"
-                [ngClass]="{'available': isAvailable()}">{{setDetails!.availability |
+                [ngClass]="{'available': isAvailable()}">{{setDetails?.availability! |
                 capitalizeSpace}}</span>
         </p>
-        <p class="product-price">&#36; {{setDetails!.price}}</p>
+        <p class="product-price">&#36; {{setDetails?.price}}</p>
 
         <div class="cart-options">
             <div class="wrapper-container">
@@ -43,7 +43,7 @@
         <!-- Your content -->
         <div class="info-tables-container">
             <div class="size-guide" [class.show]="selectedTab === 'size-guide'">
-                @if (setDetails!.categoryItems.length == 0)
+                @if (setDetails?.items)
                 {
                 <table class="table table-bordered w-50 text-center table-custome-guide">
                     <thead>
@@ -55,12 +55,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @for (product of setDetails!.items; track $index) {
                         <tr>
-                            <th>Sofa</th>
-                            <td>95 cm</td>
-                            <td>105 cm</td>
-                            <td>230 cm</td>
+                            <th>{{product.name}}</th>
+                            <td>{{product.height}} cm</td>
+                            <td>{{product.depth}} cm</td>
+                            <td>{{product.width}} cm</td>
                         </tr>
+                        }
                     </tbody>
                 </table>
                 }
@@ -70,12 +72,45 @@
                     <tbody>
                         <tr>
                             <th class="col-3">color</th>
-                            <td class="text-start">gray</td>
+                            <td class="text-start">{{setDetails?.color}}</td>
+                        </tr>
+                        <tr>
+                            <th class="col-3">style</th>
+                            <td class="text-start">{{setDetails?.style}}</td>
+                        </tr>
+                        <tr>
+                            <th class="col-3">suitability</th>
+                            <td class="text-start">{{setDetails?.suitability}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="reviews" [class.show]="selectedTab === 'reviews'">Reviews</div>
+            <div class="reviews" [class.show]="selectedTab === 'reviews'">Template To Add Review</div>
         </div>
     </div>
 </div>
+
+@for (review of setDetails?.customerReviews; track $index) {
+<div class="container">
+    <div class="slide-container" [ngClass]="{ 'active': $index === 0 }">
+        <div class="slide">
+            <i class="fas fa-quote-right icon"></i>
+            <div class="user">
+                <div class="user-info">
+                    <h3>{{review.customerName}}</h3>
+                    <div class="stars">
+                        @for (item of getStars(review.rate); track $index) {
+                        <i class="fas fa-star"></i>
+                        }
+
+                    </div>
+                </div>
+                <p class="text">{{review.review}}</p>
+            </div>
+        </div>
+        <div id="next" class="fas fa-chevron-right" (click)="next()"></div>
+        <div id="prev" class="fas fa-chevron-left" (click)="prev()"></div>
+    </div>
+
+</div>
+}
