@@ -1,44 +1,41 @@
 <link rel="stylesheet" href="./sign-in.component.css">
- 
+
 <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)">
-          <h4>REGISTERED CUSTOMERS</h4>
-          <p>If you have an account, sign in with your email address.</p>
-  
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" [(ngModel)]="email" required #emailField="ngModel" email>
-            <div *ngIf="emailField.errors?.['required']">Email is required.</div>
-            <div *ngIf="emailField.errors?.['email']">Please enter a valid email address.</div>
-          </div>
-  
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" [(ngModel)]="password" required minlength="6">
-            <div *ngIf="signInForm.errors?.['minlength']">Password must be at least 6 characters.</div>
-          </div>
-  
-          <div class="form-group">
-            <input type="checkbox" id="remember-me" name="remember-me">
-            <label for="remember-me">Remember Me</label>
-          </div>
-  
-          <button type="submit" [disabled]="signInForm.invalid">Sign In</button>
-          <a href="#">Forgot Your Password?</a>
-        </form>
-      </div>
-  
-      <div class="col-sm-6">
-        <div class="create-account">
-          <h4>DON'T HAVE AN ACCOUNT?</h4>
-          <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-          <button type="submit">Create an Account</button>
+  <div class="row">
+    <div class="col-sm-6">
+      <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)">
+        <h4>REGISTERED CUSTOMERS</h4>
+        <p>If you have an account, sign in with your email address.</p>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" [(ngModel)]="email" required #emailField="ngModel" email>
+          <div *ngIf="emailField.errors?.['required']">Email is required.</div>
+          <div *ngIf="emailField.errors?.['email']">Please enter a valid email address.</div>
         </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" [(ngModel)]="password" required minlength="6">
+          <div *ngIf="signInForm.errors?.['minlength']">Password must be at least 6 characters.</div>
+        </div>
+
+        <div class="form-group">
+          <input type="checkbox" id="remember-me" name="remember-me">
+          <label for="remember-me">Remember Me</label>
+        </div>
+
+        <button type="submit" [disabled]="signInForm.invalid">Sign In</button>
+        <a href="#">Forgot Your Password?</a>
+      </form>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="create-account">
+        <h4>DON'T HAVE AN ACCOUNT?</h4>
+        <p>By creating an account with our store, you will be able to move through the checkout process faster, store
+          multiple shipping addresses, view and track your orders in your account and more.</p>
+        <button type="submit">Create an Account</button>
       </div>
     </div>
   </div>
-  
-  
-  
+</div>

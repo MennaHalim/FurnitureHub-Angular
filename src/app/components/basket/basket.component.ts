@@ -1,43 +1,75 @@
 import { Component, OnInit } from '@angular/core';
 import { BasketService } from '../../Shared/Services/basket.service';
-import { Basket } from '../../Shared/Models/basket';
-import { concatWith } from 'rxjs';
+import { Basket, IBasketItem } from '../../Shared/Models/basket';
+import { Subscription, concatWith } from 'rxjs';
+import { UserAuthService } from '../../Shared/Services/user-auth.service';
+import { NumberPadPipe } from '../../Shared/Pipes/number-pad.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-basket',
   standalone: true,
-  imports: [],
+  imports: [NumberPadPipe],
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.css'
 })
 export class BasketComponent implements OnInit {
-  constructor(private _BasketService: BasketService) { }
+  constructor(private _BasketService: BasketService,
+    private _router: Router) { }
 
-  basket: any;
+  basket!: Basket | null;
+  subscription: Subscription | undefined;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this._BasketService.getUserBasket();
+    this.basket = this._BasketService.basket;
   }
 
+
+
+
+  removeFromBasket(productId: number) {
+    if (this.basket !== null) {
+      for (let index = 0; index < this.basket.basketItems.length; index++) {
+        if (this.basket.basketItems[index].productId === productId) {
+          this.basket.basketItems.splice(index, 1);
+          break;
+        }
+      }
+      this._BasketService.addToOrUpdateCart(this.basket).subscribe();
+      this._router.navigate(['/basket']);
+    }
+  }
+
+  clearBasket() {
+    if (this.basket !== null) {
+      this.basket.basketItems = [];
+      this._BasketService.addToOrUpdateCart(this.basket).subscribe();
+      this._router.navigate(['/basket']);
+    }
+  }
+
+
+
+
+
+  //-------------------------------------------
+  //__________________Counter__________________
+  //-------------------------------------------
 
   counter: number = 1;
 
-
-  incrementCounter() {
-    this.counter++;
-    this.updateCounterDisplay();
+  incrementCounter(item: IBasketItem) {
+    item.productQuantity++;
   }
 
-  decrementCounter() {
-    if (this.counter - 1 > 0) {
-      this.counter--;
-      this.updateCounterDisplay();
+  decrementCounter(item: IBasketItem) {
+    if (item.productQuantity - 1 > 0) {
+      item.productQuantity--;
     }
   }
 
-  updateCounterDisplay() {
-    const numElement = document.querySelector('.num');
-    if (numElement) {
-      numElement.textContent = this.counter.toString().padStart(2, '0');
-    }
-  }
+  //-------------------------------------------
+  //___________________________________________
+  //-------------------------------------------
 }

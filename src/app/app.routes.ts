@@ -5,8 +5,6 @@ import { BodyComponent } from './Components/body/body.component';
 import { QueryParamGuard } from './Shared/Guards/query-param.guard';
 import { DetailsComponent } from './Components/details/details.component';
 import { BasketComponent } from './Components/basket/basket.component';
-import { ProductsComponent } from './Components/products/products.component';
-import { ShopByComponent } from './Components/shop-by/shop-by.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 
@@ -21,6 +19,6 @@ export const routes: Routes = [
     { path: 'basket', component: BasketComponent, title: 'Cart' },
     { path: 'notFound', component: NotFoundComponent, title: 'Not Found' },
     { path: 'login', component: SignInComponent, title: 'sign-in' },
-    { path: 'Register', component: SignUpComponent, title: 'sign-Up' },
+    { path: 'register', component: SignUpComponent, title: 'sign-Up' },
     { path: '**', redirectTo: 'notFound' }
 ];

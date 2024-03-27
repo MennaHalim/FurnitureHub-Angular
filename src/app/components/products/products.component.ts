@@ -5,6 +5,7 @@ import { Subscription} from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { BasketService } from '../../Shared/Services/basket.service';
 import { Basket, IBasket, IBasketItem } from '../../Shared/Models/basket';
+import { UserAuthService } from '../../Shared/Services/user-auth.service';
 
 @Component({
   selector: 'app-products',
@@ -25,7 +26,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private ProductService: ProductService,
-    private _BasketService: BasketService) { }
+    private _BasketService: BasketService,
+    private _UserAuthService:UserAuthService) { }
 
   ngOnInit(): void {
     this.getCategoryIdFromUrl();
@@ -34,7 +36,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.getCategoryIdFromUrl();
       }
     });
-    
+
+    // ////////////////////
+    // this._UserAuthService.login('mostafa.ahmed@gmail.com', 'mostafaAhmed123#').subscribe()
+    // ////////////////////
+
+
   }
 
   private getCategoryIdFromUrl() {
@@ -70,15 +77,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.unsubscribeSubscriptions();
   }
 
-  addProductToCart(set: IProduct): void {
-    this.updateProductCount(set);
-    this._BasketService.addToCart(this._BasketService.basket).subscribe(
-      {
-        next: (basket) => {
-          console.log(basket);
-        }
-      }
-    );
+
+  addProductToCart(product: IProduct): void {
+    this.updateProductCount(product);
+    this._BasketService.getUserBasket();
+    this._BasketService.addToOrUpdateCart(this._BasketService.basket).subscribe();
   }
 
   private updateProductCount(set: IProduct) {
@@ -96,8 +99,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
       basket.basketItems.push(basketItem);
     }
-
   }
+
 
   initializeBasketItemForAddingToCart(set: IProduct): IBasketItem {
     let basketItem: IBasketItem = {
