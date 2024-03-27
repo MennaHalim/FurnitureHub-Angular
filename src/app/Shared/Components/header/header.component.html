@@ -94,7 +94,11 @@
             </div>
         </div>
         <a href="#"><i class="fa-regular fa-heart"></i></a>
-        <a routerLink="/basket"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a routerLink="/basket" class="position-relative">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="badge bg-info cart-count">{{basketCount}}</span>
+        </a>
+        
     </div>
 
 </header>

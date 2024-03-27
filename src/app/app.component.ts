@@ -9,11 +9,17 @@ import { BasketComponent } from "./Components/basket/basket.component";
 
 
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css',
-    imports: [HeaderComponent, RouterOutlet, FooterComponent, BodyComponent, BlankLayoutComponent, DetailsComponent, BasketComponent]
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
+  imports: [HeaderComponent,
+    RouterOutlet,
+    FooterComponent,
+    BodyComponent,
+    BlankLayoutComponent,
+    DetailsComponent,
+    BasketComponent]
 })
 export class AppComponent {
   title = 'hub_furniture';

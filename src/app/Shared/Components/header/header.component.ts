@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { ICategory } from '../../Models/category';
 import { Subscription, concatWith } from 'rxjs';
 import { CapitalizeSpacePipe } from '../../Pipes/capitalize-space.pipe';
+import { BasketService } from '../../Services/basket.service';
 
 @Component({
   selector: 'app-header',
@@ -18,9 +19,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private categorySetsAndItemsTypesSubscription: Subscription | undefined;
 
 
-constructor(private CategoryService:CategoryService) {}
+  constructor(private CategoryService: CategoryService,
+    private _BasketService: BasketService) { }
+
+  basketCount: number = 0;
+
   ngOnInit(): void {
     this.loadComponentData();
+
+    this._BasketService.getUserBasketObs().subscribe({
+      next: (basket) => {
+        this.basketCount = basket.basketItems.length;
+      }
+    });
+
+    this._BasketService.basketItemsCount.subscribe({
+      next: (count) => {
+        this.basketCount = count;
+      }
+    })
+
+
   }
 
   private loadComponentData(): void {

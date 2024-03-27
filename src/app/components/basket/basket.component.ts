@@ -20,9 +20,10 @@ export class BasketComponent implements OnInit {
   basket!: Basket | null;
   subscription: Subscription | undefined;
 
-  async ngOnInit(): Promise<void> {
+  async ngOnInit() {
     await this._BasketService.getUserBasket();
     this.basket = this._BasketService.basket;
+    this._BasketService.basketItemsCount.next(this.basket!.basketItems.length);
   }
 
 
@@ -37,6 +38,7 @@ export class BasketComponent implements OnInit {
         }
       }
       this._BasketService.addToOrUpdateCart(this.basket).subscribe();
+      this._BasketService.basketItemsCount.next(this.basket!.basketItems.length);
       this._router.navigate(['/basket']);
     }
   }
@@ -45,6 +47,7 @@ export class BasketComponent implements OnInit {
     if (this.basket !== null) {
       this.basket.basketItems = [];
       this._BasketService.addToOrUpdateCart(this.basket).subscribe();
+      this._BasketService.basketItemsCount.next(this.basket!.basketItems.length);
       this._router.navigate(['/basket']);
     }
   }

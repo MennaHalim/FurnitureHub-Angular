@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subscription} from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Basket, IBasket } from '../Models/basket';
 
 
@@ -8,6 +8,8 @@ import { Basket, IBasket } from '../Models/basket';
   providedIn: 'root'
 })
 export class BasketService {
+
+  basketItemsCount: BehaviorSubject<number> = new BehaviorSubject(0);
 
   constructor(private _HttpClient: HttpClient) { }
   subscription: Subscription | undefined;
@@ -19,7 +21,7 @@ export class BasketService {
   basket: Basket = new Basket();
 
   addToOrUpdateCart(basket: IBasket): Observable<any> {
-    return this._HttpClient.post<any>(
+    return this._HttpClient.post<Basket>(
       this.baseUrl + 'basket',
       this.basket
     )
@@ -49,13 +51,13 @@ export class BasketService {
     });
   }
 
-  private getUserBasketObs(): Observable<Basket> {
+  getUserBasketObs(): Observable<Basket> {
     return this._HttpClient.get<Basket>(this.baseUrl + `basket`);
   }
 
-  private updateUserBasketIdObs(basketId:string): Observable<any> {
+  private updateUserBasketIdObs(basketId: string): Observable<any> {
     return this._HttpClient.post<any>(
-      this.baseUrl + `basket/userBasket?basketId=` +`${basketId}`,
+      this.baseUrl + `basket/userBasket?basketId=` + `${basketId}`,
       null
     );
   }

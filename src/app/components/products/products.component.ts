@@ -1,7 +1,7 @@
 import { ProductService } from './../../Shared/Services/product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IPage, IProduct } from '../../Shared/Models/product';
-import { Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { BasketService } from '../../Shared/Services/basket.service';
 import { Basket, IBasket, IBasketItem } from '../../Shared/Models/basket';
@@ -17,7 +17,7 @@ import { UserAuthService } from '../../Shared/Services/user-auth.service';
 export class ProductsComponent implements OnInit, OnDestroy {
 
   categoryId: number = 0;
-  type:string = 'sets';
+  type: string = 'sets';
   page: IPage | null = null;
   private categorySetsSubscription: Subscription | undefined;
   private categoryItemsSubscription: Subscription | undefined;
@@ -27,7 +27,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private router: Router,
     private ProductService: ProductService,
     private _BasketService: BasketService,
-    private _UserAuthService:UserAuthService) { }
+    private _UserAuthService: UserAuthService) { }
 
   ngOnInit(): void {
     this.getCategoryIdFromUrl();
@@ -40,7 +40,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     // ////////////////////
     // this._UserAuthService.login('mostafa.ahmed@gmail.com', 'mostafaAhmed123#').subscribe()
     // ////////////////////
-
 
   }
 
@@ -78,10 +77,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
 
-  addProductToCart(product: IProduct): void {
+  async addProductToCart(product: IProduct): Promise<void> {
+    debugger;
+    console.log('you clicked..')
+    await this._BasketService.getUserBasket();
     this.updateProductCount(product);
-    this._BasketService.getUserBasket();
-    this._BasketService.addToOrUpdateCart(this._BasketService.basket).subscribe();
+    this._BasketService.addToOrUpdateCart(this._BasketService.basket).subscribe({
+      next: (basket) => {
+        this._BasketService.basketItemsCount.next(basket.basketItems.length);
+      }
+    });
+
   }
 
   private updateProductCount(set: IProduct) {
