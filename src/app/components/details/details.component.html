@@ -1,15 +1,15 @@
 <div class="row product-details-container">
     <div class="left-imgs-container col-6">
-        <img [src]="setDetails?.productPictures" alt="set image">
+        <img [src]="productDetails?.productPictures?.[0]" alt="product image">
     </div>
 
     <div class="right-details-container col-6">
-        <p class="product-name">{{setDetails?.name}}</p>
+        <p class="product-name">{{productDetails?.name}}</p>
         <p class="product-availability">Availability: <span class="availability-text"
-                [ngClass]="{'available': isAvailable()}">{{setDetails?.availability! |
+                [ngClass]="{'available': isAvailable()}">{{productDetails?.availability! |
                 capitalizeSpace}}</span>
         </p>
-        <p class="product-price">&#36; {{setDetails?.price}}</p>
+        <p class="product-price">&#36; {{productDetails?.price}}</p>
 
         <div class="cart-options">
             <div class="wrapper-container">
@@ -43,7 +43,7 @@
         <!-- Your content -->
         <div class="info-tables-container">
             <div class="size-guide" [class.show]="selectedTab === 'size-guide'">
-                @if (setDetails?.items!.length > 0)
+                @if (productDetails?.items?.length !== null && productDetails!.items.length > 0)
                 {
                 <table class="table table-bordered w-50 text-center table-custome-guide">
                     <thead>
@@ -55,7 +55,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for (product of setDetails!.items; track $index) {
+                        @for (product of productDetails!.items; track $index) {
                         <tr>
                             <th>{{product.name}}</th>
                             <td>{{product.height}} cm</td>
@@ -72,15 +72,15 @@
                     <tbody>
                         <tr>
                             <th class="col-3">color</th>
-                            <td class="text-start">{{setDetails?.color}}</td>
+                            <td class="text-start">{{productDetails?.color}}</td>
                         </tr>
                         <tr>
                             <th class="col-3">style</th>
-                            <td class="text-start">{{setDetails?.style}}</td>
+                            <td class="text-start">{{productDetails?.style}}</td>
                         </tr>
                         <tr>
                             <th class="col-3">suitability</th>
-                            <td class="text-start">{{setDetails?.suitability}}</td>
+                            <td class="text-start">{{productDetails?.suitability}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -90,7 +90,7 @@
     </div>
 </div>
 
-@for (review of setDetails?.customerReviews; track $index) {
+@for (review of productDetails?.customerReviews; track $index) {
 <div class="container">
     <div class="slide-container" [ngClass]="{ 'active': $index === 0 }">
         <div class="slide">

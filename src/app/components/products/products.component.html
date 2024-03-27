@@ -1,10 +1,28 @@
 <div class="row mt-3">
     @for (item of page?.data; track $index) {
     <div class="card col-3 me-2 remove-border product-cart" style="width: 18rem;">
-        <img routerLink="/sets/details/{{item.id}}" role="button" src="{{item.productPictures[0]}}" class="card-img-top"
-            alt="product image">
+
+        <div class="img-container">
+            <img routerLink="/sets/details/{{item.id}}" role="button" src="{{item.productPictures[0]}}"
+                class="card-img-top" alt="product image">
+
+
+            <div routerLink="/{{item.type}}/details/{{item.id}}" class="options-on-img-container">
+                <div class="love">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                    </svg>
+
+                </div>
+            </div>
+        </div>
+
+
         <div class="card-body">
-            <h5 class="card-title"><a href="#" class="handle-link">{{item.name}}</a></h5>
+            <h5 class="card-title"><a routerLink="/{{item.type}}/details/{{item.id}}" role="button"
+                    class="handle-link">{{item.name}}</a></h5>
             <p>{{item.price}}</p>
         </div>
         <div class="cart-icon-container" role="button" (click)="addProductToCart(item)">
@@ -17,6 +35,10 @@
         @if (item.availability !== "InStock") {
         <div class="sale-container">
             <p>Sale</p>
+        </div>
+        }@else {
+        <div class="outOfSale-container">
+            <p>Out Of Sale</p>
         </div>
         }
     </div>

@@ -15,7 +15,7 @@ export const routes: Routes = [
     { path: 'home', component: BodyComponent, title: 'Home' },
     { path: 'products/categories', component: BlankLayoutComponent, title: 'Shop', canActivate: [QueryParamGuard] },
     { path: 'products/categories/:type', component: BlankLayoutComponent, pathMatch: 'full' },
-    { path: 'sets/details/:id', component: DetailsComponent, title: 'Details' },
+    { path: ':type/details/:id', component: DetailsComponent, title: 'Details' },
     { path: 'basket', component: BasketComponent, title: 'Cart' },
     { path: 'notFound', component: NotFoundComponent, title: 'Not Found' },
     { path: 'login', component: SignInComponent, title: 'sign-in' },

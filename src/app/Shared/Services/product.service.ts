@@ -19,8 +19,8 @@ export class ProductService {
     return this._HttpClient.get(this.baseUrl + `items?categoryId=${categoryId}`);
   }
 
-  getProductDetails(setId: string | null): Observable<any> {
-    return this._HttpClient.get(this.baseUrl + `set?setId=${setId}`);
+  getProductDetails(productId: string | null, productType: string | null): Observable<any> {
+    return this._HttpClient.get(this.baseUrl + `${productType}?${productType}Id=${productId}`);
   }
 
 }

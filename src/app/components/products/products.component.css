@@ -14,10 +14,51 @@ a:hover {
     color: #C0223A;
 }
 
-img {
+.img-container {
+    width: 250px;
+    height: 350px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.img-container:hover .options-on-img-container {
+    visibility: visible;
+}
+
+
+.img-container .options-on-img-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #CCCCCC;
+    opacity: 0.8;
+    width: 250px;
+    height: 350px;
+    visibility: hidden;
+}
+
+.img-container .options-on-img-container .love {
+    position: absolute;
+    width: 35px;
+    top: 7%;
+    left: 5%;
+    cursor: pointer;
+}
+
+.img-container .options-on-img-container .love:hover {
+    color: green;
+}
+
+.img-container img {
     width: 250px;
     height: 350px;
     border-radius: 5px;
+    transition: 1.5s ease;
+}
+
+.img-container:hover img {
+    scale: 1.3;
 }
 
 .cart-icon-container {
@@ -38,13 +79,30 @@ img {
     left: 10%;
 }
 
+.sale-container,
+.outOfSale-container {
+    color: #fff;
+    position: absolute;
+    top: 3%;
+    transition: all 0.1s;
+}
+
 .sale-container {
     background-color: #FE9931;
-    color: #fff;
     padding: 3px 22px;
-    position: absolute;
     left: 62%;
-    top: 3%;
+}
+
+.outOfSale-container {
+    background-color: #808080;
+    padding: 3px 10px;
+    position: absolute;
+    left: 55%;
+}
+
+.outOfSale-container p {
+    margin: 0;
+    font-size: 13px;
 }
 
 .sale-container p {
@@ -56,11 +114,9 @@ img {
     position: relative;
 }
 
-.product-cart:hover .sale-container {
-    visibility: hidden;
-}
 
-.cart-icon-container:hover{
+
+.cart-icon-container:hover {
     background-color: #1a2854c6;
     color: #fff;
 }
