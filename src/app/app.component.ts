@@ -17,4 +17,9 @@ import { BasketComponent } from "./components/basket/basket.component";
 })
 export class AppComponent {
   title = 'hub_furniture';
+  isOverlayVisible = false;
+
+  toggleSearchOverlay() {
+    this.isOverlayVisible = !this.isOverlayVisible;
+  }
 }

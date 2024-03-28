@@ -77,14 +77,14 @@
     <div class="icons">
 
 
-        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a [routerLink]="['/search']"><i class="fa-solid fa-magnifying-glass"></i></a>
         <div class="dropdown">
             <a href="#"><i class="fa-regular fa-circle-user"></i></a>
             <div class="dropdown-content">
                 <ul>
                     <li><a href="#">My Account</a></li>
                     <hr>
-                    <li><a routerLink="/checkout">My Wish List</a></li>
+                    <li><a [routerLink]="['/checkout']">My Wish List</a></li>
                     <hr>
                     <li><a [routerLink]="['/Register']">Create An Account</a></li>
                     <hr>

@@ -9,6 +9,8 @@ import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import { CheckoutComponent } from "./components/checkout/checkout.component";
+import { SearchComponent } from "./components/search/search.component";
+
 
 
 
@@ -23,5 +25,6 @@ export const routes: Routes = [
     { path: 'login', component: SignInComponent, title: 'sign-in' },
     { path: 'Register', component: SignUpComponent, title: 'sign-Up' },
     { path: 'checkout', component: CheckoutComponent, title: 'payment' },
+    { path: 'search', component:SearchComponent, title: 'search' },
     { path: '**', redirectTo: 'notFound' }
 ];

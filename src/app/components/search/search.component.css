@@ -1,0 +1,33 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+}
+
+.ecommerce-search {
+    display: flex;
+    align-items: center;
+    background-color: #fff; /* Example background color */
+    border: 1px solid #ccc; /* Example border */
+    border-radius: 20px; /* Example border radius */
+    padding: 8px; /* Example padding */
+    width: 50%;
+}
+
+.ecommerce-search input[type="search"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px; /* Example font size */
+}
+
+.ecommerce-search button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* Additional styling for icon if needed */
+.ecommerce-search i {
+    color: #888; /* Example color */
+    font-size: 20px; /* Example font size */
+}
