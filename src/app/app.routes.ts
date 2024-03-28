@@ -7,6 +7,9 @@ import { DetailsComponent } from './Components/details/details.component';
 import { BasketComponent } from './Components/basket/basket.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
+import { ReviewComponent } from './Components/review/review.component';
+import { SearchComponent } from './Components/search/search.component';
 
 
 
@@ -21,5 +24,8 @@ export const routes: Routes = [
     { path: 'notFound', component: NotFoundComponent, title: 'Not Found' },
     { path: 'login', component: SignInComponent, title: 'sign-in' },
     { path: 'register', component: SignUpComponent, title: 'sign-Up' },
+    { path: 'checkout', component: CheckoutComponent, title: 'payment' },
+    { path: 'search', component:SearchComponent, title: 'search' },
+    { path: 'review', component:ReviewComponent, title: 'reviews' },
     { path: '**', redirectTo: 'notFound' }
 ];
