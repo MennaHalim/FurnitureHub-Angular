@@ -1,0 +1,94 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 50px;
+    color: #20284f;
+  }
+  
+  .form-container {
+    flex: 1 1 calc(25% - 20px); 
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+  
+  }
+  
+  
+  .form-container:nth-child(1),
+  .form-container:nth-child(4) {
+    flex: 1 1 calc(25% - 20px); 
+  }
+  
+  .form-container h2 {
+    margin-top: 0;
+  }
+  
+  .form-container label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+ 
+  .form-container input[type="text"],
+  .form-container input[type="email"],
+  .form-container input[type="tel"],
+  .form-container select,
+  .form-container textarea {
+    width: calc(100% - 12px); 
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    height: 30px; 
+  }
+ 
+  .form-container input[type="radio"] {
+    height: 15px; 
+  }
+  
+ 
+  .form-container input[type="checkbox"] {
+    width: 15px; 
+    height: 15px; 
+  }
+  
+  
+  .form-container .radio-container label {
+    display: flex;
+    align-items: center;
+  }
+  
+ 
+  .form-container .checkbox-container label,
+  .form-container .radio-container label {
+    margin-left: 5px;
+  }
+  
+  .Discount-btn {
+    background-color: #20284f;
+    color: white;
+    border-radius: 20px;
+    border: #20284f;
+    height: 20px; 
+    width: 100px; 
+    font-size: 12px; 
+  }
+  
+  .place-older {
+    background-color: brown;
+    color: white;
+    border-radius: 20px;
+    height: 6vh;
+    width: 20vw;
+    border: brown;
+    margin:50px 0 0 100px ;
+  }
+  
+  .Last-form {
+    margin-bottom: 5%;
+  }
+  .checkbox-container{
+    display: flex;
+  }
+  #discount_code,#order_comment,#delivery_comment{
+    width: 50%;
+  }

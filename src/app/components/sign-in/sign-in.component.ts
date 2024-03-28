@@ -1,6 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { UserAuthService } from '../../Shared/Services/user-auth.service';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,8 +15,20 @@ export class SignInComponent {
   email: string = '';
   password: string = '';
 
-  onSubmit(form:NgForm) {
+  constructor(private authService: UserAuthService, private router: Router) {} 
+
+  onSubmit(form: NgForm) {
     console.log('Form submitted:', form.value);
-    // Replace with your actual sign-in logic (e.g., sending data to backend)
+    if (form.valid) {
+      this.authService.login(this.email, this.password).subscribe(
+        () => {
+          console.log('Login successful');
+          this.router.navigate(['/home']); 
+        },
+        (error) => {
+          console.error('Login failed:', error);
+        }
+      );
+    }
   }
 }
