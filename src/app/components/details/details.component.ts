@@ -65,9 +65,7 @@ export class DetailsComponent implements OnInit {
   }
 
 
-  getStars(rate: number): any[] {
-    return Array(rate).fill(0);
-  }
+
 
   counter: number = 1;
 

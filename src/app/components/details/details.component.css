@@ -217,8 +217,11 @@
 }
 
 .container .slide-container .slide .user .user-info .stars i {
-    color: #3498db;
     font-size: 15px;
+}
+
+.star-color{
+    color: #3498db;
 }
 
 .container .slide-container .slide .text {

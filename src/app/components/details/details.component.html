@@ -99,8 +99,8 @@
                 <div class="user-info">
                     <h3>{{review.customerName}}</h3>
                     <div class="stars">
-                        @for (item of getStars(review.rate); track $index) {
-                        <i class="fas fa-star"></i>
+                        @for (item of [1,2,3,4,5]; track $index) {
+                        <i [class.star-color]="review.rate >= item" class="fas fa-star"></i>
                         }
 
                     </div>
