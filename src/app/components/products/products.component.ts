@@ -1,7 +1,7 @@
 import { ProductService } from './../../Shared/Services/product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IPage, IProduct } from '../../Shared/Models/product';
-import { Subscription } from 'rxjs';
+import { Subscription, concatWith } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { BasketService } from '../../Shared/Services/basket.service';
 import { Basket, IBasket, IBasketItem } from '../../Shared/Models/basket';
@@ -17,6 +17,7 @@ import { UserAuthService } from '../../Shared/Services/user-auth.service';
 export class ProductsComponent implements OnInit, OnDestroy {
 
   categoryId: number = 0;
+  productTypeId: number = 0;
   type: string = 'sets';
   page: IPage | null = null;
   private categorySetsSubscription: Subscription | undefined;
@@ -49,6 +50,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     })
     this.route.params.subscribe(params => {
       this.type = params['type'];
+      this.productTypeId = +params['productTypeId'];
       if (!this.type) {
         this.type = 'sets';
       }
@@ -57,14 +59,20 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   private loadComponentData(): void {
-    if (this.type === 'sets') {
+    if (this.type === 'sets' && Number.isNaN(this.productTypeId)) {
       this.categorySetsSubscription = this.ProductService.getSetsByCategory(this.categoryId).subscribe(
         (data) => {
           this.page = data;
         });
     }
-    else if (this.type === 'items') {
+    else if (this.type === 'items' && Number.isNaN(this.productTypeId)) {
       this.categoryItemsSubscription = this.ProductService.getItemsByCategory(this.categoryId).subscribe(
+        (data) => {
+          this.page = data;
+        });
+    }
+    else if(this.type === 'sets'){
+      this.categorySetsSubscription = this.ProductService.getSetsByCategoryAndSetType(this.categoryId, this.productTypeId).subscribe(
         (data) => {
           this.page = data;
         });
@@ -78,7 +86,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
 
   async addProductToCart(product: IProduct): Promise<void> {
-    debugger;
     console.log('you clicked..')
     await this._BasketService.getUserBasket();
     this.updateProductCount(product);

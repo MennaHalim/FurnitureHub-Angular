@@ -1,6 +1,6 @@
 <div class="row mt-3">
     @for (item of page?.data; track $index) {
-    <div class="card col-3 me-2 remove-border product-cart" style="width: 18rem;">
+    <div class="card col-5 remove-border product-cart">
 
         <div class="img-container">
             <img routerLink="/sets/details/{{item.id}}" role="button" src="{{item.productPictures[0]}}"

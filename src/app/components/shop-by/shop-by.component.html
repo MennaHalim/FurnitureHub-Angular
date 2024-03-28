@@ -22,13 +22,14 @@
         @if (selectedTab === "shopBySet") {
         @for (item of categorySetsTypesData?.categorySetsTypes; track $index){
         <li>
-            <a href="#">{{ item?.name }}</a>
+            <!-- products/categories/:type/:setTypeId -->
+            <a routerLink='/products/categories/sets/{{item?.id}}' [queryParams]="{categoryId: categoryItemsTypesData?.id}"> {{ item?.name }} </a>
         </li>
         }
         }@else{
         @for (item of categoryItemsTypesData?.categoryItemsTypes; track $index){
         <li>
-            <a href="#">{{ item?.name }}</a>
+            <a routerLink='/products/categories/items/{{item?.id}}' [queryParams]="{categoryId: categoryItemsTypesData?.id}">{{ item?.name }}</a>
         </li>
         }
         }
