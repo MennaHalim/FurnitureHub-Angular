@@ -4,7 +4,7 @@ import { IPage, IProduct } from '../../Shared/Models/product';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { BasketService } from '../../Shared/Services/basket.service';
-import { Basket, IBasket, IBasketItem } from '../../Shared/Models/basket';
+import { IBasketItem } from '../../Shared/Models/basket';
 import { UserAuthService } from '../../Shared/Services/user-auth.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -103,7 +103,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
 
   async addProductToCart(product: IProduct): Promise<void> {
-    console.log('you clicked..')
     await this._BasketService.getUserBasket();
     this.updateProductCount(product);
     this._BasketService.addToOrUpdateCart(this._BasketService.basket).subscribe({
