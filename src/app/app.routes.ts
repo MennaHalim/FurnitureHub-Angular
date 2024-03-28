@@ -9,6 +9,7 @@ import { ProductsComponent } from './Components/products/products.component';
 import { ShopByComponent } from './Components/shop-by/shop-by.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 
@@ -22,5 +23,6 @@ export const routes: Routes = [
     { path: 'notFound', component: NotFoundComponent, title: 'Not Found' },
     { path: 'login', component: SignInComponent, title: 'sign-in' },
     { path: 'Register', component: SignUpComponent, title: 'sign-Up' },
+    { path: 'checkout', component: CheckoutComponent, title: 'payment' },
     { path: '**', redirectTo: 'notFound' }
 ];

@@ -1,0 +1,109 @@
+<link rel="stylesheet" href="checkout.component.css">
+<div class="container">
+    <!-- Form 1: Shipping Address -->
+    <div class="form-container Shipping-Address  ">
+        <form action="/process_shipping_info" method="post">
+            <h2>Shipping Address</h2>
+            <hr>
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required>
+            <!-- <div class="checkbox-container">
+                <input type="checkbox" id="create_account" name="create_account" required >
+                <label for="create_account">Create Account</label>
+            </div> -->
+            <label for="first_name">First Name*</label>
+            <input type="text" id="first_name" name="first_name" required>
+            <label for="last_name">Last Name*</label>
+            <input type="text" id="last_name" name="last_name" required>
+            <label for="street_address">Street Address*</label>
+            <input type="text" id="street_address" name="street_address" required>
+            <label for="country">Country</label>
+            <select id="country" name="country" required >
+                <option value="">Select Country</option>
+                <option value="Egypt">Egypt</option>
+               
+            </select>
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" required>
+            <label for="zip_code">Zip/Postal Code</label>
+            <input type="text" id="zip_code" name="zip_code" required>
+            <label for="phone_number">Phone Number*</label>
+            <input type="tel" id="phone_number" name="phone_number" required>
+          
+        </form>
+    </div>
+    <!-- Form 2: Shipping Methods -->
+    <div class="col-sm-9 bg-light p-3 border">
+    <div class="form-container Shipping-Methods  ">
+        <form action="/process_shipping_method" method="post">
+            <h2>Shipping Methods</h2>
+            <hr>
+            <div class="radio-container" style="display: flex; align-items: center;">
+                <input type="radio" id="shipping_method_0" name="shipping_method" value="0" style="transform: scale(0.6);" checked>
+                <label for="shipping_method_0">EGP 0 - Free delivery (Cairo, Giza, October City, Alexandria and North coast)</label>
+            </div>
+            <label for="delivery_comment">Delivery Comment</label>
+            <textarea type="text" id="delivery_comment" name="delivery_comment"  placeholder="Enter discount code " ></textarea>
+            
+        </form>
+    </div>
+    <br><br><br><br>
+    <!-- Form 3: Payment Methods -->
+    <div class="form-container Payment-Methods  ">
+        <form action="/process_payment_method" method="post">
+            <h2>Payment Methods</h2>
+            <hr>
+           
+            <div class="radio-container" style="display: flex; align-items: center;">
+                <input type="radio" id="shipping_method_0" name="shipping_method" value="0" style="transform: scale(0.6);" >
+                <label for="shipping_method_0">Collect from home (Before Delivery Cash or Visa)</label>
+            </div>
+            <div class="radio-container" style="display: flex; align-items: center;">
+                <input type="radio" id="shipping_method_0" name="shipping_method" value="0" style="transform: scale(0.6);" >
+                <label for="shipping_method_0">Pay at store</label>
+            </div><hr>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="create_account" name="create_account">
+                <label for="create_account">My billing and shipping address are the same</label>
+            </div>
+            
+            </form>
+            </div>
+            </div>
+            <!-- Form 4: Order Summary -->
+            <div class="form-container order-summary">
+            <form action="/" method="post" class="Last-form">
+            <h2>Order Summary</h2>
+            <hr>
+            <div class="dropdown">
+                <p>ITEM IN CART</p>
+                <div class="dropdown-content">
+                  <!-- Item details -->
+                  <div class="item-details">
+                    <img src="" alt="">
+                    <p>Item Number: </p>
+                    
+                  </div>
+                </div>
+              </div><hr>
+            <h5>CART SUBTOTAL</h5><hr>
+            <!-- <p>CART SUBTOTAL: EGP 59,900</p> -->
+            <p>SHIPPING - Free delivery (Cairo, Giza, October City, Alexandria and North coast) : EGP 0</p><hr>
+            <p>ORDER TOTAL: </p><hr>
+            <label for="order_comment">Order Comment</label>
+            <textarea id="order_comment" name="order_comment"></textarea>
+            <div class="checkbox-container">
+                <input type="checkbox" id="create_account" name="create_account">
+                <label for="create_account">Sign Up for Our Newsletter</label>
+            </div>
+            <div>
+            <input type="text" id="discount_code" name="discount_code" placeholder="Enter discount code"></div>
+            <button type="button" class="Discount-btn">Apply Discount</button>
+        
+            </form> 
+            
+            </div>
+            
+            </div>
+      <button type="button" class="place-older">PLACE ORDER</button>
