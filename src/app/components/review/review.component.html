@@ -1,0 +1,24 @@
+<div class="review-container">
+    <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()" class="review-form">
+        <h2>Write Your Own Review</h2>
+        <div class="form-group">
+            <label for="name">Name*</label>
+            <input type="text" id="name" formControlName="name" required>
+            <div *ngIf="reviewForm.get('name')?.hasError('required')" class="error"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="summary">Summary*</label>
+            <input type="text" id="summary" formControlName="summary" required>
+            <div *ngIf="reviewForm.get('summary')?.hasError('required')" class="error"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="reviewText">Review Text*</label>
+            <textarea id="reviewText" formControlName="reviewText" required></textarea>
+            <div *ngIf="reviewForm.get('reviewText')?.hasError('required')" class="error"></div>
+        </div>
+
+        <button type="submit">Submit Review</button>
+    </form>
+</div>
