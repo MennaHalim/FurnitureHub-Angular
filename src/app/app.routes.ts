@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Routes } from '@angular/router';
 import { BlankLayoutComponent } from './Layouts/blank-layout/blank-layout.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
@@ -10,6 +11,17 @@ import { ShopByComponent } from './Components/shop-by/shop-by.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+=======
+import { Routes } from "@angular/router";
+import { BasketComponent } from "./components/basket/basket.component";
+import { BodyComponent } from "./components/body/body.component";
+import { DetailsComponent } from "./components/details/details.component";
+import { BlankLayoutComponent } from "./Layouts/blank-layout/blank-layout.component";
+import { QueryParamGuard } from "./Shared/Guards/query-param.guard";
+import { NotFoundComponent } from "./components/not-found/not-found.component";
+import { SignInComponent } from "./components/sign-in/sign-in.component";
+import { SignUpComponent } from "./components/sign-up/sign-up.component";
+>>>>>>> b51573c89243f6ac18c447b0f51f523abb44fffd
 
 
 
