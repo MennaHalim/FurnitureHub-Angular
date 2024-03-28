@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [CommonModule,NgIf,FormsModule,EqualToDirective, ReactiveFormsModule],
+  imports: [CommonModule,NgIf,FormsModule,EqualToDirective, ReactiveFormsModule, ReactiveFormsModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
@@ -26,33 +26,35 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
-      firstName: [ Validators.required],
-      lastName: [Validators.required],
-      email: [Validators.required, Validators.email],
-      password: [Validators.required, Validators.minLength(6)],
-      confirmPassword: [ Validators.required]
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      newEmail: ['', [Validators.required, Validators.email]],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
     });
   }
 
   onSubmit() {
-      if (this.signupForm.valid) {
-        this.authService.register(new RegistrationUser(this.firstName, this.lastName, this.newEmail, this.newPassword, this.confirmPassword)
-        ).subscribe(() => {
+    if (this.signupForm.valid) {
+      const { firstName, lastName, newEmail, newPassword, confirmPassword } = this.signupForm.value;
+  
+      this.authService.register(new RegistrationUser(firstName, lastName, newEmail, newPassword, confirmPassword))
+        .subscribe(() => {
           console.log('Registration successful');
           this.router.navigate(['/home']); 
         }, error => {
           console.error('Registration failed:', error);
         });
-      } else {
-        Object.keys(this.signupForm.controls).forEach(field => {
-          const control = this.signupForm.get(field);
-          if (control?.invalid) {
-            console.log(`Validation error in ${field}:`);
-            const errors = control?.errors;
-            console.log(errors);
-          }
-        });
-      }
+    } else {
+      Object.keys(this.signupForm.controls).forEach(field => {
+        const control = this.signupForm.get(field);
+        if (control?.invalid) {
+          console.log(`Validation error in ${field}:`);
+          const errors = control?.errors;
+          console.log(errors);
+        }
+      });
+    }
   }
 
   goBack() {

@@ -1,17 +1,16 @@
 <div class="container d-flex justify-content-center">
   <div class="row">
     <div class="col-sm-6">
-      <form #signpForm="ngForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <h4>Create an account</h4>
         <!-- Personal Information Section -->
         <h5 class="personal">Personal Information*</h5>
         <div class="form-group">
-          
-          <input type="text" id="first-name" placeholder="First Name" name="firstName" [(ngModel)]="firstName" required>
+          <input type="text" id="first-name" placeholder="First Name" formControlName="firstName">
         </div>
         <div class="form-group">
           
-          <input type="text" id="last-name" placeholder="Last Name" name="lastName" [(ngModel)]="lastName" required>
+          <input type="text" id="last-name" placeholder="Last Name" formControlName="lastName">
         </div>
         <div class="form-group1">
           <input type="checkbox" id="remember1" name="remember">
@@ -26,20 +25,15 @@
         <h5 class="email">Sign-in Information*</h5>
         <div class="form-group">
           
-          <input type="email" id="new-email" placeholder="Email Address* "   name="newEmail" [(ngModel)]="newEmail" required #newEmailField="ngModel" email>
-          <div *ngIf="newEmailField.errors?.['required']" class="error-message">Email is required.</div>
-          <div *ngIf="newEmailField.errors?.['email']" class="error-message">Please enter a valid email address.</div>
+          <input type="email" id="new-email" placeholder="Email Address*" formControlName="newEmail">
         </div>
         <p>Password Strength: No Password</p>
-        <div class="form-group">
-          
-          <input type="password" id="new-password" placeholder="Password*" name="newPassword" [(ngModel)]="newPassword" required minlength="6">
-          <div *ngIf="signupForm.errors?.['minlength']" class="error-message">Password must be at least 6 characters.</div>
+        <div class="form-group"> 
+          <input type="password" id="new-password" placeholder="Password*" formControlName="newPassword">
+
         </div>
         <div class="form-group">
-          
-          <input type="password" id="confirm-password" placeholder="Confirm Password*" name="confirmPassword" [(ngModel)]="confirmPassword" required minlength="6" [appEqualTo]="newPassword">
-          <div *ngIf="signupForm.errors?.['equalTo']" class="error-message">Passwords do not match.</div>
+          <input type="password" id="confirm-password" placeholder="Confirm Password*" formControlName="confirmPassword">
         </div>
         <!-- Remember Checkbox -->
         <div class="form-group1">
