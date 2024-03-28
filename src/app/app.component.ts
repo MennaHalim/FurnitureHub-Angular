@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './Shared/Components/footer/footer.component';
 import { HeaderComponent } from './Shared/Components/header/header.component';
-import { BodyComponent } from "./components/body/body.component";
 import { BlankLayoutComponent } from "./Layouts/blank-layout/blank-layout.component";
-import { DetailsComponent } from "./components/details/details.component";
-import { BasketComponent } from "./components/basket/basket.component";
+import { BasketComponent } from './Components/basket/basket.component';
+import { BodyComponent } from './Components/body/body.component';
+import { DetailsComponent } from './Components/details/details.component';
+
 
 
 @Component({

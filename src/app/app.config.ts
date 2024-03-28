@@ -6,9 +6,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { errorInterceptor } from './Interceptors/error.interceptor';
 import { loggerInterceptor } from './Interceptors/logger.interceptor';
+import { localizationInterceptor } from './Interceptors/localization.interceptor';
 
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideAnimationsAsync(),
-    provideHttpClient(withInterceptors([loggerInterceptor, errorInterceptor]))]
+  provideHttpClient(withInterceptors([loggerInterceptor, errorInterceptor, localizationInterceptor]))]
 };
