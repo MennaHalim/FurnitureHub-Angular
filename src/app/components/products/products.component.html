@@ -1,10 +1,12 @@
 <div class="row mt-3">
-    @for (item of page?.data; track $index) {
+    @for (item of page?.data! | paginate: { id: 'productPaginate',
+    itemsPerPage: pageSize,
+    currentPage: pageIndex,
+    totalItems: total } ; track $index ) {
     <div class="card col-5 remove-border product-cart">
 
         <div class="img-container">
             <img src="{{item.productPictures[0]}}" class="card-img-top" alt="product image">
-
 
             <div routerLink="/{{item.type}}/details/{{item.id}}" class="options-on-img-container">
                 <div class="love">
@@ -31,14 +33,15 @@
                     d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
             </svg>
         </div>
-        @if (item.availability !== "InStock") {
-        <div class="sale-container">
-            <p>Sale</p>
-        </div>
-        }@else {
-        <div class="outOfSale-container">
-            <p>Out Of Sale</p>
-        </div>
-        }
     </div>
     }
+
+    <div class="d-flex justify-content-center mt-4">
+        <pagination-controls id="productPaginate" (pageChange)="pageChanged($event)"
+            (pageBoundsCorrection)="pageChanged($event)" [maxSize]="9" [directionLinks]="true" [autoHide]="true"
+            [responsive]="true" previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination"
+            screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+        </pagination-controls>
+    </div>
+
+</div>

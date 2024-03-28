@@ -1,16 +1,17 @@
 import { ProductService } from './../../Shared/Services/product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IPage, IProduct } from '../../Shared/Models/product';
-import { Subscription, concatWith } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { BasketService } from '../../Shared/Services/basket.service';
 import { Basket, IBasket, IBasketItem } from '../../Shared/Models/basket';
 import { UserAuthService } from '../../Shared/Services/user-auth.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NgxPaginationModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -18,8 +19,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   categoryId: number = 0;
   productTypeId: number = 0;
+  total: number = 0;
   type: string = 'sets';
   page: IPage | null = null;
+  pageSize: number = 0;
+  pageIndex: number = 1;
   private categorySetsSubscription: Subscription | undefined;
   private categoryItemsSubscription: Subscription | undefined;
   private routeSubscription: Subscription | undefined;
@@ -31,20 +35,23 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private _UserAuthService: UserAuthService) { }
 
   ngOnInit(): void {
-    this.getCategoryIdFromUrl();
-    this.routeSubscription = this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.getCategoryIdFromUrl();
-      }
-    });
-
+    this.applyPagination(1);
     // ////////////////////
     // this._UserAuthService.login('mostafa.ahmed@gmail.com', 'mostafaAhmed123#').subscribe()
     // ////////////////////
-
   }
 
-  private getCategoryIdFromUrl() {
+  applyPagination(pageNum:number){
+    this.getCategoryIdFromUrl(pageNum);
+    this.routeSubscription = this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.getCategoryIdFromUrl(pageNum);
+      }
+    });
+  }
+
+
+  private getCategoryIdFromUrl(pageNum : number) {
     this.route.queryParams.subscribe(params => {
       this.categoryId = +params['categoryId'];
     })
@@ -55,26 +62,36 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.type = 'sets';
       }
     });
-    this.loadComponentData();
+    this.loadComponentData(pageNum);
   }
 
-  private loadComponentData(): void {
+  private loadComponentData(pageNum : number): void {
     if (this.type === 'sets' && Number.isNaN(this.productTypeId)) {
-      this.categorySetsSubscription = this.ProductService.getSetsByCategory(this.categoryId).subscribe(
+      this.categorySetsSubscription = this.ProductService.getSetsByCategory(this.categoryId, pageNum).subscribe(
         (data) => {
           this.page = data;
+          this.pageSize = data.pageSize;
+          this.pageIndex = data.pageIndex;
+          //this.total = data.count;
+          this.total = 10;
         });
     }
     else if (this.type === 'items' && Number.isNaN(this.productTypeId)) {
-      this.categoryItemsSubscription = this.ProductService.getItemsByCategory(this.categoryId).subscribe(
+      this.categoryItemsSubscription = this.ProductService.getItemsByCategory(this.categoryId, pageNum).subscribe(
         (data) => {
           this.page = data;
+          this.pageSize = data.pageSize;
+          this.pageIndex = data.pageIndex;
+          this.total = data.count;
         });
     }
-    else if(this.type === 'sets'){
-      this.categorySetsSubscription = this.ProductService.getSetsByCategoryAndSetType(this.categoryId, this.productTypeId).subscribe(
+    else if (this.type === 'sets') {
+      this.categorySetsSubscription = this.ProductService.getSetsByCategoryAndSetType(this.categoryId, this.productTypeId , pageNum).subscribe(
         (data) => {
           this.page = data;
+          this.pageSize = data.pageSize;
+          this.pageIndex = data.pageIndex;
+          this.total = data.count;
         });
     }
   }
@@ -135,6 +152,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if (this.categoryItemsSubscription) {
       this.categoryItemsSubscription.unsubscribe();
     }
+  }
+
+  pageChanged(event: any) {
+    this.applyPagination(event);
   }
 
 }
