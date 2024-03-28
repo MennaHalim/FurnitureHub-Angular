@@ -3,6 +3,10 @@
     justify-content: end;
 }
 
+.left-imgs-container img{
+    width: 450px;
+}
+
 .product-details-container {
     margin: 20px 0;
 }

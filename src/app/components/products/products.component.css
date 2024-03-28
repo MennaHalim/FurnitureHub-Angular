@@ -61,7 +61,7 @@ a:hover {
     padding: 0 5px;
     height: 280px;
     transition: 1.5s ease;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
 .img-container:hover img {
