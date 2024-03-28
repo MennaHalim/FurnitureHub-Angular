@@ -36,15 +36,14 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
       if (this.signupForm.valid) {
-        const newUser = new RegistrationUser(this.firstName, this.lastName, this.newEmail, this.newPassword, this.confirmPassword); 
-        this.authService.register(newUser).subscribe(() => {
+        this.authService.register(new RegistrationUser(this.firstName, this.lastName, this.newEmail, this.newPassword, this.confirmPassword)
+        ).subscribe(() => {
           console.log('Registration successful');
           this.router.navigate(['/home']); 
         }, error => {
           console.error('Registration failed:', error);
         });
       } else {
-        debugger
         Object.keys(this.signupForm.controls).forEach(field => {
           const control = this.signupForm.get(field);
           if (control?.invalid) {
@@ -54,11 +53,9 @@ export class SignUpComponent implements OnInit {
           }
         });
       }
-    
   }
 
   goBack() {
-   
-    console.log('Going back...'); 
+    this.router.navigate(['/home']);  
   }
 }
