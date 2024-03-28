@@ -6,10 +6,10 @@
 .ecommerce-search {
     display: flex;
     align-items: center;
-    background-color: #fff; /* Example background color */
-    border: 1px solid #ccc; /* Example border */
-    border-radius: 20px; /* Example border radius */
-    padding: 8px; /* Example padding */
+    background-color: #fff;
+    border: 1px solid #ccc; 
+    border-radius: 20px; 
+    padding: 8px; 
     width: 50%;
 }
 
@@ -17,7 +17,7 @@
     flex: 1;
     border: none;
     outline: none;
-    font-size: 16px; /* Example font size */
+    font-size: 16px; 
 }
 
 .ecommerce-search button {
@@ -26,8 +26,8 @@
     cursor: pointer;
 }
 
-/* Additional styling for icon if needed */
+
 .ecommerce-search i {
-    color: #888; /* Example color */
-    font-size: 20px; /* Example font size */
+    color: #888;
+    font-size: 20px;
 }
