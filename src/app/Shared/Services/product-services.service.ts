@@ -1,11 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { ICategoryProducts } from '../Models/icategory-products';
-import { ISet } from '../Models/iset';
-import { IItem } from '../Models/iitem';
 import { ProductsTypes } from '../Enums/products-types';
 import { SortType } from '../Enums/sort-type';
+import { IPage, ISet, IItem } from '../Models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -19,25 +17,19 @@ export class ProductServicesService {
     categoryId: number | null = null,
     setTypeId: number | null = null,
     itemTypeId: number | null = null,
-    sort: SortType | null = null,
-    search: string | null = null,
     color: string | null = null,
     minimumPrice: number | null = null,
-    maximumPrice: number | null = null,
-    pageSize: number = 5,
-    pageIndex: number = 1): Observable<ICategoryProducts> {
-    let url = `${this.baseUrl}${productType}s?pageIndex=${pageIndex}&pageSize=${pageSize}`;
+    maximumPrice: number | null = null): Observable<IPage> {
+    let url = `${this.baseUrl}${productType}s?`;
   
     url += (categoryId !== null) ? `&categoryId=${minimumPrice}` : '';
     url += (setTypeId !== null && setTypeId !== undefined && productType === ProductsTypes.Set) ? `&SetTypeId=${setTypeId}` : '';
     url += (itemTypeId !== null && itemTypeId !== undefined) ? `&ItemTypeId=${itemTypeId}` : '';
-    url += (sort && sort !== SortType.NameAsc) ? `&sort=${sort}` : '';
-    url += (search) ? `&Search=${search}` : '';
     url += (color) ? `&ProductColor=${color}` : '';
     url += (minimumPrice !== null) ? `&minimumPrice=${minimumPrice}` : '';
     url += (maximumPrice !== null) ? `&maximumPrice=${maximumPrice}` : '';
   
-    return this.httpClient.get<ICategoryProducts>(url).pipe(
+    return this.httpClient.get<IPage>(url).pipe(
       tap((data) => console.log(url))
     );
   }

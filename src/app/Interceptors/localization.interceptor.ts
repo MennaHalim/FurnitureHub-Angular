@@ -5,8 +5,6 @@ export const localizationInterceptor: HttpInterceptorFn = (req, next) => {
   let authReq = req.clone({
       headers: req.headers.set('Accept-Language', lang)
     });
-
-  console.log('lang',authReq);
   
   return next(authReq);
 };

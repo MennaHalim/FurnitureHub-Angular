@@ -23,18 +23,27 @@
                     </span>
                 </div>
                 <div class="filter-options" [style.display]="isCategoryExpanded ? 'block' : 'none'">
-                    <div class="list-item">
-                        <span>Recline Chair</span><span class="count">(5)</span>
+                    <div [style.display]="categoryOptionsDisplay ? 'block' : 'none'">
+                        <div class="list-item">
+                            <span type="button" (click)="selectOption('sets')">Shop by Set</span>
+                        </div>
+                        <div class="list-item">
+                            <span type="button" (click)="selectOption('items')">Shop by Item</span>
+                        </div>
                     </div>
-                    <div class="list-item">
-                        <span>Recline Chair</span><span class="count">(5)</span>
+
+                    <div *ngIf="SetsTypesDisplay" class="filter-options">
+                        <div *ngFor="let set of categorySetsTypesData" class="list-item">
+                            <span type="button"(click)="selectType(set.id)">{{ set.name }} </span>
+                        </div>
                     </div>
-                    <div class="list-item">
-                        <span>Recline Chair</span><span class="count">(5)</span>
+
+                    <div *ngIf="ItemsTypesDisplay" class="filter-options">
+                        <div *ngFor="let item of categoryItemsTypesData" class="list-item">
+                            <span type="button" (click)="selectType(item.id)">{{ item.name}}</span>
+                        </div>
                     </div>
-                    <div class="list-item">
-                        <span>Recline Chair</span><span class="count">(5)</span>
-                    </div>
+
                 </div>
                 <!-- price section  -->
                 <div class="title-container filter-section" (click)="togglePrice()">
@@ -55,7 +64,7 @@
                             <input [(ngModel)]="startValue" matSliderStartThumb>
                             <input [(ngModel)]="endValue" matSliderEndThumb>
                         </mat-slider>
-                        <button class=" go-badge translate-middle badge rounded-pill">Go</button>
+                        <button class=" go-badge translate-middle badge rounded-pill" (click)="selectPrice()">Go</button>
                     </div>
                 </div>
                 <!-- color section  -->
@@ -70,7 +79,8 @@
                 <div class="filter-options" [style.display]="isColorExpanded ? 'block' : 'none'">
                     <div class="color-container">
                         @for (color of colors; track $index) {
-                        <button class="color-badge badge rounded-circle" [ngStyle]="{'background-color': color}">
+                        <button class="color-badge badge rounded-circle" [ngStyle]="{'background-color': color}"
+                        (click)="selectColor(color)">
                             <span class="visually-hidden">color badge</span>
                         </button>
                         }
