@@ -7,6 +7,7 @@ import { BasketService } from '../../Shared/Services/basket.service';
 import { IBasketItem } from '../../Shared/Models/basket';
 import { UserAuthService } from '../../Shared/Services/user-auth.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ProductsTypes } from '../../Shared/Enums/products-types';
 
 @Component({
   selector: 'app-products',
@@ -24,9 +25,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
   page: IPage | null = null;
   pageSize: number = 0;
   pageIndex: number = 1;
+  color: string = '';
+  minPrice: number = 0;
+  maxPrice: number = 0 ;
   private categorySetsSubscription: Subscription | undefined;
   private categoryItemsSubscription: Subscription | undefined;
   private routeSubscription: Subscription | undefined;
+  
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -54,6 +59,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private getCategoryIdFromUrl(pageNum : number) {
     this.route.queryParams.subscribe(params => {
       this.categoryId = +params['categoryId'];
+      this.color = params['color'];
+      this.minPrice = +params['minPrice'];
+      this.maxPrice = +params['maxPrice'];
     })
     this.route.params.subscribe(params => {
       this.type = params['type'];
@@ -66,7 +74,28 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   private loadComponentData(pageNum : number): void {
-    if (this.type === 'sets' && Number.isNaN(this.productTypeId)) {
+    
+    if(!Number.isNaN(this.minPrice) || !Number.isNaN(this.maxPrice)|| this.color != undefined){
+      if (this.type='sets')
+      this.ProductService.FilterProducts(ProductsTypes.Set,this.categoryId,this.productTypeId,
+        NaN,this.color,this.minPrice, this.maxPrice).subscribe( data =>{
+          this.page = data;
+          this.pageSize = data.pageSize;
+          this.pageIndex = data.pageIndex;
+          this.total = data.count;
+        });
+      else{
+        this.ProductService.FilterProducts(ProductsTypes.Item,this.categoryId,NaN,
+          this.productTypeId,this.color,this.minPrice, this.maxPrice).subscribe( data =>{
+            this.page = data;
+            this.pageSize = data.pageSize;
+            this.pageIndex = data.pageIndex;
+            this.total = data.count;
+          });
+      }
+
+    }
+    else if (this.type === 'sets' && Number.isNaN(this.productTypeId)) {
       this.categorySetsSubscription = this.ProductService.getSetsByCategory(this.categoryId, pageNum).subscribe(
         (data) => {
           this.page = data;
@@ -94,6 +123,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.total = data.count;
         });
     }
+
   }
 
 

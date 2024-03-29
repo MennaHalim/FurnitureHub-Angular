@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { ProductsTypes } from '../Enums/products-types';
 import { SortType } from '../Enums/sort-type';
 import { IPage, ISet, IItem } from '../Models/product';
 
@@ -13,7 +12,7 @@ export class ProductServicesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCategoryProducts(productType: ProductsTypes,
+  FilterProducts(productType: string,
     categoryId: number | null = null,
     setTypeId: number | null = null,
     itemTypeId: number | null = null,
@@ -23,7 +22,7 @@ export class ProductServicesService {
     let url = `${this.baseUrl}${productType}s?`;
   
     url += (categoryId !== null) ? `&categoryId=${minimumPrice}` : '';
-    url += (setTypeId !== null && setTypeId !== undefined && productType === ProductsTypes.Set) ? `&SetTypeId=${setTypeId}` : '';
+    url += (setTypeId !== null && setTypeId !== undefined && productType === "sets") ? `&SetTypeId=${setTypeId}` : '';
     url += (itemTypeId !== null && itemTypeId !== undefined) ? `&ItemTypeId=${itemTypeId}` : '';
     url += (color) ? `&ProductColor=${color}` : '';
     url += (minimumPrice !== null) ? `&minimumPrice=${minimumPrice}` : '';
