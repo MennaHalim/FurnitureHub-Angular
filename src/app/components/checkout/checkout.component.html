@@ -117,12 +117,10 @@
             <h2>Payment with Stripe</h2>
             <hr>
             <form [formGroup]="paymentForm">
-
                 <div class="form-group">
-                    <label for="cc-number" class="control-label">CARD NUMBER <span style="color: red;">*</span></label>
-                    <input oninput="this.value = this.value.replace(/[^0-9]/g, '')" id="cc-number" type="tel"
-                        class="input-lg form-control cc-number mb-0" autocomplete="cc-number"
-                        placeholder="4242 4242 4242 4242" required>
+                    <label for="ccNumber" class="control-label">CARD NUMBER <span style="color: red;">*</span></label>
+                    <input oninput="this.value = this.value.replace(/[^0-9]/g, '')" formControlName="ccNumber"
+                    id="ccNumber" class="form-control mb-0" placeholder="4242 4242 4242 4242">
                     @if(paymentForm.get('ccNumber')?.invalid && paymentForm.get('ccNumber')?.touched){
                     @if(paymentForm.get('ccNumber')?.hasError('required')){
                     <div style="color: red;">Card Number is required.</div>
@@ -230,10 +228,10 @@
         <hr>
 
         <section class="basket-subTotal">
-            <h3  style="color: #1A2854; font-weight: 500;">CART SUBTOTAL</h3>
+            <h3 style="color: #1A2854; font-weight: 500;">CART SUBTOTAL</h3>
             <p>EGP {{basketSubTotal}}</p>
         </section>
-        
+
 
     </div>
 </div>

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BasketService } from '../../Shared/Services/basket.service';
 import { DeliveryMethodService } from '../../Shared/Services/delivery-method.service';
 import { IDeliverMethod } from '../../Shared/Models/order';
-import { Basket, IBasket, IBasketItem } from '../../Shared/Models/basket';
+import { Basket, IBasketItem } from '../../Shared/Models/basket';
 import { NumberPadPipe } from '../../Shared/Pipes/number-pad.pipe';
 
 @Component({
@@ -77,7 +77,6 @@ export class CheckoutComponent implements OnInit {
     if (!control.value) {
       return null;
     }
-
     const [month, year] = control.value.split('/');
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth() + 1;
