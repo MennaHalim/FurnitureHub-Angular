@@ -5,18 +5,20 @@ import { ICategory } from '../../Models/category';
 import { Subscription, concatWith } from 'rxjs';
 import { CapitalizeSpacePipe } from '../../Pipes/capitalize-space.pipe';
 import { BasketService } from '../../Services/basket.service';
+import { SearchComponent } from "../../../Components/search/search.component";
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [RouterLink, CapitalizeSpacePipe],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+    selector: 'app-header',
+    standalone: true,
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.css',
+    imports: [RouterLink, CapitalizeSpacePipe, SearchComponent]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
   categorySetsAndItemsTypesData: ICategory[] | null = null;
   private categorySetsAndItemsTypesSubscription: Subscription | undefined;
+  SeachBarDispaly: boolean = false;
 
 
   constructor(private CategoryService: CategoryService,
@@ -57,6 +59,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.categorySetsAndItemsTypesSubscription) {
       this.categorySetsAndItemsTypesSubscription.unsubscribe();
     }
+  }
+
+  toggleSeachDisplay(){
+    this.SeachBarDispaly = !this.SeachBarDispaly;
   }
 
 }

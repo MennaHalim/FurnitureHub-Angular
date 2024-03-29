@@ -26,6 +26,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   pageSize: number = 0;
   pageIndex: number = 1;
   color: string = '';
+  searchValue :string ='';
   minPrice: number = 0;
   maxPrice: number = 0 ;
   private categorySetsSubscription: Subscription | undefined;
@@ -62,6 +63,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.color = params['color'];
       this.minPrice = +params['minPrice'];
       this.maxPrice = +params['maxPrice'];
+      this.searchValue= params['search'];
     })
     this.route.params.subscribe(params => {
       this.type = params['type'];
@@ -74,11 +76,19 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   private loadComponentData(pageNum : number): void {
-    
-    if(!Number.isNaN(this.minPrice) || !Number.isNaN(this.maxPrice)|| this.color != undefined){
+    if(this.searchValue != undefined){
+      this.ProductService.SearchInProducts(this.type, this.searchValue).subscribe(
+        (data) => {
+          this.page = data;
+          this.pageSize = data.pageSize;
+          this.pageIndex = data.pageIndex;
+          this.total = data.count;
+        });
+    }
+    else if(!Number.isNaN(this.minPrice) || !Number.isNaN(this.maxPrice)|| this.color != undefined){
       if (this.type='sets')
       this.ProductService.FilterProducts(ProductsTypes.Set,this.categoryId,this.productTypeId,
-        NaN,this.color,this.minPrice, this.maxPrice).subscribe( data =>{
+        NaN,this.color,this.minPrice, this.maxPrice).subscribe( (data) => {
           this.page = data;
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
@@ -86,7 +96,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         });
       else{
         this.ProductService.FilterProducts(ProductsTypes.Item,this.categoryId,NaN,
-          this.productTypeId,this.color,this.minPrice, this.maxPrice).subscribe( data =>{
+          this.productTypeId,this.color,this.minPrice, this.maxPrice).subscribe( (data) => {
             this.page = data;
             this.pageSize = data.pageSize;
             this.pageIndex = data.pageIndex;

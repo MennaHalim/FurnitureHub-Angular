@@ -50,8 +50,8 @@ export class ProductService {
     );
   }
 
-  SearchInProducts(productType: ProductsTypes, search: string): Observable<IPage> {
-    const url = `${this.baseUrl}${productType}s${search ? `?Search=${search}` : ''}`;
+  SearchInProducts(productType: string, search: string): Observable<IPage> {
+    const url = `${this.baseUrl}${productType}${search ? `?Search=${search}` : ''}`;
     
     return this._HttpClient.get<IPage>(url).pipe(
       tap((data) => console.log(url))

@@ -76,8 +76,7 @@
     </nav>
     <div class="icons">
 
-
-        <a [routerLink]="['/search']"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <i class="fa-solid fa-magnifying-glass" (click)="toggleSeachDisplay()"></i>
         <div class="dropdown">
             <a href="#"><i class="fa-regular fa-circle-user"></i></a>
             <div class="dropdown-content">
@@ -92,11 +91,15 @@
                 </ul>
             </div>
         </div>
+
         <a href="#"><i class="fa-regular fa-heart"></i></a>
         <a routerLink="/basket" class="position-relative">
             <i class="fa-solid fa-cart-shopping"></i>
             <span class="badge bg-info cart-count">{{basketCount}}</span>
         </a>
     </div>
-
+   
+    <div [style.display]="SeachBarDispaly ? 'block' : 'none'">
+        <app-search ></app-search>
+    </div>
 </header>
