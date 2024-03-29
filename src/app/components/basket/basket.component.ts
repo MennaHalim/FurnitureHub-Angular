@@ -4,12 +4,12 @@ import { Basket, IBasketItem } from '../../Shared/Models/basket';
 import { Subscription, concatWith } from 'rxjs';
 import { UserAuthService } from '../../Shared/Services/user-auth.service';
 import { NumberPadPipe } from '../../Shared/Pipes/number-pad.pipe';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-basket',
   standalone: true,
-  imports: [NumberPadPipe],
+  imports: [NumberPadPipe, RouterLink],
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.css'
 })
@@ -64,11 +64,13 @@ export class BasketComponent implements OnInit {
 
   incrementCounter(item: IBasketItem) {
     item.productQuantity++;
+    this._BasketService.addToOrUpdateCart(this.basket).subscribe();
   }
 
   decrementCounter(item: IBasketItem) {
     if (item.productQuantity - 1 > 0) {
       item.productQuantity--;
+      this._BasketService.addToOrUpdateCart(this.basket).subscribe();
     }
   }
 

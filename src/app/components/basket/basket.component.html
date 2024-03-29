@@ -71,7 +71,8 @@
             </tbody>
         </table>
 
-        <div class="basket-clear-container">
+        <div class="basket-clear-checkount-container">
+            <button class="checkout-order" [routerLink]="['/checkout', basket?.basketId]">Proceed to checkout</button>
             <button class="basket-clear" (click)="clearBasket()">Clear Shopping Cart</button>
         </div>
 

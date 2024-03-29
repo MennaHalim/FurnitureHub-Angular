@@ -24,7 +24,7 @@ export const routes: Routes = [
     { path: 'notFound', component: NotFoundComponent, title: 'Not Found' },
     { path: 'login', component: SignInComponent, title: 'sign-in' },
     { path: 'register', component: SignUpComponent, title: 'sign-Up' },
-    { path: 'checkout', component: CheckoutComponent, title: 'payment' },
+    { path: 'checkout/:id', component: CheckoutComponent, title: 'Secure Checkout' },
     { path: 'search', component:SearchComponent, title: 'search' },
     { path: 'review', component:ReviewComponent, title: 'reviews' },
     { path: '**', redirectTo: 'notFound' }

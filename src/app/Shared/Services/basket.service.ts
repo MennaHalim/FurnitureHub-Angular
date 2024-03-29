@@ -20,10 +20,10 @@ export class BasketService {
 
   basket: Basket = new Basket();
 
-  addToOrUpdateCart(basket: IBasket): Observable<any> {
+  addToOrUpdateCart(basket: IBasket | null): Observable<Basket> {
     return this._HttpClient.post<Basket>(
       this.baseUrl + 'basket',
-      this.basket
+      basket
     )
   }
 
@@ -55,7 +55,7 @@ export class BasketService {
     return this._HttpClient.get<Basket>(this.baseUrl + `basket`);
   }
 
-  private updateUserBasketIdObs(basketId: string): Observable<any> {
+  private updateUserBasketIdObs(basketId: string | null): Observable<any> {
     return this._HttpClient.post<any>(
       this.baseUrl + `basket/userBasket?basketId=` + `${basketId}`,
       null
@@ -69,6 +69,27 @@ export class BasketService {
     this.basket.paymentIntentId = Basket.paymentIntentId;
     this.basket.shippingPrice = Basket.shippingPrice;
   }
+
+
+  checkOut(cartId: string | null, orderInfo: object): Observable<any> {
+    return this._HttpClient.post(
+      this.baseUrl + `/orders`,
+      {
+        basketId: cartId,
+        deliveryMethodId: 1,
+        shippingAddress: orderInfo
+      }
+    )
+  }
+
+
+
+
+
+
+
+
+
 
 
 }

@@ -1,109 +1,240 @@
 <link rel="stylesheet" href="checkout.component.css">
 <div class="container">
     <!-- Form 1: Shipping Address -->
-    <div class="form-container Shipping-Address  ">
-        <form action="/process_shipping_info" method="post">
+    <div class="form-container Shipping-Address col-4 ">
+        <form [formGroup]="shippingAddressForm">
             <h2>Shipping Address</h2>
             <hr>
-            <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" required>
-            <!-- <div class="checkbox-container">
-                <input type="checkbox" id="create_account" name="create_account" required >
-                <label for="create_account">Create Account</label>
-            </div> -->
-            <label for="first_name">First Name*</label>
-            <input type="text" id="first_name" name="first_name" required>
-            <label for="last_name">Last Name*</label>
-            <input type="text" id="last_name" name="last_name" required>
-            <label for="street_address">Street Address*</label>
-            <input type="text" id="street_address" name="street_address" required>
-            <label for="country">Country</label>
-            <select id="country" name="country" required >
+
+            <label for="firstName">First Name <span style="color: red;">*</span></label>
+            <input type="text" id="firstName" formControlName="firstName">
+            @if(shippingAddressForm.get('firstName')?.invalid && shippingAddressForm.get('firstName')?.touched){
+            @if(shippingAddressForm.get('firstName')?.hasError('required')){
+            <div style="color: red;">First name is required.</div>
+            }
+            @else if (shippingAddressForm.get('firstName')?.hasError('minlength')) {
+            <div style="color: red;">First name must be at least 2 characters long.</div>
+            }
+            @else if (shippingAddressForm.get('firstName')?.hasError('pattern')) {
+            <div style="color: red;">First name must contain only
+                letters.</div>
+            }
+            }
+
+
+            <label for="lastName">Last Name <span style="color: red;">*</span></label>
+            <input type="text" id="lastName" formControlName="lastName">
+            @if(shippingAddressForm.get('lastName')?.invalid && shippingAddressForm.get('lastName')?.touched){
+            @if(shippingAddressForm.get('lastName')?.hasError('required')){
+            <div style="color: red;">Last name is required.</div>
+            }
+            @else if (shippingAddressForm.get('lastName')?.hasError('minlength')) {
+            <div style="color: red;">Last name must be at least 2 characters long.</div>
+            }
+            @else if (shippingAddressForm.get('lastName')?.hasError('pattern')) {
+            <div style="color: red;">Last name must contain only
+                letters.</div>
+            }
+            }
+
+
+
+            <label for="street">Street Address <span style="color: red;">*</span></label>
+            <input type="text" id="street" formControlName="street">
+            @if(shippingAddressForm.get('street')?.invalid && shippingAddressForm.get('street')?.touched){
+            @if(shippingAddressForm.get('street')?.hasError('required')){
+            <div style="color: red;">Street address is required.</div>
+            }
+            }
+
+
+            <label for="city">City <span style="color: red;">*</span></label>
+            <input type="text" id="city" formControlName="city">
+            @if(shippingAddressForm.get('city')?.invalid && shippingAddressForm.get('city')?.touched){
+            @if(shippingAddressForm.get('city')?.hasError('required')){
+            <div style="color: red;">City is required.</div>
+            }
+            @else if(shippingAddressForm.get('city')?.hasError('pattern')){
+            <div style="color: red;">City must contain only letters.</div>
+            }
+            }
+
+
+
+
+            <label for="country">Country <span style="color: red;">*</span></label>
+            <select id="country" formControlName="country">
                 <option value="">Select Country</option>
                 <option value="Egypt">Egypt</option>
-               
+                <option value="Qena">Qena</option>
+                <option value="Assuit">Assuit</option>
             </select>
-            <label for="city">City</label>
-            <input type="text" id="city" name="city" required>
-            <label for="zip_code">Zip/Postal Code</label>
-            <input type="text" id="zip_code" name="zip_code" required>
-            <label for="phone_number">Phone Number*</label>
-            <input type="tel" id="phone_number" name="phone_number" required>
-          
+            @if(shippingAddressForm.get('country')?.invalid && shippingAddressForm.get('country')?.touched){
+            @if(shippingAddressForm.get('country')?.hasError('required')){
+            <div style="color: red;">Country is required.</div>
+            }
+            }
         </form>
     </div>
-    <!-- Form 2: Shipping Methods -->
-    <div class="col-sm-9 bg-light p-3 border">
-    <div class="form-container Shipping-Methods  ">
-        <form action="/process_shipping_method" method="post">
-            <h2>Shipping Methods</h2>
-            <hr>
-            <div class="radio-container" style="display: flex; align-items: center;">
-                <input type="radio" id="shipping_method_0" name="shipping_method" value="0" style="transform: scale(0.6);" checked>
-                <label for="shipping_method_0">EGP 0 - Free delivery (Cairo, Giza, October City, Alexandria and North coast)</label>
-            </div>
-            <label for="delivery_comment">Delivery Comment</label>
-            <textarea type="text" id="delivery_comment" name="delivery_comment"  placeholder="Enter discount code " ></textarea>
-            
-        </form>
-    </div>
-    <br><br><br><br>
-    <!-- Form 3: Payment Methods -->
-    <div class="form-container Payment-Methods  ">
-        <form action="/process_payment_method" method="post">
-            <h2>Payment Methods</h2>
-            <hr>
-           
-            <div class="radio-container" style="display: flex; align-items: center;">
-                <input type="radio" id="shipping_method_0" name="shipping_method" value="0" style="transform: scale(0.6);" >
-                <label for="shipping_method_0">Collect from home (Before Delivery Cash or Visa)</label>
-            </div>
-            <div class="radio-container" style="display: flex; align-items: center;">
-                <input type="radio" id="shipping_method_0" name="shipping_method" value="0" style="transform: scale(0.6);" >
-                <label for="shipping_method_0">Pay at store</label>
-            </div><hr>
 
-            <div class="checkbox-container">
-                <input type="checkbox" id="create_account" name="create_account">
-                <label for="create_account">My billing and shipping address are the same</label>
-            </div>
-            
-            </form>
-            </div>
-            </div>
-            <!-- Form 4: Order Summary -->
-            <div class="form-container order-summary">
-            <form action="/" method="post" class="Last-form">
-            <h2>Order Summary</h2>
-            <hr>
-            <div class="dropdown">
-                <p>ITEM IN CART</p>
-                <div class="dropdown-content">
-                  <!-- Item details -->
-                  <div class="item-details">
-                    <img src="" alt="">
-                    <p>Item Number: </p>
-                    
-                  </div>
+    <!-- Form 2: Shipping Methods -->
+    <div class="col-4 bg-light p-3 border">
+        <div class="form-container Shipping-Methods  ">
+            <form [formGroup]="deliveryMethodsForm">
+                <h2>Shipping Methods</h2>
+                <hr>
+                <div class="radio-container">
+                    @for (deliveryMethod of deliveryMethods; track $index) {
+                    <div class="deliveryMethod">
+                        <input type="radio" id="{{deliveryMethod.name}}" formControlName="shipping_method"
+                            [value]="deliveryMethod.id" style="transform: scale(0.6);" checked>
+                        <div class="radio-labels-container">
+                            <label for="{{deliveryMethod.name}}">
+                                {{deliveryMethod.name}} -
+                                {{deliveryMethod.cost}} EGP
+                                ({{deliveryMethod.deliveryTime}}) -
+                                {{deliveryMethod.description}}
+                            </label>
+                        </div>
+                    </div>
+                    }
                 </div>
-              </div><hr>
-            <h5>CART SUBTOTAL</h5><hr>
-            <!-- <p>CART SUBTOTAL: EGP 59,900</p> -->
-            <p>SHIPPING - Free delivery (Cairo, Giza, October City, Alexandria and North coast) : EGP 0</p><hr>
-            <p>ORDER TOTAL: </p><hr>
-            <label for="order_comment">Order Comment</label>
-            <textarea id="order_comment" name="order_comment"></textarea>
-            <div class="checkbox-container">
-                <input type="checkbox" id="create_account" name="create_account">
-                <label for="create_account">Sign Up for Our Newsletter</label>
+                @if(deliveryMethodsForm.get('shipping_method')?.invalid &&
+                deliveryMethodsForm.get('shipping_method')?.touched){
+                @if(deliveryMethodsForm.get('shipping_method')?.hasError('required')){
+                <div style="color: red;">Delivery method is required.</div>
+                }
+                }
+            </form>
+        </div>
+        <br><br><br><br>
+
+
+
+
+        <!-- Form 3: Payment Methods -->
+        <div class="form-container Payment-Methods  ">
+            <h2>Payment with Stripe</h2>
+            <hr>
+            <form [formGroup]="paymentForm">
+
+                <div class="form-group">
+                    <label for="cc-number" class="control-label">CARD NUMBER <span style="color: red;">*</span></label>
+                    <input oninput="this.value = this.value.replace(/[^0-9]/g, '')" id="cc-number" type="tel"
+                        class="input-lg form-control cc-number mb-0" autocomplete="cc-number"
+                        placeholder="4242 4242 4242 4242" required>
+                    @if(paymentForm.get('ccNumber')?.invalid && paymentForm.get('ccNumber')?.touched){
+                    @if(paymentForm.get('ccNumber')?.hasError('required')){
+                    <div style="color: red;">Card Number is required.</div>
+                    }
+                    @else if(paymentForm.get('ccNumber')?.hasError('pattern')){
+                    <div style="color: red;">Card Number must has only 16 numbers.</div>
+                    }
+                    }
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="expiry" class="control-label">EXPIRY <span style="color: red;">*</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9/]/g, '')" maxlength="5" id="expiry"
+                                formControlName="expiry" type="tel" class="mb-0 input-lg form-control"
+                                placeholder="12 / 27">
+                            @if(paymentForm.get('expiry')?.invalid &&
+                            paymentForm.get('expiry')?.touched){
+                            @if(paymentForm.get('expiry')?.hasError('required')){
+                            <div style="color: red;">Cart Expiry is required.</div>
+                            }
+                            @else if (paymentForm.get('expiry')?.hasError('pattern')) {
+                            <div style="color: red;">MM/YY</div>
+                            }
+                            @else if (paymentForm.get('expiry')?.hasError('expiryValidator')) {
+                            <div style="color: red;">Enter a valid Expiry Date</div>
+                            }
+                            }
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="cvc" class="control-label">CVC <span style="color: red;">*</span></label>
+                            <input id="cvc" type="tel" class="mb-0 input-lg form-control" formControlName="cvv"
+                                placeholder="123">
+                            @if(paymentForm.get('cvv')?.invalid &&
+                            paymentForm.get('cvv')?.touched){
+                            @if(paymentForm.get('cvv')?.hasError('required')){
+                            <div style="color: red;">Cart Expiry is required.</div>
+                            }
+                            @else if (paymentForm.get('cvv')?.hasError('pattern')) {
+                            <div style="color: red;">Enter only 3 digits</div>
+                            }
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cHolder" class="control-label">CARD HOLDER NAME</label>
+                        <input oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')" type="cHolder"
+                            class="mb-0 input-lg form-control" formControlName="cHolder">
+                        @if(paymentForm.get('cHolder')?.invalid &&
+                        paymentForm.get('cHolder')?.touched){
+                        @if(paymentForm.get('cHolder')?.hasError('pattern')){
+                        <div style="color: red;">Only alphapets are allowed.</div>
+                        }
+                        }
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
+
+
+
+
+    </div>
+
+    <!-- Form 4: Order Summary -->
+    <div class="form-container order-summary col-4">
+        <h2>Order Summary</h2>
+        <hr>
+
+        <section class="basketItems-section">
+            <h3 style="color: #1A2854; font-weight: 500;">Basket Items</h3>
+            <hr>
+            <div class="cart-items-container">
+
+                @for (item of basket?.basketItems; track $index) {
+                <div class="cart-item-container row">
+                    <img class="col-3" [src]="item.productPictureUrl" alt="">
+                    <div class="cart-itemDetails-container row col-9">
+                        <p>{{item.productName}}</p>
+                        <p>{{item.productPrice}} EGP</p>
+                        <div class="wrapper-container">
+                            <div class="wrapper">
+                                <span class="minus unselectable" (click)="decrementCounter(item)">-</span>
+                                <span class="num unselectable">{{item.productQuantity | numberPad}}</span>
+                                <span class="plus unselectable" (click)="incrementCounter(item)">+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
             </div>
-            <div>
-            <input type="text" id="discount_code" name="discount_code" placeholder="Enter discount code"></div>
-            <button type="button" class="Discount-btn">Apply Discount</button>
+        </section>
+
+        <hr>
+
+        <section class="basket-subTotal">
+            <h3  style="color: #1A2854; font-weight: 500;">CART SUBTOTAL</h3>
+            <p>EGP {{basketSubTotal}}</p>
+        </section>
         
-            </form> 
-            
-            </div>
-            
-            </div>
-      <button type="button" class="place-older">PLACE ORDER</button>
+
+    </div>
+</div>
+<button type="button" class="place-older" (click)="validateForms()">PLACE ORDER</button>
