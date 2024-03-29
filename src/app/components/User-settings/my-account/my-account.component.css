@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #20284f;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin: 0; 
+  }
+  
+  .sidebar {
+    min-height: 100vh; 
+    padding: 5rem; 
+    width:100%; 
+    margin-top: 10rem;
+  }
+  
+  .account-navigation h2 {
+    margin-top: 2rem;
+    font-size: 1.2rem; 
+  }
+  
+  .account-navigation h1 span {
+    border-bottom: 3px solid;
+    padding-bottom: 2px;
+  }
+   .My-account{
+      border-left: 2px solid brown ;
+      padding-left: 4px ;
+  }
+  
+  .account-navigation ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .account-navigation ul li a {
+    text-decoration: none;
+    color: #20284f;
+    font-size: 1rem; 
+  
+  }
+  .account-navigation ul li {
+    margin-bottom: 1rem; 
+  }
+  
+  
+  .account-navigation2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem; 
+    padding:5rem; 
+    margin-top: 10rem;
+  }
+  
+  .section {
+    margin: 0; 
+  }
+  
+  .section h2 {
+    font-size: 1.2rem; 
+  }
+  
+  button{
+      border-radius: 2rem;
+      width: 10rem;
+      height: 3rem;
+      font-size: large;
+      background-color: #20284f;
+      color: white;
+      
+      
+  }

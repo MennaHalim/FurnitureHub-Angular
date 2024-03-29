@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="address-book.component.css">
+<div class="sidebar">
+    <div class="account-navigation">
+      <h2><span>Account</span> Navigation</h2>
+      <ul>
+        <li><a href="#">My Account</a></li>
+        <li><a href="#"class="my-order">My Orders</a></li>
+        <li><a href="#"class="my-wish-list">My Wish List</a></li>
+        <li><a href="#"class="Address-Book">Address Book</a></li>
+        <li><a href="#">Account Information</a></li>
+        <li><a href="#"class="GDPR">GDPR</a></li>
+        <li><a href="#">My Product Reviews</a></li>
+        <li><a href="#">Newsletter Subscriptions</a></li>
+      </ul>
+      <h2><span>Compare</span> Products</h2>
+      <p>You have no items to compare.</p>
+      <h2><span>My Wish</span> List</h2>
+      <p>You have no items in your wish list.</p>
+    </div>
+  </div>
+<div class="container">
+    <h2>Contact Information</h2>
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" name="firstname" required>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" name="lastname" required>
+    <label for="company">Company</label>
+    <input type="text" id="company" name="company">
+    <label for="phone">Phone Number*</label>
+    <input type="tel" id="phone" name="phone" required>
+    <label for="fax">Fax</label>
+    <input type="tel" id="fax" name="fax">
+    
+    <h2>Address</h2>
+    <div class="address-field">
+        <div>
+            <label for="street">Street Address*</label>
+            <input type="text" id="street" name="street" required>
+        </div>
+        <div>
+            <label for="city">City</label>
+            <input type="" id="city" name="city" required>
+        </div>
+        <div>
+            <label for="zip">Zip/Postal Code</label>
+            <input type="text" id="zip" name="zip" required>
+        </div>
+        <div>
+            <label for="country">Country</label>
+        <select id="country" name="country" required >
+            <option value="">Select Country</option>
+            <option value="Egypt">Egypt</option>
+           
+        </select>
+    
+        </div>
+    
+        <div class="button-container">  
+            <button>save address</button>
+            <button>go back</button>
+          </div>
+    </div>
+</div>
