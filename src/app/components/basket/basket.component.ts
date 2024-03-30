@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BasketService } from '../../Shared/Services/basket.service';
-import { Basket, IBasketItem } from '../../Shared/Models/basket';
 import { Subscription, concatWith } from 'rxjs';
-import { UserAuthService } from '../../Shared/Services/user-auth.service';
-import { NumberPadPipe } from '../../Shared/Pipes/number-pad.pipe';
 import { Router } from '@angular/router';
+import { Basket, IBasketItem } from '../../Shared/Models/basket';
+import { NumberPadPipe } from '../../Shared/Pipes/number-pad.pipe';
+import { BasketService } from '../../Shared/Services/basket.service';
 
 @Component({
   selector: 'app-basket',

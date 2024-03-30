@@ -13,4 +13,6 @@ import { ShoppingOptionsComponent } from '../../components/shopping-options/shop
     imports: [ShoppingOptionsComponent, ShopByComponent, ProductsComponent, RouterOutlet]
 })
 export class BlankLayoutComponent {
+   
+    
 }

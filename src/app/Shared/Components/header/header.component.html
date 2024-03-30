@@ -15,9 +15,10 @@
         </span>
         <span class="text-spacing"></span>
         <span class="dropdown">
-            English
+            {{lang == 'en' ? 'English' : 'Arabic'}}
             <div class="dropdown-content">
-                <a href="#">Arabic</a>
+                <span type="button" (click)="toggleLanguage('ar')" [style.display]="lang == 'ar' ? 'none' : 'block'"> Arabic </span>
+                <span type="button" (click)="toggleLanguage('en')" [style.display]="lang == 'en' ? 'none' : 'block'"> English </span>
             </div>
         </span>
     </div>

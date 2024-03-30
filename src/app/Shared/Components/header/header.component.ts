@@ -1,28 +1,32 @@
 import { CategoryService } from './../../Services/category.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ICategory } from '../../Models/category';
 import { Subscription, concatWith } from 'rxjs';
 import { CapitalizeSpacePipe } from '../../Pipes/capitalize-space.pipe';
 import { BasketService } from '../../Services/basket.service';
-import { SearchComponent } from "../../../Components/search/search.component";
+import { TranslateService } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { SearchComponent } from '../../../components/search/search.component';
 
 @Component({
     selector: 'app-header',
     standalone: true,
     templateUrl: './header.component.html',
     styleUrl: './header.component.css',
-    imports: [RouterLink, CapitalizeSpacePipe, SearchComponent]
+    imports: [RouterLink, CapitalizeSpacePipe, SearchComponent, CommonModule]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
   categorySetsAndItemsTypesData: ICategory[] | null = null;
   private categorySetsAndItemsTypesSubscription: Subscription | undefined;
   SeachBarDispaly: boolean = false;
-
+  lang: string = 'en';
 
   constructor(private CategoryService: CategoryService,
-    private _BasketService: BasketService) { }
+    private _BasketService: BasketService,
+    private translate: TranslateService,
+    private cdr: ChangeDetectorRef) { }
 
   basketCount: number = 0;
 
@@ -40,8 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.basketCount = count;
       }
     })
-
-
+    document.documentElement.lang = this.lang;
   }
 
   private loadComponentData(): void {
@@ -64,5 +67,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   toggleSeachDisplay(){
     this.SeachBarDispaly = !this.SeachBarDispaly;
   }
+
+  toggleLanguage(langCode: string): void {
+
+    this.translate.use(langCode).subscribe(() => {
+        localStorage.setItem('lang', langCode);
+        this.lang = langCode;
+        document.documentElement.lang = langCode;
+        this.cdr.detectChanges();
+        window.location.reload();
+    });
+}
+
 
 }

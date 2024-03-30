@@ -18,6 +18,7 @@ export class SearchComponent {
   private getDataFromUrl() {
     this.route.params.subscribe(params => {
       this.type = params['type'];
+      console.log(params['type']);
       if (!this.type) {
         this.type = 'sets';
       }
@@ -37,6 +38,6 @@ export class SearchComponent {
     const queryParams: { [key: string]: any } = {}; 
     queryParams['search'] = query; 
     
-    this.router.navigate(['/products/categories/', this.type], { queryParams });
+
   }
 }

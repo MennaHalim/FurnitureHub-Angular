@@ -1,15 +1,16 @@
 import { Routes } from '@angular/router';
 import { BlankLayoutComponent } from './Layouts/blank-layout/blank-layout.component';
-import { NotFoundComponent } from './Components/not-found/not-found.component';
-import { BodyComponent } from './Components/body/body.component';
+import { BodyComponent } from './components/body/body.component';
+import { DetailsComponent } from './components/details/details.component';
+import { SearchComponent } from './components/search/search.component';
 import { QueryParamGuard } from './Shared/Guards/query-param.guard';
-import { DetailsComponent } from './Components/details/details.component';
-import { BasketComponent } from './Components/basket/basket.component';
-import { SignInComponent } from './Components/sign-in/sign-in.component';
-import { SignUpComponent } from './Components/sign-up/sign-up.component';
-import { CheckoutComponent } from './Components/checkout/checkout.component';
-import { ReviewComponent } from './Components/review/review.component';
-import { SearchComponent } from './Components/search/search.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ReviewComponent } from './components/review/review.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { BasketComponent } from './components/basket/basket.component';
+
 
 
 

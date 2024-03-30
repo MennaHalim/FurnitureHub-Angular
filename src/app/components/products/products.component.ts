@@ -1,5 +1,5 @@
 import { ProductService } from './../../Shared/Services/product.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { IPage, IProduct } from '../../Shared/Models/product';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
@@ -27,8 +27,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   pageIndex: number = 1;
   color: string = '';
   searchValue :string ='';
-  minPrice: number = 0;
-  maxPrice: number = 0 ;
+  startPrice: number = 0;
+  endPrice: number = 0 ;
   private categorySetsSubscription: Subscription | undefined;
   private categoryItemsSubscription: Subscription | undefined;
   private routeSubscription: Subscription | undefined;
@@ -61,8 +61,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.route.queryParams.subscribe(params => {
       this.categoryId = +params['categoryId'];
       this.color = params['color'];
-      this.minPrice = +params['minPrice'];
-      this.maxPrice = +params['maxPrice'];
+      this.startPrice = +params['minPrice'];
+      this.endPrice = +params['maxPrice'];
       this.searchValue= params['search'];
     })
     this.route.params.subscribe(params => {
@@ -83,20 +83,22 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
           this.total = data.count;
+
         });
     }
-    else if(!Number.isNaN(this.minPrice) || !Number.isNaN(this.maxPrice)|| this.color != undefined){
+    else if(!Number.isNaN(this.startPrice) || !Number.isNaN(this.endPrice)|| this.color != undefined){
       if (this.type='sets')
       this.ProductService.FilterProducts(ProductsTypes.Set,this.categoryId,this.productTypeId,
-        NaN,this.color,this.minPrice, this.maxPrice).subscribe( (data) => {
+        NaN,this.color,this.startPrice, this.endPrice).subscribe( (data) => {
           this.page = data;
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
           this.total = data.count;
+
         });
       else{
         this.ProductService.FilterProducts(ProductsTypes.Item,this.categoryId,NaN,
-          this.productTypeId,this.color,this.minPrice, this.maxPrice).subscribe( (data) => {
+          this.productTypeId,this.color,this.startPrice, this.endPrice).subscribe( (data) => {
             this.page = data;
             this.pageSize = data.pageSize;
             this.pageIndex = data.pageIndex;
@@ -113,6 +115,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.pageIndex = data.pageIndex;
           //this.total = data.count;
           this.total = 10;
+
         });
     }
     else if (this.type === 'items' && Number.isNaN(this.productTypeId)) {
@@ -122,6 +125,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
           this.total = data.count;
+
         });
     }
     else if (this.type === 'sets') {
@@ -131,6 +135,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
           this.total = data.count;
+
         });
     }
 

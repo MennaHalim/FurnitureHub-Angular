@@ -1,11 +1,11 @@
-import { Component, Input, OnInit, ViewChild, OnDestroy, ChangeDetectorRef } from '@angular/core'; 
-import {MatBadgeModule} from '@angular/material/badge'
-import {MatSidenavModule} from '@angular/material/sidenav'
-import {MatListModule} from '@angular/material/list'
+import { Component, Input, OnInit, ViewChild, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { MatBadgeModule } from '@angular/material/badge'
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatListModule } from '@angular/material/list'
 import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatIconModule} from '@angular/material/icon';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
@@ -17,36 +17,39 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject, Subscription } from 'rxjs'
 import { ICategorySetsTypes, ICategoryItemsTypes, IType } from '../../Shared/Models/category';
 import { ShopByService } from '../../Shared/Services/shop-by.service';
+import { TranslateService } from '@ngx-translate/core';
+import { ProductService } from '../../Shared/Services/product.service';
+import { ProductsTypes } from '../../Shared/Enums/products-types';
 
 
 @Component({
   selector: 'app-shopping-options',
   standalone: true,
   imports: [MatBadgeModule,
-      MatSidenavModule,
-      MatListModule, 
-      RouterOutlet, 
-      MatDividerModule,
-      MatIconModule, 
-      MatSliderModule, 
-      FormsModule, 
-      CurrencyPipe, 
-      CommonModule, 
-      MatToolbarModule,
-      MatButtonModule,
-      MatSidenav,
-      RouterModule
-    ],
+    MatSidenavModule,
+    MatListModule,
+    RouterOutlet,
+    MatDividerModule,
+    MatIconModule,
+    MatSliderModule,
+    FormsModule,
+    CurrencyPipe,
+    CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenav,
+    RouterModule
+  ],
   templateUrl: './shopping-options.component.html',
   styleUrl: './shopping-options.component.css'
 })
-export class ShoppingOptionsComponent implements OnInit, OnDestroy  {
+export class ShoppingOptionsComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  @Input() minPrice:number = 0;
-  @Input()maxPrice:number = 200000;
+  minPrice: number = 0;
+  maxPrice: number = 200000;
   colors: string[] = ['Jute', 'gray', 'white', 'brown', 'black', 'blue', 'beige'];
 
   isCategoryExpanded: boolean = false;
@@ -54,17 +57,17 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy  {
   isColorExpanded: boolean = false;
   isRooEmxpanded: boolean = false;
   isStyleExpanded: boolean = false;
-  categoryOptionsDisplay : boolean = true;
-  ItemsTypesDisplay : boolean = false;
-  SetsTypesDisplay : boolean = false;
-  goButtonClicked : boolean = false;
+  categoryOptionsDisplay: boolean = true;
+  ItemsTypesDisplay: boolean = false;
+  SetsTypesDisplay: boolean = false;
+  goButtonClicked: boolean = false;
   categoryId: number = 0;
-  productTypeId : number = 0;
-  type: string = 'sets' 
-  startValue : number = 0;
-  endValue  :number = 0;
-  color :string = '';
- 
+  productTypeId: number = 0;
+  type: string = 'sets'
+  startValue: number = this.minPrice;
+  endValue: number = this.maxPrice;
+  color: string = '';
+
 
 
   categoryTypesData: ICategorySetsTypes | null = null;
@@ -72,28 +75,37 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy  {
   categoryItemsTypesData: IType[] = []
   private categorySetsTypesSubscription: Subscription | undefined;
   private categoryItemsTypesSubscription: Subscription | undefined;
+  langChangeSubscription: Subscription | undefined
+  lang: any = "en";
+
 
   private readonly destroy$ = new Subject<void>();
 
 
   constructor(private breakpointObserver: BreakpointObserver,
-     private changeDetectorRef: ChangeDetectorRef,
-     private route: ActivatedRoute,
-     private shopByService: ShopByService, 
-     private router: Router) {}
+    private changeDetectorRef: ChangeDetectorRef,
+    private route: ActivatedRoute,
+    private shopByService: ShopByService,
+    private router: Router,
+    private translate: TranslateService,
+    private productService: ProductService) {
+    this.lang = localStorage.getItem('lang');
+    translate.use(this.lang);
+
+    this.langChangeSubscription = translate.onLangChange.subscribe(event => {
+      this.lang = event.lang;
+    });
+  }
 
   ngOnInit(): void {
     this.getDataFromUrl();
 
-    if (!Number.isNaN(this.productTypeId)){
+    if (!Number.isNaN(this.productTypeId)) {
       this.categoryOptionsDisplay = false;
       this.selectOption(this.type);
     }
 
-    if(Number.isNaN(this.startValue) || Number.isNaN(this.endValue)){
-      this.startValue = this.minPrice;
-      this.endValue = this.maxPrice;
-    }
+    this.getMinAndMaxPrice();
   }
 
   private getDataFromUrl() {
@@ -102,9 +114,8 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy  {
       this.color = params['color'];
       this.startValue = +params['minPrice'];
       this.endValue = +params['maxPrice'];
-      
-      if((this.startValue != this.minPrice || this.endValue != this.maxPrice)
-      && !Number.isNaN(this.startValue) && !Number.isNaN(this.endValue)){
+      if ((this.startValue != this.minPrice || this.endValue != this.maxPrice)
+        && !Number.isNaN(this.startValue) && !Number.isNaN(this.endValue)) {
         this.goButtonClicked = true;
       }
     })
@@ -122,46 +133,51 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy  {
   selectOption(option: string): void {
     this.categoryOptionsDisplay = false;
 
-    if(option == "sets"){
+    if (option == "sets") {
       this.categorySetsTypesSubscription = this.shopByService.getCategorySetsTypes(this.categoryId).subscribe(
         (data) => {
           this.categorySetsTypesData = data.categorySetsTypes;
         });
 
-        this.SetsTypesDisplay = true;
-        this.type = 'sets';
-        this.reloadProducts();
+      this.SetsTypesDisplay = true;
+      this.type = 'sets';
+      this.reloadProducts();
     }
-    else{
+    else {
       this.categoryItemsTypesSubscription = this.shopByService.getCategoryItemsTypes(this.categoryId).subscribe(
         (data) => {
           this.categoryItemsTypesData = data.categoryItemsTypes;
         });
 
-        this.ItemsTypesDisplay = true;
-        this.type= 'items';
-        this.reloadProducts();
+      this.ItemsTypesDisplay = true;
+      this.type = 'items';
+      this.reloadProducts();
     }
+    this.getMinAndMaxPrice();
   }
 
-  selectType(id: number){
+  selectType(id: number) {
     this.productTypeId = id;
     this.reloadProducts();
+    this.getMinAndMaxPrice();
   }
 
-  selectColor(color : string){
+  selectColor(color: string) {
     this.color = color;
     this.reloadProducts();
+    this.getMinAndMaxPrice();
+
   }
 
-  selectPrice(){
+  selectPrice() {
     this.goButtonClicked = true;
     this.reloadProducts();
+    this.getMinAndMaxPrice();
   }
 
   reloadProducts() {
     const queryParams: { [key: string]: any } = { categoryId: this.categoryId };
-  
+
     if (Number.isNaN(this.productTypeId)) {
       if (this.color !== '') {
         queryParams['color'] = this.color;
@@ -182,11 +198,40 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy  {
       this.router.navigate(['/products/categories/', this.type, this.productTypeId], { queryParams });
     }
   }
-  
+
+  getMinAndMaxPrice() {
+    if (this.type = 'sets')
+      this.productService.FilterProducts(ProductsTypes.Set, this.categoryId, this.productTypeId,
+        NaN, this.color, NaN, NaN).subscribe((data) => {
+          this.minPrice = data.minimumPrice;
+          this.maxPrice = data.maximumPrice;
+          if (Number.isNaN(this.startValue) || Number.isNaN(this.endValue)) {
+            this.startValue = this.minPrice;
+            this.endValue = this.maxPrice;
+          }
+
+        });
+    else {
+      this.productService.FilterProducts(ProductsTypes.Item, this.categoryId, NaN,
+        this.productTypeId, this.color, NaN, NaN).subscribe((data) => {
+          this.minPrice = data.minimumPrice;
+          this.maxPrice = data.maximumPrice;
+          if (Number.isNaN(this.startValue) || Number.isNaN(this.endValue)) {
+            this.startValue = this.minPrice;
+            this.endValue = this.maxPrice;
+          }
+        });
+    }
+
+    this.changeDetectorRef.detectChanges();
+  }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    this.categoryItemsTypesSubscription?.unsubscribe;
+    this.categorySetsTypesSubscription?.unsubscribe;
+    this.langChangeSubscription?.unsubscribe;
   }
 
   toggleCategories() {
@@ -207,10 +252,10 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy  {
 
   toggleStyle() {
     this.isStyleExpanded = !this.isStyleExpanded;
-  }  
+  }
 
-  
-  ngAfterViewInit(): void { 
+
+  ngAfterViewInit(): void {
     this.breakpointObserver
       .observe(['(max-width: 800px)'])
       .pipe(takeUntil(this.destroy$))
@@ -224,7 +269,7 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy  {
         }
       });
 
-      this.changeDetectorRef.detectChanges(); 
+    this.changeDetectorRef.detectChanges();
   }
 
 }
