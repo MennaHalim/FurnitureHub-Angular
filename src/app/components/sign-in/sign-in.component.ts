@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class SignInComponent {
   email: string = '';
   password: string = '';
-  errorMessage: string = ''; // New property to hold error message
+  errorMessage: string = ''; 
 
   constructor(private authService: UserAuthService, private router: Router) {} 
 
@@ -29,9 +29,9 @@ export class SignInComponent {
         (error) => {
           console.error('Login failed:', error);
           if (error.status === 401) {
-            this.errorMessage = 'Email or password incorrect'; // Set error message
+            this.errorMessage = 'Email or password incorrect'; 
           } else {
-            this.errorMessage = 'An error occurred. Please try again later.'; // Fallback message
+            this.errorMessage = 'An error occurred. Please try again later.'; 
           }
         }
       );

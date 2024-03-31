@@ -1,10 +1,53 @@
 import { CommonModule, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { EqualToDirective } from '../../Directives/equalTo.directive';
 import { UserAuthService } from '../../Shared/Services/user-auth.service';
 import { RegistrationUser } from '../../Shared/Models/user';
 import { Router } from '@angular/router';
+
+
+export function passwordValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const valid = passwordRegex.test(control.value);
+    
+    if (!valid) {
+      control.setErrors({ 'Password must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and be at least 8 characters long.': true });
+      return { 'invalidPassword ' : true};
+    }
+    
+    control.setErrors(null);
+    return null;
+  };
+}
+
+
+function confirmPasswordValidator(passwordKey: string, confirmPasswordKey: string): ValidatorFn {
+  return (formGroup: AbstractControl): { [key: string]: any } | null => {
+    const passwordControl = formGroup.get(passwordKey);
+    const confirmPasswordControl = formGroup.get(confirmPasswordKey);
+
+    if (passwordControl && confirmPasswordControl) {
+      const passwordValue = passwordControl.value;
+      const confirmPasswordValue = confirmPasswordControl.value;
+
+      if (passwordValue !== confirmPasswordValue) {
+        confirmPasswordControl.setErrors({ 'passwordMismatch': true });
+        return { 'passwordMismatch': true };
+      } else {
+        confirmPasswordControl.setErrors(null);
+        return null;
+      }
+    }
+    
+    return null;
+  };
+}
+
+
+
+
 
 
 @Component({
@@ -21,6 +64,7 @@ export class SignUpComponent implements OnInit {
   newEmail = '';
   newPassword='';
   confirmPassword='';
+  errorMessage: string = ''; 
 
   constructor(private fb: FormBuilder, private authService: UserAuthService, private router: Router) { }
 
@@ -29,11 +73,14 @@ export class SignUpComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       newEmail: ['', [Validators.required, Validators.email]],
-      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+      newPassword: ['', [Validators.required, Validators.minLength(8), passwordValidator()]],
       confirmPassword: ['', Validators.required]
+    }, {
+      validators: confirmPasswordValidator('newPassword', 'confirmPassword')
     });
   }
-
+   
+  
   onSubmit() {
     if (this.signupForm.valid) {
       const { firstName, lastName, newEmail, newPassword, confirmPassword } = this.signupForm.value;
@@ -43,7 +90,14 @@ export class SignUpComponent implements OnInit {
           console.log('Registration successful');
           this.router.navigate(['/home']); 
         }, error => {
-          console.error('Registration failed:', error);
+          if (error.error && error.error.errors && Array.isArray(error.error.errors)) {
+            const errorMessage = error.error.errors[0];
+            console.error('Registration failed:', errorMessage);
+            this.errorMessage = errorMessage;
+          } else {
+            console.error('Registration failed:', error.message);
+            this.errorMessage= error.message;
+          }
         });
     } else {
       Object.keys(this.signupForm.controls).forEach(field => {
@@ -59,5 +113,10 @@ export class SignUpComponent implements OnInit {
 
   goBack() {
     this.router.navigate(['/home']);  
+  }
+
+  getError(controlName: string, errorName: string) {
+    const control = this.signupForm.get(controlName);
+    return control?.hasError(errorName) ? control?.getError(errorName).message : '';
   }
 }

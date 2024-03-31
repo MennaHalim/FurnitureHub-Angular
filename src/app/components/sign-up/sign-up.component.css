@@ -79,9 +79,6 @@ button:disabled {
     cursor: not-allowed;
 }
 
-
-
-
 .form-group1,.form-group2 {
     display: flex;
     align-items: center;
@@ -90,3 +87,10 @@ button:disabled {
 input[type="checkbox"] {
     margin-right: 2px;
 }
+
+.alert {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem; 
+    border-radius: 0.25rem; 
+  }
+  
