@@ -3,20 +3,22 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6">
+     
       <form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)">
-        <h4>REGISTERED CUSTOMERS</h4>
+        <div class="alert alert-danger" role="alert" [style.display]="errorMessage.length == 0 ? 'none' : 'block'">
+          {{ errorMessage }}
+        </div>  
+        <h4 class="title">REGISTERED CUSTOMERS</h4>
         <p>If you have an account, sign in with your email address.</p>
         <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" [(ngModel)]="email" required #emailField="ngModel" email>
-          <div *ngIf="emailField.errors?.['required']">Email is required.</div>
-          <div *ngIf="emailField.errors?.['email']">Please enter a valid email address.</div>
-        </div>
+          <input type="email" id="email" name="email" [(ngModel)]="email" required #emailField="ngModel" email placeholder="Email address">
+          <div *ngIf="emailField.touched && emailField.errors?.['required']" class="error">Email is required.</div>
+          <div *ngIf="emailField.errors?.['email']" class="error">Please enter a valid email address.</div>
+        </div>        
 
         <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" [(ngModel)]="password" required minlength="6">
-          <div *ngIf="signInForm.errors?.['minlength']">Password must be at least 6 characters.</div>
+          <input type="password" id="password" name="password" [(ngModel)]="password" #passwordField="ngModel" required  placeholder="Password">
+          <div *ngIf="passwordField.touched && emailField.errors?.['required']" class="error">Password is required.</div>
         </div>
 
         <div class="form-group">
@@ -31,7 +33,7 @@
 
     <div class="col-sm-6">
       <div class="create-account">
-        <h4>DON'T HAVE AN ACCOUNT?</h4>
+        <h4 class = "title">DON'T HAVE AN ACCOUNT?</h4>
         <p>By creating an account with our store, you will be able to move through the checkout process faster, store
           multiple shipping addresses, view and track your orders in your account and more.</p>
         <button type="submit">Create an Account</button>

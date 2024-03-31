@@ -34,10 +34,9 @@ export class SearchComponent {
     const queryInput = form.elements.namedItem('query') as HTMLInputElement; 
     const query = queryInput.value;
 
-    console.log(query)
     const queryParams: { [key: string]: any } = {}; 
     queryParams['search'] = query; 
     
-
+    this.router.navigate(['/products/categories/', this.type], { queryParams });
   }
 }

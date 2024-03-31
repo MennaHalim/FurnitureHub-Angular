@@ -19,7 +19,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       }
       else if ([404].includes(error.status))
       {
-        console.log("Not found");
+        router.navigate(['/notFound']);
       }
       console.error(error.message);
 

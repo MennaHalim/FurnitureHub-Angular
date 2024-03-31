@@ -10,6 +10,5 @@ export const loggerInterceptor = (req: HttpRequest<unknown>, next: (req: HttpReq
       headers: req.headers.set('Authorization', `Bearer ${token}`)
     });
   }
-  
   return next(authReq);
 };

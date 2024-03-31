@@ -45,17 +45,13 @@ export class ProductService {
     url += (!Number.isNaN(minimumPrice)) ? `&minimumPrice=${minimumPrice}` : '';
     url += (!Number.isNaN(maximumPrice)) ? `&maximumPrice=${maximumPrice}` : '';
   
-    return this._HttpClient.get<IPage>(url).pipe(
-      tap((data) => console.log(url))
-    );
+    return this._HttpClient.get<IPage>(url);
   }
 
   SearchInProducts(productType: string, search: string): Observable<IPage> {
     const url = `${this.baseUrl}${productType}${search ? `?Search=${search}` : ''}`;
     
-    return this._HttpClient.get<IPage>(url).pipe(
-      tap((data) => console.log(url))
-    );
+    return this._HttpClient.get<IPage>(url);
   }
   
 
