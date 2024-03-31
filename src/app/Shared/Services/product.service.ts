@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IPage } from '../Models/product';
+import { ICustomerReviewToCreate, IPage } from '../Models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,11 @@ export class ProductService {
 
   getProductDetails(productId: string | null, productType: string | null): Observable<any> {
     return this._HttpClient.get(this.baseUrl + `${productType}?${productType}Id=${productId}`);
+  }
+
+  createReview(customerReview: ICustomerReviewToCreate):Observable<any>{
+    return this._HttpClient.post<any>(this.baseUrl + "review",
+    customerReview);
   }
 
 }

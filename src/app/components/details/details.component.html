@@ -12,6 +12,7 @@
         <p class="product-price">&#36; {{productDetails?.price}}</p>
 
         <div class="cart-options">
+            @if(productDetails?.availability == 'InStock'){
             <div class="wrapper-container">
                 <div class="wrapper">
                     <span class="minus unselectable" (click)="decrementCounter()">-</span>
@@ -22,6 +23,7 @@
             <div class="add-to-cart-option-container">
                 <button>Add To Cart</button>
             </div>
+            }
 
             <div class="add-to-wishlist-container" role="button">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1"
@@ -85,7 +87,44 @@
                     </tbody>
                 </table>
             </div>
-            <div class="reviews" [class.show]="selectedTab === 'reviews'">Template To Add Review</div>
+            <div class="reviews" [class.show]="selectedTab === 'reviews'">
+                <h2>Write Your Own Review</h2>
+                <form [formGroup]="reviewForm" class="review-form" (ngSubmit)="submitReview()">
+                    <div class="rating mb-3">
+                        <h3 class="mb-0">Rate</h3>
+                        <input type="number" formControlName="rating" hidden>
+                        <i class='bx bx-star star' (click)="setRatingValue(1)" [style.--i]="'0'"></i>
+                        <i class='bx bx-star star' (click)="setRatingValue(2)" [style.--i]="'1'"></i>
+                        <i class='bx bx-star star' (click)="setRatingValue(3)" [style.--i]="'4'"></i>
+                        <i class='bx bx-star star' (click)="setRatingValue(4)" [style.--i]="'2'"></i>
+                        <i class='bx bx-star star' (click)="setRatingValue(5)" [style.--i]="'3'"></i>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name <span style="color: red;">*</span></label>
+                        <input type="text" id="name" formControlName="name" required>
+                        @if(reviewForm.get('name')?.invalid && reviewForm.get('name')?.touched){
+                        @if(reviewForm.get('name')?.hasError('required')){
+                        <div style="color: red;">Your Name is required.</div>
+                        }@else if(reviewForm.get('name')?.hasError('pattern')){
+                        <div style="color: red;">Don't enter numbers or special characters.</div>
+                        }
+                        }
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="reviewText">Review Text <span style="color: red;">*</span></label>
+                        <textarea cols="30" rows="5" placeholder="Your Opinion.." id="reviewText"
+                            formControlName="reviewText" required></textarea>
+                        @if(reviewForm.get('reviewText')?.invalid && reviewForm.get('reviewText')?.touched){
+                        @if(reviewForm.get('reviewText')?.hasError('required')){
+                        <div style="color: red;">Review is required.</div>
+                        }@else if(reviewForm.get('reviewText')?.hasError('pattern')){
+                        <div style="color: red;">Don't enter numbers or special characters.</div>
+                        }
+                        }
+                    </div>
+                    <button type="submit" class="submit-review">Submit Review</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

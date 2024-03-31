@@ -38,7 +38,7 @@ export interface IItem {
     customerReviews?: ICustomerReview[];
 }
 
-export interface ISetItem{
+export interface ISetItem {
     name: string,
     height: number,
     depth: number,
@@ -57,4 +57,27 @@ export interface ISet {
     suitability: string;
     room: string;
     customerReviews?: ICustomerReview[];
+}
+
+export interface ICustomerReviewToCreate {
+    rate: number;
+    customerName: string | null;
+    review: string | null;
+    CategorySetId: number | null;
+    CategoryItemId: number | null;
+}
+
+export class CustomerReview implements ICustomerReviewToCreate {
+    rate: number;
+    customerName: string | null;
+    review: string | null;
+    CategorySetId: number | null;
+    CategoryItemId: number | null;
+    constructor() {
+        this.rate = 0;
+        this.customerName = null;
+        this.review = null;
+        this.CategoryItemId = null;
+        this.CategorySetId = null;
+    }
 }

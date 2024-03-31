@@ -6,7 +6,6 @@ import { DeliveryMethodService } from '../../Shared/Services/delivery-method.ser
 import { IDeliverMethod } from '../../Shared/Models/order';
 import { Basket, IBasketItem } from '../../Shared/Models/basket';
 import { NumberPadPipe } from '../../Shared/Pipes/number-pad.pipe';
-
 @Component({
   selector: 'app-checkout',
   standalone: true,
@@ -16,6 +15,8 @@ import { NumberPadPipe } from '../../Shared/Pipes/number-pad.pipe';
 })
 export class CheckoutComponent implements OnInit {
 
+
+
   constructor(private _ActivatedRoute: ActivatedRoute,
     private _BasketService: BasketService,
     private _DeliveryMethodService: DeliveryMethodService) { }
@@ -24,9 +25,11 @@ export class CheckoutComponent implements OnInit {
   basket!: Basket | null;
   deliveryMethods!: IDeliverMethod[];
   basketSubTotal: number = 0;
+  shippingCost: number = 0;
 
 
   ngOnInit(): void {
+
     this._ActivatedRoute.paramMap.subscribe({
       next: (params) => {
         this.cartId = params.get('id');
@@ -66,45 +69,22 @@ export class CheckoutComponent implements OnInit {
     shipping_method: new FormControl('', Validators.required)
   });
 
-  paymentForm = new FormGroup({
-    ccNumber: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{16}$')]),
-    expiry: new FormControl('', [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])\/[0-9]{2}$'), this.expiryValidator]),
-    cvv: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{3}$')]),
-    cHolder: new FormControl('', [Validators.pattern('^[a-zA-Z]+$')])
-  });
-
-  expiryValidator(control: AbstractControl): ValidationErrors | null {
-    if (!control.value) {
-      return null;
-    }
-    const [month, year] = control.value.split('/');
-    const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth() + 1;
-
-    const expiryYear = Number(year) + (Math.floor(currentYear / 100)) * 100;
-
-    if (Number(month) < 1 || Number(month) > 12) {
-      return { 'expiryValidator': true };
-    }
-
-    if (expiryYear <= currentYear || (expiryYear <= currentYear && Number(month) < currentMonth)) {
-      return { 'expiryValidator': true };
-    }
-
-    return null;
-  }
+  
 
 
   validateForms() {
     this.shippingAddressForm.markAllAsTouched();
     this.deliveryMethodsForm.markAllAsTouched();
-    this.paymentForm.markAllAsTouched();
-
 
     if (this.shippingAddressForm.valid &&
-      this.deliveryMethodsForm.valid &&
-      this.paymentForm) {
-      this._BasketService.checkOut(this.cartId, this.shippingAddressForm.value).subscribe();
+      this.deliveryMethodsForm.valid) {
+
+      this._BasketService.createCheckOutSession(this.basket?.basketId, this.shippingAddressForm.value).subscribe({
+        next: (response) => {
+          window.open(response.stripeUrl, '_self');
+        }
+      });
+      
     }
   }
 
@@ -149,6 +129,33 @@ export class CheckoutComponent implements OnInit {
         this.basketSubTotal += (basketItem.productPrice * basketItem.productQuantity);
       }
     }
+  }
+
+  updateDeliveryMethod(event: MouseEvent) {
+    const clickedElement = event.target as HTMLInputElement;
+    const deliverMethodId = clickedElement.id;
+
+    const idAsNumber = parseInt(deliverMethodId, 10);
+
+    if (!isNaN(idAsNumber)) {
+      for (let index = 0; index < this.deliveryMethods.length; index++) {
+        const deliverMethod = this.deliveryMethods[index];
+        if (idAsNumber == deliverMethod.id) {
+          if (this.basket !== null) {
+            this.basket.deliveryMethodId = idAsNumber;
+            this.basket.shippingPrice = deliverMethod.cost;
+            this.shippingCost = this.basket.shippingPrice;
+            this._BasketService.addToOrUpdateCart(this.basket).subscribe({
+              next: (Basket) => {
+                this.basket = Basket;
+              }
+            });
+          }
+        }
+
+      }
+    }
+
   }
 
 

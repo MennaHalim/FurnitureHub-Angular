@@ -5,7 +5,6 @@ import { ICategory } from '../../Models/category';
 import { Subscription, concatWith } from 'rxjs';
 import { CapitalizeSpacePipe } from '../../Pipes/capitalize-space.pipe';
 import { BasketService } from '../../Services/basket.service';
-
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -17,16 +16,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   categorySetsAndItemsTypesData: ICategory[] | null = null;
   private categorySetsAndItemsTypesSubscription: Subscription | undefined;
-
+  shippingAddress: any;
 
   constructor(private CategoryService: CategoryService,
     private _BasketService: BasketService) { }
 
   basketCount: number = 0;
 
+
   ngOnInit(): void {
     this.loadComponentData();
-
     this._BasketService.getUserBasketObs().subscribe({
       next: (basket) => {
         this.basketCount = basket.basketItems.length;

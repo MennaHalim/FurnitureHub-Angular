@@ -2,6 +2,10 @@
   height: 550px;
 }
 
+.Shipping-Methods{
+  height: 300px;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -94,6 +98,14 @@
   margin: 50px 0 0 100px;
 }
 
+.complete-order-button-container{
+  display: flex;
+  justify-content: center;
+}
+.complete-order-button-container button{
+  margin: 15px auto;
+}
+
 .Last-form {
   margin-bottom: 5%;
 }
@@ -158,18 +170,26 @@
   margin-bottom: 0;
 }
 
-.cart-item-container .cart-itemDetails-container > * {
+.cart-item-container .cart-itemDetails-container>* {
   padding-left: 0;
 }
 
 
-.basket-subTotal{
+.basket-subTotal,
+.basket-deliveryCost,
+.basket-OrderCost {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.basket-subTotal p{
+.basket-subTotal p,
+.basket-deliveryCost p,
+.basket-OrderCost p {
   font-size: 17px;
   font-weight: 700;
+}
+
+.basket-OrderCost h3 {
+  font-size: 20px;
 }

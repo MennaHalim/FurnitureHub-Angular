@@ -78,18 +78,19 @@
     </div>
 
     <!-- Form 2: Shipping Methods -->
-    <div class="col-4 bg-light p-3 border">
-        <div class="form-container Shipping-Methods  ">
+    <div class="col-4 bg-light p-3 border Shipping-Methods">
+        <div class="form-container ">
             <form [formGroup]="deliveryMethodsForm">
                 <h2>Shipping Methods</h2>
                 <hr>
                 <div class="radio-container">
                     @for (deliveryMethod of deliveryMethods; track $index) {
                     <div class="deliveryMethod">
-                        <input type="radio" id="{{deliveryMethod.name}}" formControlName="shipping_method"
-                            [value]="deliveryMethod.id" style="transform: scale(0.6);" checked>
+                        <input type="radio" [id]="deliveryMethod.id" formControlName="shipping_method"
+                            [value]="deliveryMethod.id" style="transform: scale(0.6);"
+                            (click)="updateDeliveryMethod($event)">
                         <div class="radio-labels-container">
-                            <label for="{{deliveryMethod.name}}">
+                            <label [for]="deliveryMethod.id">
                                 {{deliveryMethod.name}} -
                                 {{deliveryMethod.cost}} EGP
                                 ({{deliveryMethod.deliveryTime}}) -
@@ -107,93 +108,6 @@
                 }
             </form>
         </div>
-        <br><br><br><br>
-
-
-
-
-        <!-- Form 3: Payment Methods -->
-        <div class="form-container Payment-Methods  ">
-            <h2>Payment with Stripe</h2>
-            <hr>
-            <form [formGroup]="paymentForm">
-                <div class="form-group">
-                    <label for="ccNumber" class="control-label">CARD NUMBER <span style="color: red;">*</span></label>
-                    <input oninput="this.value = this.value.replace(/[^0-9]/g, '')" formControlName="ccNumber"
-                    id="ccNumber" class="form-control mb-0" placeholder="4242 4242 4242 4242">
-                    @if(paymentForm.get('ccNumber')?.invalid && paymentForm.get('ccNumber')?.touched){
-                    @if(paymentForm.get('ccNumber')?.hasError('required')){
-                    <div style="color: red;">Card Number is required.</div>
-                    }
-                    @else if(paymentForm.get('ccNumber')?.hasError('pattern')){
-                    <div style="color: red;">Card Number must has only 16 numbers.</div>
-                    }
-                    }
-                </div>
-
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="expiry" class="control-label">EXPIRY <span style="color: red;">*</span></label>
-                            <input oninput="this.value = this.value.replace(/[^0-9/]/g, '')" maxlength="5" id="expiry"
-                                formControlName="expiry" type="tel" class="mb-0 input-lg form-control"
-                                placeholder="12 / 27">
-                            @if(paymentForm.get('expiry')?.invalid &&
-                            paymentForm.get('expiry')?.touched){
-                            @if(paymentForm.get('expiry')?.hasError('required')){
-                            <div style="color: red;">Cart Expiry is required.</div>
-                            }
-                            @else if (paymentForm.get('expiry')?.hasError('pattern')) {
-                            <div style="color: red;">MM/YY</div>
-                            }
-                            @else if (paymentForm.get('expiry')?.hasError('expiryValidator')) {
-                            <div style="color: red;">Enter a valid Expiry Date</div>
-                            }
-                            }
-                        </div>
-
-
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="cvc" class="control-label">CVC <span style="color: red;">*</span></label>
-                            <input id="cvc" type="tel" class="mb-0 input-lg form-control" formControlName="cvv"
-                                placeholder="123">
-                            @if(paymentForm.get('cvv')?.invalid &&
-                            paymentForm.get('cvv')?.touched){
-                            @if(paymentForm.get('cvv')?.hasError('required')){
-                            <div style="color: red;">Cart Expiry is required.</div>
-                            }
-                            @else if (paymentForm.get('cvv')?.hasError('pattern')) {
-                            <div style="color: red;">Enter only 3 digits</div>
-                            }
-                            }
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="cHolder" class="control-label">CARD HOLDER NAME</label>
-                        <input oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')" type="cHolder"
-                            class="mb-0 input-lg form-control" formControlName="cHolder">
-                        @if(paymentForm.get('cHolder')?.invalid &&
-                        paymentForm.get('cHolder')?.touched){
-                        @if(paymentForm.get('cHolder')?.hasError('pattern')){
-                        <div style="color: red;">Only alphapets are allowed.</div>
-                        }
-                        }
-                    </div>
-
-                </div>
-
-            </form>
-        </div>
-
-
-
-
-
     </div>
 
     <!-- Form 4: Order Summary -->
@@ -231,8 +145,19 @@
             <h3 style="color: #1A2854; font-weight: 500;">CART SUBTOTAL</h3>
             <p>EGP {{basketSubTotal}}</p>
         </section>
+        <hr>
+        <section class="basket-deliveryCost">
+            <h3 style="color: #1A2854; font-weight: 500;">DELIVERY COST</h3>
+            <p>EGP {{basket?.shippingPrice}}</p>
+        </section>
+        <hr>
+        <section class="basket-OrderCost">
+            <h3 style="color: #1A2854; font-weight: 500;">ORDER COST</h3>
+            <p>EGP {{basketSubTotal + shippingCost}}</p>
+        </section>
 
-
+        <div class="complete-order-button-container">
+            <button type="button" class="place-older" (click)="validateForms()">PLACE ORDER</button>
+        </div>
     </div>
 </div>
-<button type="button" class="place-older" (click)="validateForms()">PLACE ORDER</button>

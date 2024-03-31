@@ -78,6 +78,15 @@ a:hover {
     left: 78%;
 }
 
+.out-of-stock-container{
+    background-color: #C0223A !important;
+    color: #fff !important;
+    font-size: 12px;
+    position: absolute;
+    top: 60%;
+    left: 55%;
+}
+
 .cart-icon-container svg {
     width: 25px;
     height: 25px;

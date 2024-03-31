@@ -10,6 +10,9 @@ import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { ReviewComponent } from './Components/review/review.component';
 import { SearchComponent } from './Components/search/search.component';
+import { FailOrderComponent } from './Components/fail-order/fail-order.component';
+import { SuccessOrderComponent } from './Components/success-order/success-order.component';
+
 
 
 
@@ -25,6 +28,8 @@ export const routes: Routes = [
     { path: 'login', component: SignInComponent, title: 'sign-in' },
     { path: 'register', component: SignUpComponent, title: 'sign-Up' },
     { path: 'checkout/:id', component: CheckoutComponent, title: 'Secure Checkout' },
+    { path: 'successOrder/:basketId/:orderId', component: SuccessOrderComponent, title: 'Congratulations' },
+    { path: 'failOrder', component: FailOrderComponent, title: 'Fail' },
     { path: 'search', component:SearchComponent, title: 'search' },
     { path: 'review', component:ReviewComponent, title: 'reviews' },
     { path: '**', redirectTo: 'notFound' }

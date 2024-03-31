@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { Basket, IBasket } from '../Models/basket';
+import { IStripe } from '../Models/order';
 
 
 @Injectable({
@@ -14,11 +15,13 @@ export class BasketService {
   constructor(private _HttpClient: HttpClient) { }
   subscription: Subscription | undefined;
   baseUrl: string = 'http://localhost:5016/api/';
+  domain: string = 'http://localhost:4200';
   myToken: any = {
     token: JSON.stringify(localStorage.getItem('etoken'))
   }
 
   basket: Basket = new Basket();
+  
 
   addToOrUpdateCart(basket: IBasket | null): Observable<Basket> {
     return this._HttpClient.post<Basket>(
@@ -70,15 +73,24 @@ export class BasketService {
     this.basket.shippingPrice = Basket.shippingPrice;
   }
 
+  createCheckOutSession(basketId: string | undefined, shippingAddress: object): Observable<IStripe> {
+    return this._HttpClient.post<IStripe>(
+      this.baseUrl + `payments` + `?basketId=${basketId}` + `&url=${this.domain}`,
+      shippingAddress
+    )
+  }
 
-  checkOut(cartId: string | null, orderInfo: object): Observable<any> {
-    return this._HttpClient.post(
-      this.baseUrl + `/orders`,
-      {
-        basketId: cartId,
-        deliveryMethodId: 1,
-        shippingAddress: orderInfo
-      }
+  payOrder(orderId: number | null):Observable<any>{
+    return this._HttpClient.post<IStripe>(
+      this.baseUrl + `orders/` + `${orderId}`,
+      null
+    )
+  }
+
+
+  deleteBasketAfterPayment(basketId: string | null): Observable<any> {
+    return this._HttpClient.delete(
+      this.baseUrl + `basket` + `?id=${basketId}`
     )
   }
 
