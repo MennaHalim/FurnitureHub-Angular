@@ -17,7 +17,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject, Subscription } from 'rxjs'
 import { ICategorySetsTypes, ICategoryItemsTypes, IType } from '../../Shared/Models/category';
 import { ShopByService } from '../../Shared/Services/shop-by.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateCompiler, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ProductService } from '../../Shared/Services/product.service';
 import { ProductsTypes } from '../../Shared/Enums/products-types';
 
@@ -38,8 +38,8 @@ import { ProductsTypes } from '../../Shared/Enums/products-types';
     MatToolbarModule,
     MatButtonModule,
     MatSidenav,
-    RouterModule
-  ],
+    RouterModule,
+     TranslateModule ],
   templateUrl: './shopping-options.component.html',
   styleUrl: './shopping-options.component.css'
 })
@@ -89,6 +89,7 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy {
     private router: Router,
     private translate: TranslateService,
     private productService: ProductService) {
+
     this.lang = localStorage.getItem('lang');
     translate.use(this.lang);
 

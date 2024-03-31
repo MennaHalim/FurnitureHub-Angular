@@ -44,6 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.basketCount = count;
       }
     })
+    this.lang = localStorage.getItem('lang') || 'en';
     document.documentElement.lang = this.lang;
   }
 
