@@ -10,6 +10,14 @@ import { ReviewComponent } from './components/review/review.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { BasketComponent } from './components/basket/basket.component';
+import { AccountInformationComponent } from './components/User-settings/account-information/account-information.component';
+import { AddressBookComponent } from './components/User-settings/address-book/address-book.component';
+import { GDPRComponent } from './components/User-settings/gdpr/gdpr.component';
+import { MyAccountComponent } from './components/User-settings/my-account/my-account.component';
+import { MyOrdersComponent } from './components/User-settings/my-orders/my-orders.component';
+import { MyProductReviewsComponent } from './components/User-settings/my-product-reviews/my-product-reviews.component';
+import { MyWishListComponent } from './components/User-settings/my-wish-list/my-wish-list.component';
+import { NewsLetterSubscriptionsComponent } from './components/User-settings/news-letter-subscriptions/news-letter-subscriptions.component';
 
 
 
@@ -28,5 +36,13 @@ export const routes: Routes = [
     { path: 'checkout', component: CheckoutComponent, title: 'payment' },
     { path: 'search', component:SearchComponent, title: 'search' },
     { path: 'review', component:ReviewComponent, title: 'reviews' },
+    { path: 'info', component:AccountInformationComponent, title: 'User Info' },
+    { path: 'address', component:AddressBookComponent, title: 'Address Book' },
+    { path: 'gdpr', component:GDPRComponent, title: 'GDmewsLetterPR' },
+    { path: 'account', component:MyAccountComponent, title: 'My Account' },
+    { path: 'orders', component:MyOrdersComponent, title: 'My Orders' },
+    { path: 'myReviews', component:MyProductReviewsComponent, title: 'Reviews' },
+    { path: 'wishList', component:MyWishListComponent, title: 'Wish List' },
+    { path: 'mewsLetter', component:NewsLetterSubscriptionsComponent, title: 'News Letter Subscription' },
     { path: '**', redirectTo: 'notFound' }
 ];

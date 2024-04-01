@@ -3,14 +3,14 @@
     <div class="account-navigation">
       <h2><span>Account</span> Navigation</h2>
       <ul>
-        <li><a href="#">My Account</a></li>
-        <li><a href="#"class="my-order">My Orders</a></li>
-        <li><a href="#"class="my-wish-list">My Wish List</a></li>
-        <li><a href="#"class="Address-Book">Address Book</a></li>
-        <li><a href="#">Account Information</a></li>
-        <li><a href="#"class="GDPR">GDPR</a></li>
-        <li><a href="#">My Product Reviews</a></li>
-        <li><a href="#">Newsletter Subscriptions</a></li>
+        <li><a [routerLink]="['/account']">My Account</a></li>
+        <li><a [routerLink]="['/orders']" class="my-order">My Orders</a></li>
+        <li><a [routerLink]="['/wishList']" class="my-wish-list">My Wish List</a></li>
+        <li><a [routerLink]="['/address']" class="Address-Book">Address Book</a></li>
+        <li><a [routerLink]="['/info']" >Account Information</a></li>
+        <li><a [routerLink]="['/gdpr']" class="GDPR">GDPR</a></li>
+        <li><a [routerLink]="['/myReviews']" >My Product Reviews</a></li>
+        <li><a [routerLink]="['/mewsLetter']">Newsletter Subscriptions</a></li>
       </ul>
       <h2><span>Compare</span> Products</h2>
       <p>You have no items to compare.</p>
@@ -18,46 +18,67 @@
       <p>You have no items in your wish list.</p>
     </div>
   </div>
-<div class="container">
-    <h2>Contact Information</h2>
-    <label for="firstname">First Name</label>
-    <input type="text" id="firstname" name="firstname" required>
-    <label for="lastname">Last Name</label>
-    <input type="text" id="lastname" name="lastname" required>
-    <label for="company">Company</label>
-    <input type="text" id="company" name="company">
-    <label for="phone">Phone Number*</label>
-    <input type="tel" id="phone" name="phone" required>
-    <label for="fax">Fax</label>
-    <input type="tel" id="fax" name="fax">
-    
-    <h2>Address</h2>
-    <div class="address-field">
-        <div>
-            <label for="street">Street Address*</label>
-            <input type="text" id="street" name="street" required>
-        </div>
-        <div>
-            <label for="city">City</label>
-            <input type="" id="city" name="city" required>
-        </div>
-        <div>
-            <label for="zip">Zip/Postal Code</label>
-            <input type="text" id="zip" name="zip" required>
-        </div>
-        <div>
-            <label for="country">Country</label>
-        <select id="country" name="country" required >
-            <option value="">Select Country</option>
-            <option value="Egypt">Egypt</option>
-           
-        </select>
-    
-        </div>
-    
-        <div class="button-container">  
-            <button>save address</button>
-            <button>go back</button>
+  <div class="container">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <h2>Contact Information</h2>
+      <label for="firstname">First Name</label>
+      <input type="text" id="firstname" name="firstname" formControlName="firstName">
+      <div *ngIf="contactForm.get('firstName')?.errors?.['required'] && contactForm.get('firstName')?.touched" class="validation-error">
+        First name is required.
+      </div>
+      <label for="lastname">Last Name</label>
+      <input type="text" id="lastname" name="lastname" formControlName="lastName">
+      <div *ngIf="contactForm.get('lastName')?.errors?.['required'] && contactForm.get('lastName')?.touched" class="validation-error">
+        Last name is required.
+      </div>
+      <label for="company">Company</label>
+      <input type="text" id="company" name="company" formControlName="company">
+      <label for="phone">Phone Number*</label>
+      <input type="tel" id="phone" name="phone" formControlName="phone">
+      <div *ngIf="contactForm.get('phone')?.errors?.['required'] && contactForm.get('phone')?.touched" class="validation-error">
+        Phone number is required.
+      </div>
+      <label for="fax">Fax</label>
+      <input type="tel" id="fax" name="fax" formControlName="fax">
+      
+      <h2>Address</h2>
+      <div class="address-field">
+          <div>
+              <label for="street">Street Address*</label>
+              <input type="text" id="street" name="street" formControlName="street">
+              <div *ngIf="contactForm.get('street')?.errors?.['required'] && contactForm.get('street')?.touched" class="validation-error">
+                Street address is required.
+              </div>
           </div>
-    </div>
-</div>
+          <div>
+              <label for="city">City</label>
+              <input type="" id="city" name="city" formControlName="city">
+              <div *ngIf="contactForm.get('city')?.errors?.['required'] && contactForm.get('city')?.touched" class="validation-error">
+                City is required.
+              </div>
+          </div>
+          <div>
+              <label for="zip">Zip/Postal Code</label>
+              <input type="text" id="zip" name="zip" formControlName="zip">
+              <div *ngIf="contactForm.get('zip')?.errors?.['required'] && contactForm.get('zip')?.touched" class="validation-error">
+                Zip/Postal code is required.
+              </div>
+          </div>
+          <div>
+              <label for="country">Country</label>
+              <select id="country" name="country" formControlName="country">
+                <option value="">Select Country</option>
+                <option value="Egypt">Egypt</option>
+              </select>
+              <div *ngIf="contactForm.get('country')?.errors?.['required'] && contactForm.get('country')?.touched" class="validation-error">
+                Country is required.
+              </div>
+          </div>
+      </div>
+      <div class="button-container">  
+          <button type="submit">Save Address</button>
+          <button type="button" [routerLink]="['/home']">Go Back</button>
+      </div>
+    </form>
+  </div>
+  

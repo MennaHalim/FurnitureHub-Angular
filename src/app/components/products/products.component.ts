@@ -77,7 +77,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   private loadComponentData(pageNum : number): void {
     if(this.searchValue != undefined){
-      this.ProductService.SearchInProducts(this.type, this.searchValue).subscribe(
+      this.categoryItemsSubscription = this.ProductService.SearchInProducts(this.type, this.searchValue).subscribe(
         (data) => {
           this.page = data;
           this.pageSize = data.pageSize;
@@ -88,7 +88,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
     else if(!Number.isNaN(this.startPrice) || !Number.isNaN(this.endPrice)|| this.color != undefined){
       if (this.type='sets')
-      this.ProductService.FilterProducts(ProductsTypes.Set,this.categoryId,this.productTypeId,
+      this.categoryItemsSubscription = this.ProductService.FilterProducts(ProductsTypes.Set,this.categoryId,this.productTypeId,
         NaN,this.color,this.startPrice, this.endPrice).subscribe( (data) => {
           this.page = data;
           this.pageSize = data.pageSize;
@@ -97,7 +97,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
         });
       else{
-        this.ProductService.FilterProducts(ProductsTypes.Item,this.categoryId,NaN,
+        this.categoryItemsSubscription = this.ProductService.FilterProducts(ProductsTypes.Item,this.categoryId,NaN,
           this.productTypeId,this.color,this.startPrice, this.endPrice).subscribe( (data) => {
             this.page = data;
             this.pageSize = data.pageSize;

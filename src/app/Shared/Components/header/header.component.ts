@@ -5,28 +5,34 @@ import { ICategory } from '../../Models/category';
 import { Subscription, concatWith } from 'rxjs';
 import { CapitalizeSpacePipe } from '../../Pipes/capitalize-space.pipe';
 import { BasketService } from '../../Services/basket.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from '../../../components/search/search.component';
+import { UserAuthService } from '../../Services/user-auth.service';
+import { UserService } from '../../Services/user.service';
 
 @Component({
-    selector: 'app-header',
-    standalone: true,
-    templateUrl: './header.component.html',
-    styleUrl: './header.component.css',
-    imports: [RouterLink, CapitalizeSpacePipe, SearchComponent, CommonModule]
+  selector: 'app-header',
+  standalone: true,
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.css',
+  imports: [RouterLink, CapitalizeSpacePipe, SearchComponent, CommonModule, TranslateModule]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
   categorySetsAndItemsTypesData: ICategory[] | null = null;
   private categorySetsAndItemsTypesSubscription: Subscription | undefined;
+  langChangeSubscription: Subscription | undefined
   SeachBarDispaly: boolean = false;
   lang: string = 'en';
+  isUserLogged : Boolean = false;
+
 
   constructor(private CategoryService: CategoryService,
     private _BasketService: BasketService,
     private translate: TranslateService,
-    private cdr: ChangeDetectorRef) { }
+    private cdr: ChangeDetectorRef,
+    private AuthService: UserAuthService) { }
 
   basketCount: number = 0;
 
@@ -44,8 +50,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.basketCount = count;
       }
     })
+
     this.lang = localStorage.getItem('lang') || 'en';
     document.documentElement.lang = this.lang;
+
+    this.translate.use(this.lang);
+
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
+      this.lang = event.lang;
+    });
+
+    this.isUserLogged = this.AuthService.UserState;
+    console.log(this.isUserLogged)
   }
 
   private loadComponentData(): void {
@@ -65,20 +81,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleSeachDisplay(){
+  toggleSeachDisplay() {
     this.SeachBarDispaly = !this.SeachBarDispaly;
   }
 
   toggleLanguage(langCode: string): void {
 
     this.translate.use(langCode).subscribe(() => {
-        localStorage.setItem('lang', langCode);
-        this.lang = langCode;
-        document.documentElement.lang = langCode;
-        this.cdr.detectChanges();
-        window.location.reload();
+      localStorage.setItem('lang', langCode);
+      this.lang = langCode;
+      document.documentElement.lang = langCode;
+      this.cdr.detectChanges();
+      window.location.reload();
     });
-}
+  }
 
+  logout(){
+    this.AuthService.logout();
+    window.location.reload();
+  }
 
 }

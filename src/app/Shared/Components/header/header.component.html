@@ -4,13 +4,13 @@
         <span>15135</span>
         <span class="icon-spacing"></span>
         <a href="#"><i class="fa fa-location-dot"></i></a>
-        <span>Stories</span>
+        <span>{{'header.stores' | translate}}</span>
     </div>
     <div class="header-text">
         <span class="dropdown">
-            Egypt
+            {{'header.egypt' | translate}}
             <div class="dropdown-content">
-                <a href="#">Oman</a>
+                <a href="#">{{'header.oman' | translate}}</a>
             </div>
         </span>
         <span class="text-spacing"></span>
@@ -27,8 +27,11 @@
 
 
 <header>
-    <div class="logo">
+    <div class="logo" [style.display]="lang == 'ar' ? 'none' : 'block'">
         <a href="#"><img src="./assets/Images/body/logo.png" alt="Logo"></a>
+    </div>
+    <div class="logo">
+        <a href="#" [style.display]="lang == 'en' ? 'none' : 'block'"><img src="./assets/Images/body/logo-Arabic.png" alt="Logo"></a>
     </div>
     <nav>
         <ul class="menu">
@@ -43,7 +46,7 @@
                         <!-- Living Room Set -->
                         <a routerLink='/products/categories/sets' [queryParams]="{ categoryId: item.id }">{{item.name |
                             capitalizeSpace}}
-                            set</a>
+                            {{'header.set' | translate}}</a>
 
                         <ul class="dropdown-submenu">
                             <!-- Sets -->
@@ -57,8 +60,9 @@
 
                     <li class="sub-dropdown">
                         <!-- shop by item -->
-                        <a routerLink='/products/categories/items' [queryParams]="{ categoryId: item.id }">Shop By
-                            Item</a>
+                        <a routerLink='/products/categories/items' [queryParams]="{ categoryId: item.id }">{{
+                            'header.item' | translate
+                        }}</a>
                         <ul class="dropdown-submenu">
                             @for (item of item.categoryItemsTypes; track $index) {
                             <li><a href="#">{{item.name}}</a></li>
@@ -82,13 +86,14 @@
             <a href="#"><i class="fa-regular fa-circle-user"></i></a>
             <div class="dropdown-content">
                 <ul>
-                    <li><a href="#">My Account</a></li>
+                    <li><a [routerLink]="['/account']">{{'header.myAccout' | translate}}</a></li>
                     <hr>
-                    <li><a [routerLink]="['/checkout']">My Wish List</a></li>
+                    <li><a [routerLink]="['/checkout']">{{'header.wishList' | translate}}</a></li>
                     <hr>
-                    <li><a [routerLink]="['/register']">Create An Account</a></li>
+                    <li><a [routerLink]="['/register']">{{'header.CreateAccount' | translate}}</a></li>
                     <hr>
-                    <li><a [routerLink]="['/login']">Sign IN</a></li>
+                    <li><a [routerLink]="['/login']" [style.display]="!isUserLogged ? 'block' : 'none'"  >{{'header.signIn' | translate}}</a></li>
+                    <li><a (click)="logout()" [style.display]="isUserLogged ? 'block' : 'none'" type="button">{{'header.logout' | translate}}</a></li>
                 </ul>
             </div>
         </div>

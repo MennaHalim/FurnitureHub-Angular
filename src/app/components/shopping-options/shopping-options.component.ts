@@ -75,7 +75,7 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy {
   categoryItemsTypesData: IType[] = []
   private categorySetsTypesSubscription: Subscription | undefined;
   private categoryItemsTypesSubscription: Subscription | undefined;
-  langChangeSubscription: Subscription | undefined
+  private langChangeSubscription: Subscription | undefined
   lang: any = "en";
 
 
@@ -91,7 +91,7 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy {
     private productService: ProductService) {
 
     this.lang = localStorage.getItem('lang');
-    translate.use(this.lang);
+    this.translate.use(this.lang);
 
     this.langChangeSubscription = translate.onLangChange.subscribe(event => {
       this.lang = event.lang;

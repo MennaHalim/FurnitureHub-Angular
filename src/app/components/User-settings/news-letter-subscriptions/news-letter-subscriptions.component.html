@@ -3,14 +3,14 @@
     <div class="account-navigation">
       <h2><span>Account</span> Navigation</h2>
       <ul>
-        <li><a href="#">My Account</a></li>
-        <li><a href="#"class="my-order">My Orders</a></li>
-        <li><a href="#"class="my-wish-list">My Wish List</a></li>
-        <li><a href="#">Address Book</a></li>
-        <li><a href="#">Account Information</a></li>
-        <li><a href="#"class="GDPR">GDPR</a></li>
-        <li><a href="#">My Product Reviews</a></li>
-        <li><a href="#"class="Newsletter-Subscriptions">Newsletter Subscriptions</a></li>
+        <li><a [routerLink]="['/account']">My Account</a></li>
+        <li><a [routerLink]="['/orders']" class="my-order">My Orders</a></li>
+        <li><a [routerLink]="['/wishList']" class="my-wish-list">My Wish List</a></li>
+        <li><a [routerLink]="['/address']" >Address Book</a></li>
+        <li><a [routerLink]="['/info']">Account Information</a></li>
+        <li><a [routerLink]="['/gdpr']" class="GDPR">GDPR</a></li>
+        <li><a [routerLink]="['/myReviews']">My Product Reviews</a></li>
+        <li><a [routerLink]="['/mewsLetter']" class="Newsletter-Subscriptions">Newsletter Subscriptions</a></li>
       </ul>
       <h2><span>Compare</span> Products</h2>
       <p>You have no items to compare.</p>
