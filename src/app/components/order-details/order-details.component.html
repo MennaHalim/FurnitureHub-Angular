@@ -1,0 +1,72 @@
+<div class="parent-container">
+    @if(order != null){
+    <div class="order-container">
+        <h1>Order #{{order.id}}</h1>
+        <div class="order-progressbar-container">
+            <div class="order-progressbar">
+                <span class="circle background-progress-active"><img src="./assets/Images/credit-card.png"
+                        alt="paied logo"></span>
+                <span class="circle" [ngClass]="{'background-progress-active':isreadyForShipping}"><img
+                        src="./assets/Images/package-delivered.png" alt="ready for shipping logo"></span>
+                <span class="circle" [ngClass]="{'background-progress-active':isShipping}"><img
+                        src="./assets/Images/tracking.png" alt="shipping logo"></span>
+                <span class="circle" [ngClass]="{'background-progress-active':isDelivered}"><img
+                        src="./assets/Images/house.png" alt="recived logo"></span>
+
+                <div class="progress-bar">
+                    @if(isreadyForShippingWidth){
+                    <span class="indicator readyForShipping-progress"></span>
+                    }@else if (isShippingWidth) {
+                    <span class="indicator shipping-progress"></span>
+                    }@else if (isDelivered) {
+                    <span class="indicator delivered-progress"></span>
+                    }@else {
+                    <span class="indicator"></span>
+                    }
+                </div>
+            </div>
+            @if(order.status == 'Payment Received'){
+                <div class="cancel-order mt-5">
+                    <button (click)="cancelOrder(order.id)">Cancel Order</button>
+                </div>
+            }
+        </div>
+        <div class="order-info row gap-4">
+            <div class="total-card col-3">
+                <img class="total-img" src="./assets/Images/salary.png" alt="">
+                <p>{{order.total}} EGP</p>
+            </div>
+            <div class="delivery-card col-3">
+                <img class="delivery-img" src="./assets/Images/fast-delivery.png" alt="">
+                <p>{{order.deliveryMethodCost}} EGP</p>
+            </div>
+            <div class="address-card col-6">
+                <div class="country">
+                    <img class="address-img" src="./assets/Images/countries.png">
+                    <p>{{order.shippingAddress.country}}</p>
+                </div>
+                <div class="city">
+                    <img class="address-img" src="./assets/Images/skyscraper.png">
+                    <p>{{order.shippingAddress.city}}</p>
+                </div>
+                <div class="address">
+                    <img class="address-img" src="./assets/Images/streets.png">
+                    <p>{{order.shippingAddress.street}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="order-items-container">
+            <div class="order-items mt-5">
+                @for (item of order.orderItems; track $index) {
+                <div class="order-item-card">
+                    <img src="{{item.pictureUrl}}" alt="{{item.productName}}" class="mb-2">
+                    <p>{{item.productName}}</p>
+                    <p>Quantity = {{item.quantity}}</p>
+                    <button routerLink="/{{item.type}}/details/{{item.productId}}">Details</button>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+    }
+</div>

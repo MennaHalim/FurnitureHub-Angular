@@ -8,10 +8,11 @@ import { BasketComponent } from './Components/basket/basket.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
-import { ReviewComponent } from './Components/review/review.component';
 import { SearchComponent } from './Components/search/search.component';
 import { FailOrderComponent } from './Components/fail-order/fail-order.component';
 import { SuccessOrderComponent } from './Components/success-order/success-order.component';
+import { OrdersComponent } from './Components/orders/orders.component';
+import { OrderDetailsComponent } from './Components/order-details/order-details.component';
 
 
 
@@ -22,6 +23,7 @@ export const routes: Routes = [
     { path: 'products/categories', component: BlankLayoutComponent, title: 'Shop', canActivate: [QueryParamGuard] },
     { path: 'products/categories/:type', component: BlankLayoutComponent, pathMatch: 'full' },
     { path: 'products/categories/:type/:productTypeId', component: BlankLayoutComponent, pathMatch: 'full' },
+    { path: 'order/details/:id', component: OrderDetailsComponent, title: 'Order' },
     { path: ':type/details/:id', component: DetailsComponent, title: 'Details' },
     { path: 'basket', component: BasketComponent, title: 'Cart' },
     { path: 'notFound', component: NotFoundComponent, title: 'Not Found' },
@@ -30,7 +32,7 @@ export const routes: Routes = [
     { path: 'checkout/:id', component: CheckoutComponent, title: 'Secure Checkout' },
     { path: 'successOrder/:basketId/:orderId', component: SuccessOrderComponent, title: 'Congratulations' },
     { path: 'failOrder', component: FailOrderComponent, title: 'Fail' },
+    { path: 'orders', component: OrdersComponent, title: 'Orders' },
     { path: 'search', component:SearchComponent, title: 'search' },
-    { path: 'review', component:ReviewComponent, title: 'reviews' },
-    { path: '**', redirectTo: 'notFound' }
+    //{ path: '**', redirectTo: 'notFound' }
 ];

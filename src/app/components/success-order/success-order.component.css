@@ -1,0 +1,13 @@
+.order-success img{
+    width: 35%;
+}
+
+.order-success{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-messsage p {
+    font-size: 25px;
+}

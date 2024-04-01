@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BasketService } from '../../Shared/Services/basket.service';
-import { ActivatedRoute } from '@angular/router';
-import { HeaderComponent } from '../../Shared/Components/header/header.component';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-success-order',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [RouterLink],
   templateUrl: './success-order.component.html',
   styleUrl: './success-order.component.css'
 })

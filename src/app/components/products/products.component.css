@@ -85,6 +85,7 @@ a:hover {
     position: absolute;
     top: 60%;
     left: 55%;
+    user-select: none;
 }
 
 .cart-icon-container svg {

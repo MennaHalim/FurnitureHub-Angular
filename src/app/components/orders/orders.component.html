@@ -1,0 +1,20 @@
+<div class="parent-container">
+    <div class="order-container row gap-5">
+        @for (order of orders; track $index;) {
+        @if(order.status !== 'Pending' && order.status !== 'Cancelled'){
+        <div class="order-card col-sm-6
+                col-md-4 col-lg-3 col-xl-2">
+            <div class="order-info">
+                <img src="./assets/Images/box.png" alt="order box logo">
+                <h1>Order #{{order.id}}</h1>
+                <p class="order-status">{{order.status}}</p>
+                <p class="order-date">Date : {{getDate(order)}}</p>
+                <p class="order-time">Time : {{getTime(order)}}</p>
+                <p class="order-total">Total = {{order.total}} EGP</p>
+                <button routerLink="/order/details/{{order.id}}">Details</button>
+            </div>
+        </div>
+        }
+        }
+    </div>
+</div>

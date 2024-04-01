@@ -1,0 +1,174 @@
+.parent-container {
+    margin: 30px 20px 30px 30px;
+}
+
+.order-container h1 {
+    font-size: 50px;
+    font-weight: 400;
+}
+
+.order-progressbar img {
+    width: 40px;
+}
+
+.order-progressbar-container {
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.order-progressbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.order-progressbar .circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    color: #999;
+    border: 4px solid #e0e0e0;
+    background-color: #fff;
+}
+
+.order-progressbar .progress-bar {
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: #e0e0e0;
+    z-index: -1;
+}
+
+.progress-bar .indicator {
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    background: #4070f4;
+}
+
+
+.background-progress-active {
+    background: #4070f4 !important;
+    border-color: #4070f4 !important;
+}
+
+.readyForShipping-progress {
+    width: 35% !important;
+}
+
+.shipping-progress {
+    width: 65% !important;
+}
+
+.delivered-progress {
+    width: 100% !important;
+}
+
+.order-info {
+    padding: 0 90px;
+}
+
+.total-card,
+.delivery-card {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    width: 250px;
+    height: 250px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.address-card {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+}
+
+.address-card .country,
+.address-card .city,
+.address-card .address {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.address-card .country p,
+.address-card .city p,
+.address-card .address p {
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.address-card img {
+    width: 40px;
+}
+
+.total-card .total-img,
+.delivery-card .delivery-img {
+    width: 150px;
+}
+
+.total-card p,
+.delivery-card p {
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.order-item-card {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    width: 250px;
+    height: 300px;
+}
+
+.order-item-card img {
+    width: inherit;
+}
+
+.order-item-card button {
+    font-size: 20px;
+    background: #4070f4;
+    color: #fff;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 15px;
+}
+
+.order-item-card {
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.order-item-card p{
+    font-size: 16px;
+}
+
+.order-item-card:hover{
+    scale: 1.1;
+}
+
+.cancel-order{
+    display: flex;
+    justify-content: center;
+}
+
+.cancel-order button{
+    color: #fff;
+    background: #1A2854;
+    font-size: 20px;
+    border: 0;
+    border-radius: 30px;
+    padding: 15px 25px;
+}
+
+.cancel-order button:hover{
+    background: red;
+}
