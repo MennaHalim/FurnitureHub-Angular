@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     })
 
-    this.lang = localStorage.getItem('lang') || 'en';
+    this.lang = this.detectLanguage() || 'en';
     document.documentElement.lang = this.lang;
 
     this.translate.use(this.lang);
@@ -62,6 +62,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.isUserLogged = this.AuthService.UserState;
     console.log(this.isUserLogged)
+  }
+
+  private detectLanguage(){
+    const lang = localStorage.getItem('lang');
+    if (lang == null){
+      localStorage.setItem("lang",'en');
+      lang == 'en';
+    }
+
+    return lang;
+
   }
 
   private loadComponentData(): void {
