@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="address-book.component.css">
+<div class="container">
 <div class="sidebar">
     <div class="account-navigation">
       <h2><span>Account</span> Navigation</h2>
@@ -21,51 +22,63 @@
   <div class="container">
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
       <h2>Contact Information</h2>
-      <label for="firstname">First Name</label>
+      <div>
+     <div> <label for="firstname">First Name</label></div>
       <input type="text" id="firstname" name="firstname" formControlName="firstName">
       <div *ngIf="contactForm.get('firstName')?.errors?.['required'] && contactForm.get('firstName')?.touched" class="validation-error">
         First name is required.
       </div>
-      <label for="lastname">Last Name</label>
+      <div>
+     <div> <label for="lastname">Last Name</label></div>
       <input type="text" id="lastname" name="lastname" formControlName="lastName">
       <div *ngIf="contactForm.get('lastName')?.errors?.['required'] && contactForm.get('lastName')?.touched" class="validation-error">
         Last name is required.
-      </div>
-      <label for="company">Company</label>
+      </div></div></div>
+     <div><label for="company">Company</label></div>
       <input type="text" id="company" name="company" formControlName="company">
-      <label for="phone">Phone Number*</label>
+      <div>
+        <div>
+      <label for="phone">Phone Number*</label></div>
       <input type="tel" id="phone" name="phone" formControlName="phone">
       <div *ngIf="contactForm.get('phone')?.errors?.['required'] && contactForm.get('phone')?.touched" class="validation-error">
         Phone number is required.
-      </div>
-      <label for="fax">Fax</label>
+      </div></div>
+      <div>
+        <div>
+      <label for="fax">Fax</label></div>
       <input type="tel" id="fax" name="fax" formControlName="fax">
+      
+    </div>
       
       <h2>Address</h2>
       <div class="address-field">
-          <div>
-              <label for="street">Street Address*</label>
+          <div class="Street-city">
+             <div><label for="street">Street Address*</label></div>
               <input type="text" id="street" name="street" formControlName="street">
               <div *ngIf="contactForm.get('street')?.errors?.['required'] && contactForm.get('street')?.touched" class="validation-error">
                 Street address is required.
-              </div>
+              
           </div>
           <div>
-              <label for="city">City</label>
+           
+             <div> <label for="city">City</label></div>
               <input type="" id="city" name="city" formControlName="city">
               <div *ngIf="contactForm.get('city')?.errors?.['required'] && contactForm.get('city')?.touched" class="validation-error">
                 City is required.
               </div>
-          </div>
+          </div></div>
+          <div class="Zip-country" >
           <div>
-              <label for="zip">Zip/Postal Code</label>
+            <div>
+              <label for="zip">Zip/Postal Code</label></div>
               <input type="text" id="zip" name="zip" formControlName="zip">
               <div *ngIf="contactForm.get('zip')?.errors?.['required'] && contactForm.get('zip')?.touched" class="validation-error">
                 Zip/Postal code is required.
               </div>
           </div>
           <div>
-              <label for="country">Country</label>
+            <div>
+              <label for="country">Country</label></div>
               <select id="country" name="country" formControlName="country">
                 <option value="">Select Country</option>
                 <option value="Egypt">Egypt</option>
@@ -75,10 +88,11 @@
               </div>
           </div>
       </div>
+    </div>
       <div class="button-container">  
           <button type="submit">Save Address</button>
           <button type="button" [routerLink]="['/home']">Go Back</button>
       </div>
     </form>
   </div>
-  
+</div>

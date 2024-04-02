@@ -1,72 +1,79 @@
 body {
-    font-family: Arial, sans-serif;
-    color: #20284f;
-    display: flex; 
+  font-family: Arial, sans-serif;
+  color: #20284f;
+  display: flex;
+ 
+}
+
+.sidebar {
+  min-height: 100vh; 
+  /* padding: 0 5rem ;  */
+  width:100%; 
+  /* margin-top: 10rem; */
+}
+
+.account-navigation h2 {
+  margin-top: 2rem;
+  font-size: 1.2rem; 
+}
+
+.account-navigation h2 span {
+  border-bottom: 3px solid;
+  padding-bottom: 2px;
+}
+ .GDPR{
+    border-left: 2px solid brown ;
+    padding-left: 4px ;
+}
+
+.account-navigation ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.account-navigation ul li a {
+  text-decoration: none;
+  color: #20284f;
+  font-size: 1rem; 
+
+}
+.account-navigation ul li {
+  margin-bottom: 2rem; 
+}
+
+button{
+    border-radius: 2rem;
+    width: 10rem;
+    height: 3rem;
+    font-size: large;
+    background-color: #20284f;
+    color: white;
+    
+    
+    
+}
+.container{
+  display: flex;
+}
+.main-content{
+  margin-top: 2rem;
+}
+input{
+  margin-bottom: 2rem;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column; 
   }
 
   .sidebar {
-    width: 30%;
-    max-width: 300px;
-    padding: 5%;
-    overflow-y: auto;
+    width: 100%; 
   }
 
-  .account-navigation h2 {
-    margin-top: 0;
-    font-size: large;
-    position: relative;
+  .account-navigation2 {
+    width: 100%; 
   }
-
-  .account-navigation h2 span {
-    border-bottom: 3px solid;
-    padding-bottom: 2px;
-  }
-
-  .account-navigation ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  .account-navigation ul li a {
-    text-decoration: none;
-    color: #20284f;
-    font-size: medium;
-  }
-
- 
-  @media only screen and (min-width: 768px) {
-    .account-navigation h2 {
-      margin-bottom: 15%; 
-      margin-top: 15%;
-    }
-
-    .account-navigation ul li {
-      margin-bottom: 5%; 
-    }
-  }
-
-  .main-content {
-    flex: 1;
-    padding: 20px;
-  }
-
-  .button-container {
-    text-align: left;
-  }
-
-  .button-container button {
-    padding: 10px 20px;
-    font-size: medium;
-    margin-top: 1rem;
-    border-radius: 2rem;
-    color: white;
-    background-color: #20284f;
-    width: 7rem;
-  }
-  .GDPR{
-  border-left: 2px solid brown ;
-  padding-left: 4px ;
-}
-.data-access-section{
-  margin-top: 7rem;
 }

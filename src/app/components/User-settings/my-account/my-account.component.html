@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="./my-account.component.css">
-<div class="sidebar">
+<div class="container">
+  <div class="sidebar">
     <div class="account-navigation">
-      <h1><span>Account</span> Navigation</h1>
+      <h2><span>Account</span> Navigation</h2>
       <ul>
         <div>
         <li><a [routerLink]="['/account']" class="My-account">My Account</a></li></div>
@@ -21,6 +22,7 @@
   </div>
 
   <div class="account-navigation2">
+    <div class="Contact-News">
     <div class="section">
       <h1>Contact Information</h1>
       <p>Name: {{userInfo?.firstName}} {{userInfo?.lastName}}</p>
@@ -34,7 +36,7 @@
       <p>You don't subscribe to our newsletter.</p>
       <button [routerLink]="['/mewsLetter']">Edit</button>
     </div>
-
+  </div>
     <div class="section">
       <h1>Address Book</h1>
       <p>Default Address:</p>
@@ -49,3 +51,6 @@
     </div>
 
   </div>
+</div>
+
+
