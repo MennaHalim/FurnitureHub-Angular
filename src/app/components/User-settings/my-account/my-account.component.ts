@@ -23,8 +23,8 @@ export class MyAccountComponent implements OnInit, OnDestroy {
     private addressServices : AddressService){}
   
   ngOnInit(): void {
-    this.getUserInfo();
-    this.getDefaultAddress();
+    // this.getUserInfo();
+    // this.getDefaultAddress();
   }
 
   getUserInfo(){
