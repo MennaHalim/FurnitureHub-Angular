@@ -1,0 +1,31 @@
+{
+    "header":{
+        "stores": "Stores",
+        "egypt" : "Egypt",
+        "oman" : "Oman",
+        "myAccout" : "My Account",
+        "logout" : "Logout",
+        "signIn" :"Sign In",
+        "CreateAccount": "Create An Account",
+        "wishList" : "My Wish List",
+        "set" : "Set",
+        "item" : "Shop by Item"
+
+    },
+    "shoppingOptions":{
+        "shoppingOptions" : "Shopping Options"
+    },
+    "login":{
+        "RegisterTitle":"DON'T HAVE AN ACCOUNT?",
+        "RegisterParagraph" : "By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more",
+        "registerButton" : "Create an Account",
+        "formTitle":"REGISTERED CUSTOMERS",
+        "formParagraph":"If you have an account, sign in with your email address.",
+        "emailPlaceholder" : "Email Address",
+        "passwordPlaceholder": "Password",
+        "RememberMe":"Remember Me",
+        "agreeCheckBox": "By using this form you agree with the storage and handling of your data by this website.",
+        "passwordForget":"Forgot Your Password?",
+        "signIn":"Sign In"
+    }
+}

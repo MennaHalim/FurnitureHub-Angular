@@ -6,3 +6,10 @@ export class RegistrationUser {
     public confirmPassword: string
     ){}
 }
+
+export interface userInfo{
+  firstName:string;
+  lastName:string;
+  email: string;
+}
+

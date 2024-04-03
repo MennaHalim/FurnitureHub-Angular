@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { ShoppingOptionsComponent } from "../../Components/shopping-options/shopping-options.component";
-import { ShopByComponent } from "../../Components/shop-by/shop-by.component";
-import { ProductsComponent } from "../../Components/products/products.component";
+
 import { RouterOutlet } from '@angular/router';
+import { ProductsComponent } from '../../components/products/products.component';
+import { ShopByComponent } from '../../components/shop-by/shop-by.component';
+import { ShoppingOptionsComponent } from '../../components/shopping-options/shopping-options.component';
 
 @Component({
     selector: 'app-blank-layout',
@@ -12,4 +13,6 @@ import { RouterOutlet } from '@angular/router';
     imports: [ShoppingOptionsComponent, ShopByComponent, ProductsComponent, RouterOutlet]
 })
 export class BlankLayoutComponent {
+   
+    
 }

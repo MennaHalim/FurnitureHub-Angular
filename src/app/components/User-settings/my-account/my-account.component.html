@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="./my-account.component.css">
+<div class="container">
+  <div class="sidebar">
+    <div class="account-navigation">
+      <h2><span>Account</span> Navigation</h2>
+      <ul>
+        <div>
+        <li><a [routerLink]="['/account']" class="My-account">My Account</a></li></div>
+        <div><li><a [routerLink]="['/orders']">My Orders</a></li></div>
+       <div> <li><a [routerLink]="['/wishList']">My Wish List</a></li></div>
+       <div> <li><a [routerLink]="['/address']">Address Book</a></li></div>
+       <div> <li><a [routerLink]="['/info']">Account Information</a></li></div>
+       <div> <li><a [routerLink]="['/gdpr']">GDPR</a></li></div>
+       <div> <li><a [routerLink]="['/myReviews']">My Product Reviews</a></li></div>
+       <div> <li><a [routerLink]="['/mewsLetter']">Newsletter Subscriptions</a></li></div>
+      </ul>
+      <h1><span>Compare</span> Products</h1>
+      <p>You have no items to compare.</p>
+      <h1><span>My Wish</span> List</h1>
+      <p>You have no items in your wish list.</p>
+    </div>
+  </div>
+
+  <div class="account-navigation2">
+    <div class="Contact-News">
+    <div class="section">
+      <h1>Contact Information</h1>
+      <p>Name: {{userInfo?.firstName}} {{userInfo?.lastName}}</p>
+      <p>Email: {{userInfo?.email}}</p>
+      <button [routerLink]="['/info']">Edit</button>
+    </div>
+
+    <div class="section">
+      <h1>Newsletters</h1>
+      <p>You don't subscribe to our newsletter.</p>
+      <button [routerLink]="['/mewsLetter']">Edit</button>
+    </div>
+  </div>
+    <div class="section">
+      <h1>Address Book</h1>
+      <p>Default Address:</p>
+         <p [style.display]="addresses.length == 0 ? 'block': 'none'">You have not set a default  address.</p>
+         @if(addresses.length > 0){
+         <p>{{addresses[0].firstName}} {{addresses[0].lastName}}</p> 
+         <p>{{addresses[0].country}}</p>
+         <p>{{addresses[0].city}}</p>
+         <p>{{addresses[0].phoneNumber}}</p>
+         }         
+      <button [routerLink]="['/address']">Edit Addresses</button>
+    </div>
+
+  </div>
+</div>
+
+

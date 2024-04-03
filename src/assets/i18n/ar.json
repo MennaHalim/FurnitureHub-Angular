@@ -1,0 +1,31 @@
+{
+    "header":{
+        "stores": "الفروع",
+        "egypt" : "مصر",
+        "oman" : "عمان",
+        "myAccout" : "حسابي",
+        "logout" : "تسجيل الخروج",
+        "signIn" :"تسجيل الدخول",
+        "CreateAccount": "انشاء حساب جديد",
+        "wishList" : "قائمة الأمنيات",
+        "set" : "",
+        "item" : "تسوق بالقطعة"
+
+    },
+    "shoppingOptions":{
+        "shoppingOptions" : "خيارات التسوق"
+    },
+    "login":{
+        "RegisterTitle":"ليس لديك حساب؟",
+        "RegisterParagraph" : "من خلال إنشاء حساب في متجرنا، ستتمكن من التنقل بسرعة، وتخزين عدة عناوين للشحن، وعرض وتتبع طلباتك في حسابك، والمزيد.",
+        "registerButton" : "انشاء حساب",
+        "formTitle":"الأعضاء المسجلين",
+        "formParagraph":"إذا كان لديك حساب، سجل الدخول باستخدام عنوان بريدك الإلكتروني",
+        "emailPlaceholder" : "البريد الالكتروني",
+        "passwordPlaceholder": "كلمة المرور",
+        "RememberMe":"تذكرني",
+        "agreeCheckBox": "الموافقة على تخزين ومعالجة بياناتك من قبل هذا الموقع",
+        "passwordForget":"هل نسيت كلمة المرور؟",
+        "signIn":"تسجيل الدخول"
+    }
+}

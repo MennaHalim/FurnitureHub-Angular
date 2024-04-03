@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICustomerReviewToCreate, IPage } from '../Models/product';
+import { Observable, tap } from 'rxjs';
+import { IPage } from '../Models/product';
+import { ProductsTypes } from '../Enums/products-types';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +35,31 @@ export class ProductService {
     return this._HttpClient.post<any>(this.baseUrl + "review",
     customerReview);
   }
+
+  FilterProducts(productType: ProductsTypes,
+    categoryId: number | null = null,
+    setTypeId: number | null = null,
+    itemTypeId: number | null = null,
+    color: string | null = null,
+    minimumPrice: number | null = null,
+    maximumPrice: number | null = null): Observable<IPage> {
+    let url = `${this.baseUrl}${productType}s?`;
+  
+    url += (!Number.isNaN(categoryId)) ? `&categoryId=${categoryId}` : '';
+    url += (!Number.isNaN(setTypeId)&& productType === ProductsTypes.Set) ? `&SetTypeId=${setTypeId}` : '';
+    url += (!Number.isNaN(itemTypeId) && productType === ProductsTypes.Item) ? `&ItemTypeId=${itemTypeId}` : '';
+    url += (color!= undefined) ? `&ProductColor=${color}` : '';
+    url += (!Number.isNaN(minimumPrice)) ? `&minimumPrice=${minimumPrice}` : '';
+    url += (!Number.isNaN(maximumPrice)) ? `&maximumPrice=${maximumPrice}` : '';
+  
+    return this._HttpClient.get<IPage>(url);
+  }
+
+  SearchInProducts(productType: string, search: string): Observable<IPage> {
+    const url = `${this.baseUrl}${productType}${search ? `?Search=${search}` : ''}`;
+    
+    return this._HttpClient.get<IPage>(url);
+  }
+  
 
 }

@@ -43,6 +43,10 @@ export class ShopByComponent implements OnInit, OnDestroy {
   private getCategoryIdFromUrl() {
     this.route.queryParams.subscribe(params => {
       this.categoryId = +params['categoryId'];
+      if (Number.isNaN(this.categoryId)){
+        this.categoryId = 1;
+      }
+
       this.loadComponentData();
     })
   }
