@@ -13,9 +13,14 @@ import { FailOrderComponent } from './Components/fail-order/fail-order.component
 import { SuccessOrderComponent } from './Components/success-order/success-order.component';
 import { OrdersComponent } from './Components/orders/orders.component';
 import { OrderDetailsComponent } from './Components/order-details/order-details.component';
-
-
-
+import { AccountInformationComponent } from './Components/User-settings/account-information/account-information.component';
+import { AddressBookComponent } from './Components/User-settings/address-book/address-book.component';
+import { GDPRComponent } from './Components/User-settings/gdpr/gdpr.component';
+import { MyAccountComponent } from './Components/User-settings/my-account/my-account.component';
+import { MyOrdersComponent } from './Components/User-settings/my-orders/my-orders.component';
+import { MyProductReviewsComponent } from './Components/User-settings/my-product-reviews/my-product-reviews.component';
+import { MyWishListComponent } from './Components/User-settings/my-wish-list/my-wish-list.component';
+import { NewsLetterSubscriptionsComponent } from './Components/User-settings/news-letter-subscriptions/news-letter-subscriptions.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -33,6 +38,14 @@ export const routes: Routes = [
     { path: 'successOrder/:basketId/:orderId', component: SuccessOrderComponent, title: 'Congratulations' },
     { path: 'failOrder', component: FailOrderComponent, title: 'Fail' },
     { path: 'orders', component: OrdersComponent, title: 'Orders' },
-    { path: 'search', component:SearchComponent, title: 'search' },
-    //{ path: '**', redirectTo: 'notFound' }
+    { path: 'search', component: SearchComponent, title: 'search' },
+    { path: '**', redirectTo: 'notFound' },
+    { path: 'info', component: AccountInformationComponent, title: 'User Info' },
+    { path: 'address', component: AddressBookComponent, title: 'Address Book' },
+    { path: 'gdpr', component: GDPRComponent, title: 'GDmewsLetterPR' },
+    { path: 'account', component: MyAccountComponent, title: 'My Account' },
+    { path: 'orders', component: MyOrdersComponent, title: 'My Orders' },
+    { path: 'myReviews', component: MyProductReviewsComponent, title: 'Reviews' },
+    { path: 'wishList', component: MyWishListComponent, title: 'Wish List' },
+    { path: 'mewsLetter', component: NewsLetterSubscriptionsComponent, title: 'News Letter Subscription' },
 ];
