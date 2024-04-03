@@ -34,14 +34,14 @@ export class AddressBookComponent implements OnInit {
       country: ['', Validators.required]
     });
 
-    // this.addressService.GetAllAddresses().subscribe(addresses => {
-    //   this.addresses = addresses;
-    //   if (this.addresses.length > 0) {
-    //     const userAddress = this.addresses[0];
-    //     this.addressId = userAddress.id;
-    //     this.fillFormWithAddress(userAddress);
-    //   }
-    // });
+    this.addressService.GetAllAddresses().subscribe(addresses => {
+      this.addresses = addresses;
+      if (this.addresses.length > 0) {
+        const userAddress = this.addresses[0];
+        this.addressId = userAddress.id;
+        this.fillFormWithAddress(userAddress);
+      }
+    });
   }
 
   fillFormWithAddress(address: Address) {

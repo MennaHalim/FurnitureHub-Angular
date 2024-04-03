@@ -9,11 +9,12 @@ body {
 .sidebar {
   min-height: 100vh; 
   /* padding: 0 5rem ;  */
-  width:100%; 
+  width:30%; 
   /* margin-top: 10rem; */
 }
 .main-content{
   margin-top: 1.5rem;
+  width: 70%;
 }
 .account-navigation h2 {
   margin-top: 2rem;

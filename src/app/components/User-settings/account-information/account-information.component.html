@@ -19,42 +19,62 @@
       <p>You have no items in your wish list.</p>
     </div>
   </div>
-<div class="main-content">
+  <div class="main-content">
     <div class="data-access-section">
-        <h2>ACCOUNT INFORMATION</h2>
-        <div class="row">
-            <input type="text" class="form-control" placeholder="First name" aria-label="First name">
-            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+      <h2>ACCOUNT INFORMATION</h2>
+      <div class="row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" [(ngModel)]="firstName"   name="firstName" id="firstName" placeholder="First name" aria-label="First name">
         </div>
-        <div>
-            <input type="checkbox" [(ngModel)]="editEmail">Change Email
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName"  id="lastName" placeholder="Last name" aria-label="Last name">
         </div>
-        @if(editEmail){
-        <div>
-            <form (ngSubmit)="updateEmail()">
-                <input type="email" class="form-control" placeholder="Email" aria-label="Email">
-                <input type="password" class="form-control" placeholder="Password" aria-label="Password">
-                <button type="submit">Save Email</button>
-            </form>
-        </div>
-      }
-        <div>
-            <input type="checkbox" [(ngModel)]="editPassword">Change Password
-        </div>
-        @if(editPassword){
-        <div>
-            <form (ngSubmit)="updatePassword()">
-                <input type="password" class="form-control" placeholder="Current Password" aria-label="Current Password">
-                <input type="password" class="form-control" placeholder="New Password" aria-label="New Password">
-                <input type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password">
-                <button type="submit">Save Password</button>
-            </form>
-        </div>
-      }
+      </div>
+
+      <div class="form-group">
+        <input type="checkbox" [(ngModel)]="editEmail">Change Email
+      </div>
+      <div *ngIf="editEmail">
+        <form (ngSubmit)="updateEmail()">
+          <div class="form-group">
+            <label for="newEmail">New Email</label>
+            <input type="email" class="form-control" [(ngModel)]="newEmail" name="newEmail"  id="newEmail" placeholder="New Email" aria-label="New Email">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" [(ngModel)]="password" name="password" id="password" placeholder="Password" aria-label="Password">
+          </div>
+          <button type="submit" class="btn btn-primary">Save Email</button>
+        </form>
+      </div>
+
+      <div class="form-group">
+        <input type="checkbox" [(ngModel)]="editPassword">Change Password
+      </div>
+      <div *ngIf="editPassword">
+        <form (ngSubmit)="updatePassword()">
+          <div class="form-group">
+            <label for="currentPassword">Current Password</label>
+            <input type="password" class="form-control" [(ngModel)]="currentPassword"  name="currentPassword" id="currentPassword" placeholder="Current Password" aria-label="Current Password">
+          </div>
+          <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input type="password" class="form-control" [(ngModel)]="newPassword" name="newPassword" id="newPassword" placeholder="New Password" aria-label="New Password">
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" [(ngModel)]="confirmPassword"  name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" aria-label="Confirm Password">
+          </div>
+          <button type="submit" class="btn btn-primary">Save Password</button>
+        </form>
+      </div>
+
     </div>
     <div class="button-container">  
-      <button>save</button>
-      <button [routerLink]="['/home']">back</button>
+      <button class="btn btn-primary">Save</button>
+      <button [routerLink]="['/home']" class="btn btn-secondary">Back</button>
     </div>
   </div>
 </div>

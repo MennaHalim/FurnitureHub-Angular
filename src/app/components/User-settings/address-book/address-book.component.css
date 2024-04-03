@@ -9,7 +9,7 @@ body {
 .sidebar {
   min-height: 100vh; 
   /* padding: 0 5rem ;  */
-  width:100%; 
+  width:30%; 
   /* margin-top: 10rem; */
 }
 
@@ -131,4 +131,9 @@ input,option{
   button{
     margin-bottom: 1rem;
   }
+}
+
+.main-content{
+  width: 70%;
+padding-top: 50px;
 }

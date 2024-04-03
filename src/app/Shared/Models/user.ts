@@ -12,3 +12,4 @@ export interface userInfo{
   lastName:string;
   email: string;
 }
+
