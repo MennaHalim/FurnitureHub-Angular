@@ -13,15 +13,8 @@
 
         <div class="cart-options">
             @if(productDetails?.availability == 'InStock'){
-            <div class="wrapper-container">
-                <div class="wrapper">
-                    <span class="minus unselectable" (click)="decrementCounter()">-</span>
-                    <span class="num unselectable">01</span>
-                    <span class="plus unselectable" (click)="incrementCounter()">+</span>
-                </div>
-            </div>
             <div class="add-to-cart-option-container">
-                <button>Add To Cart</button>
+                <button (click)="addProductToCart(productDetails)">Add To Cart</button>
             </div>
             }
 

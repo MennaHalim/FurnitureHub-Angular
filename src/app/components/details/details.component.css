@@ -35,35 +35,6 @@
     font-size: 17px;
 }
 
-.wrapper-container {
-    display: flex;
-    justify-content: start;
-}
-
-.wrapper {
-    padding: 10px 5px;
-    width: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 40px;
-    border: 1px solid black;
-}
-
-.wrapper span {
-    width: 100%;
-    text-align: center;
-    font-size: 17px;
-    font-weight: 500;
-    cursor: pointer;
-}
-
-.wrapper span.num {
-    border-right: 2px solid rgba(0, 0, 0, 0.2);
-    border-left: 2px solid rgba(0, 0, 0, 0.2);
-    pointer-events: none;
-}
-
 .unselectable {
     -webkit-user-select: none;
     /* Safari */

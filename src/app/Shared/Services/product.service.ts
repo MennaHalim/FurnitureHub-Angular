@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ICustomerReviewToCreate, IPage } from '../Models/product';
 import { Observable, tap } from 'rxjs';
-import { IPage } from '../Models/product';
 import { ProductsTypes } from '../Enums/products-types';
 
 @Injectable({

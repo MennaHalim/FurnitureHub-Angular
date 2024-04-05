@@ -1,4 +1,4 @@
-import { CustomerReview, ICustomerReview } from './../../Shared/Models/product';
+import { CustomerReview, ICustomerReview, IProduct } from './../../Shared/Models/product';
 import { ProductService } from './../../Shared/Services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -7,6 +7,8 @@ import { CapitalizeSpacePipe } from "../../Shared/Pipes/capitalize-space.pipe";
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { switchMap } from 'rxjs';
+import { IBasketItem } from '../../Shared/Models/basket';
+import { BasketService } from '../../Shared/Services/basket.service';
 
 @Component({
   selector: 'app-details',
@@ -24,13 +26,14 @@ export class DetailsComponent implements OnInit {
   }
 
 
-  productDetails!: ISet | null;
+  productDetails: any;
 
   constructor(private _ActivatedRoute: ActivatedRoute,
-    private _ProductService: ProductService) { }
+    private _ProductService: ProductService,
+    private _BasketService: BasketService) { }
 
   productId!: string | null;
-  productType!: string | null;
+  productType!: any;
 
   ngOnInit(): void {
 
@@ -168,6 +171,51 @@ export class DetailsComponent implements OnInit {
       this.reviewForm.markAllAsTouched();
     }
   }
+
+  async addProductToCart(product: IProduct): Promise<void> {
+    product.type = this.productType;
+    await this._BasketService.getUserBasket();
+    this.updateProductCount(product);
+    this._BasketService.addToOrUpdateCart(this._BasketService.basket).subscribe({
+      next: (basket) => {
+        this._BasketService.basketItemsCount.next(basket.basketItems.length);
+      }
+    });
+  }
+
+  private updateProductCount(set: IProduct) {
+    let basket = this._BasketService.basket;
+
+    if (basket !== null && basket.basketItems !== null) {
+      for (let item of basket.basketItems) {
+        if (item.productId == set.id) {
+          item.productQuantity += 1;
+          return;
+        }
+      };
+
+      let basketItem: IBasketItem = this.initializeBasketItemForAddingToCart(set)
+
+      basket.basketItems.push(basketItem);
+    }
+  }
+
+
+  initializeBasketItemForAddingToCart(set: IProduct): IBasketItem {
+    let basketItem: IBasketItem = {
+      productId: set.id,
+      productName: set.name,
+      productPrice: set.price,
+      productQuantity: 1,
+      productPictureUrl: set.productPictures[0],
+      category: set.type,
+      type: set.type
+    }
+    return basketItem;
+  }
+
+
+
 
 }
 

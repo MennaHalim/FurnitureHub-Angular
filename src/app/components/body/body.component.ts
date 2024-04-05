@@ -7,6 +7,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './body.component.html',
   styleUrl: './body.component.css'
 })
-export class BodyComponent  {
-
+export class BodyComponent {
+  
 }

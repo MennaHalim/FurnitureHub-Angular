@@ -101,7 +101,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
       this.authService.register(new RegistrationUser(firstName, lastName, newEmail, newPassword, confirmPassword))
         .subscribe(() => {
-          console.log('Registration successful');
           this.router.navigate(['/home']);
         }, error => {
           if (error.error && error.error.errors && Array.isArray(error.error.errors)) {

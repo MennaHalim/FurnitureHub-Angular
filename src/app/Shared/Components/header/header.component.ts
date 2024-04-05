@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   langChangeSubscription: Subscription | undefined
   SeachBarDispaly: boolean = false;
   lang: string = 'en';
-  isUserLogged : Boolean = false;
+  isUserLogged: Boolean = false;
 
   shippingAddress: any;
 
@@ -62,13 +62,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
 
     this.isUserLogged = this.AuthService.UserState;
-    console.log(this.isUserLogged)
   }
 
-  private detectLanguage(){
+  private detectLanguage() {
     const lang = localStorage.getItem('lang');
-    if (lang == null){
-      localStorage.setItem("lang",'en');
+    if (lang == null) {
+      localStorage.setItem("lang", 'en');
       lang == 'en';
     }
 
@@ -108,7 +107,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  logout(){
+  logout() {
     this.AuthService.logout();
     window.location.reload();
   }
