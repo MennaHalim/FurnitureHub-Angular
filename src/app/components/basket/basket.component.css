@@ -1,7 +1,7 @@
 .wrapper-container {
     display: flex;
     justify-content: center;
-    margin-top: 15%;
+    margin-top: 17%;
 }
 
 .wrapper {
@@ -127,12 +127,10 @@
     justify-content: center;
 }
 
-.price-container {
-    margin-top: 38%;
+.price-container,
+.subtotal-container {
+    margin-top: 30%;
 }
 
-.subtotal-container {
-    margin-top: 35%;
-}
 
 

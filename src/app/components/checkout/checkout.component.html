@@ -125,7 +125,9 @@
                     <img class="col-3" [src]="item.productPictureUrl" alt="">
                     <div class="cart-itemDetails-container row col-9">
                         <p>{{item.productName}}</p>
-                        <p>{{item.productPrice}} EGP</p>
+                        <p>{{item.productPrice * (item.productDiscount === 0 ? 1 : 1 - (item.productDiscount / 100)) |
+                            number}}
+                            EGP</p>
                         <div class="wrapper-container">
                             <div class="wrapper">
                                 <span class="minus unselectable" (click)="decrementCounter(item)">-</span>
@@ -143,7 +145,7 @@
 
         <section class="basket-subTotal">
             <h3 style="color: #1A2854; font-weight: 500;">CART SUBTOTAL</h3>
-            <p>EGP {{basketSubTotal}}</p>
+            <p>EGP {{basketSubTotal | number}}</p>
         </section>
         <hr>
         <section class="basket-deliveryCost">
@@ -153,7 +155,7 @@
         <hr>
         <section class="basket-OrderCost">
             <h3 style="color: #1A2854; font-weight: 500;">ORDER COST</h3>
-            <p>EGP {{basketSubTotal + shippingCost}}</p>
+            <p>EGP {{basketSubTotal + shippingCost | number}}</p>
         </section>
 
         <div class="complete-order-button-container">

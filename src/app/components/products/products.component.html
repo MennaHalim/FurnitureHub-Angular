@@ -1,12 +1,16 @@
-<div class="row mt-3">
+<div class="row mt-3 gap-4">
     @for (item of page?.data! | paginate: { id: 'productPaginate',
     itemsPerPage: pageSize,
     currentPage: pageIndex,
     totalItems: total } ; track $index ) {
-    <div class="card col-5 remove-border product-cart">
+    <div class="card col-5 remove-border product-cart p-0">
 
         <div class="img-container">
-            <img src="{{item.productPictures[0]}}" class="card-img-top" alt="product image">
+            <img src="{{item.productPictures[0]}}" class="card-img-top p-0" alt="product image">
+
+            @if(item.discount !== 0){
+            <span class="sale">Sale</span>
+            }
 
             <div routerLink="/{{item.type}}/details/{{item.id}}" class="options-on-img-container">
                 <div class="love">
@@ -21,22 +25,28 @@
         </div>
 
 
-        <div class="card-body">
+        <div class="card-body pe-0 ps-0 pt-2">
             <h5 class="card-title"><a routerLink="/{{item.type}}/details/{{item.id}}" role="button"
                     class="handle-link">{{item.name}}</a></h5>
-            <p>{{item.price}}</p>
-        </div>
-    
-        @if(item.availability == 'InStock'){
-            <div class="cart-icon-container" role="button" (click)="addProductToCart(item)">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                </svg>
+            <div class="money-container">
+                @if(item.discount !== 0){
+                <p>EGP {{item.price * ((100 - item.discount) / 100)}}</p>
+                }
+                <p [ngClass]="{'price-with-discount': item.discount !== 0, '':item.discount !== 0}">EGP {{item.price}}
+                </p>
             </div>
+        </div>
+
+        @if(item.availability == 'InStock'){
+        <div class="cart-icon-container" role="button" (click)="addProductToCart(item)">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+            </svg>
+        </div>
         }@else {
-            <span class="badge text-bg-warning out-of-stock-container">Out Of Stock</span>
+        <span class="badge text-bg-warning out-of-stock-container">Out Of Stock</span>
         }
     </div>
     }

@@ -201,15 +201,16 @@ export class DetailsComponent implements OnInit {
   }
 
 
-  initializeBasketItemForAddingToCart(set: IProduct): IBasketItem {
+  initializeBasketItemForAddingToCart(product: IProduct): IBasketItem {
     let basketItem: IBasketItem = {
-      productId: set.id,
-      productName: set.name,
-      productPrice: set.price,
+      productId: product.id,
+      productName: product.name,
+      productPrice: product.price,
+      productDiscount: product.discount,
       productQuantity: 1,
-      productPictureUrl: set.productPictures[0],
-      category: set.type,
-      type: set.type
+      productPictureUrl: product.productPictures[0],
+      category: product.type,
+      type: product.type
     }
     return basketItem;
   }

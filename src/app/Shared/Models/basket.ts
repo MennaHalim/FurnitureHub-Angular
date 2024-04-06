@@ -4,6 +4,7 @@ export interface IBasketItem {
     productId: number,
     productName: string,
     productPrice: number,
+    productDiscount: number,
     productQuantity: number,
     productPictureUrl: string,
     category: string,

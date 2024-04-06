@@ -25,6 +25,7 @@ a:hover {
     position: relative;
     cursor: pointer;
     overflow: hidden;
+    padding: 0;
 }
 
 .img-container:hover .options-on-img-container {
@@ -74,17 +75,17 @@ a:hover {
     height: 33px;
     border-radius: 50%;
     position: absolute;
-    top: 58%;
+    top: 62%;
     left: 78%;
 }
 
-.out-of-stock-container{
+.out-of-stock-container {
     background-color: #C0223A !important;
     color: #fff !important;
     font-size: 12px;
     position: absolute;
-    top: 60%;
-    left: 55%;
+    top: 65%;
+    left: 53%;
     user-select: none;
 }
 
@@ -130,4 +131,35 @@ a:hover {
 .cart-icon-container:hover {
     background-color: #1a2854c6;
     color: #fff;
+}
+
+.money-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-with-discount {
+    color: red;
+    position: relative;
+}
+
+.price-with-discount::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    width: 35px;
+    height: 1px;
+    background-color: black;
+    transform-origin: center;
+    transform: rotate(-45deg);
+}
+
+.sale{
+    background: #FE9931;
+    color: #fff;
+    padding: 4px 18px;
+    position: absolute;
+    right: 5%;
+    top: 5%;
 }

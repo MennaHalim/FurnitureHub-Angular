@@ -8,11 +8,12 @@ import { IBasketItem } from '../../Shared/Models/basket';
 import { UserAuthService } from '../../Shared/Services/user-auth.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ProductsTypes } from '../../Shared/Enums/products-types';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [RouterLink, NgxPaginationModule],
+  imports: [RouterLink, NgxPaginationModule, CommonModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -176,15 +177,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
 
-  initializeBasketItemForAddingToCart(set: IProduct): IBasketItem {
+  initializeBasketItemForAddingToCart(product: IProduct): IBasketItem {
     let basketItem: IBasketItem = {
-      productId: set.id,
-      productName: set.name,
-      productPrice: set.price,
+      productId: product.id,
+      productName: product.name,
+      productPrice: product.price,
+      productDiscount: product.discount,
       productQuantity: 1,
-      productPictureUrl: set.productPictures[0],
-      category: set.type,
-      type: set.type
+      productPictureUrl: product.productPictures[0],
+      category: product.type,
+      type: product.type
     }
     return basketItem;
   }

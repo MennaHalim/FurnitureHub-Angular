@@ -13,6 +13,7 @@ export interface IProduct {
     name: string;
     availability: string;
     price: number;
+    discount: number;
     productPictures: string[];
 }
 

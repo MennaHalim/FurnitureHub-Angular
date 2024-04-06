@@ -9,7 +9,17 @@
                 [ngClass]="{'available': isAvailable()}">{{productDetails?.availability! |
                 capitalizeSpace}}</span>
         </p>
-        <p class="product-price">&#36; {{productDetails?.price}}</p>
+
+        <div class="money-container">
+            <p [ngClass]="{'price-with-discount': productDetails?.discount !== 0, '':productDetails?.discount !== 0}">
+                EGP {{productDetails?.price | number}}
+            </p>
+
+            @if(productDetails?.discount !== 0){
+            <p class="price-after-discount">EGP {{productDetails?.price * ((100 - productDetails?.discount) / 100) |
+                number}}</p>
+            }
+        </div>
 
         <div class="cart-options">
             @if(productDetails?.availability == 'InStock'){

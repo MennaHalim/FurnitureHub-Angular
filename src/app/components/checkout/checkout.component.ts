@@ -6,10 +6,11 @@ import { DeliveryMethodService } from '../../Shared/Services/delivery-method.ser
 import { IDeliverMethod } from '../../Shared/Models/order';
 import { Basket, IBasketItem } from '../../Shared/Models/basket';
 import { NumberPadPipe } from '../../Shared/Pipes/number-pad.pipe';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [ReactiveFormsModule, NumberPadPipe],
+  imports: [ReactiveFormsModule, NumberPadPipe, CommonModule],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
@@ -69,7 +70,7 @@ export class CheckoutComponent implements OnInit {
     shipping_method: new FormControl('', Validators.required)
   });
 
-  
+
 
 
   validateForms() {
@@ -84,7 +85,7 @@ export class CheckoutComponent implements OnInit {
           window.open(response.stripeUrl, '_self');
         }
       });
-      
+
     }
   }
 
@@ -126,7 +127,7 @@ export class CheckoutComponent implements OnInit {
       this.basketSubTotal = 0;
       for (let index = 0; index < this.basket.basketItems.length; index++) {
         const basketItem = this.basket.basketItems[index];
-        this.basketSubTotal += (basketItem.productPrice * basketItem.productQuantity);
+        this.basketSubTotal += (basketItem.productPrice * basketItem.productQuantity * (1 - (basketItem.productDiscount / 100)));
       }
     }
   }

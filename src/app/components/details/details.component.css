@@ -31,8 +31,31 @@
     color: green;
 }
 
-.product-price {
-    font-size: 17px;
+.money-container {
+    display: flex;
+}
+
+.price-with-discount {
+    position: relative;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.price-with-discount::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    width: 35px;
+    height: 1px;
+    background-color: black;
+    transform-origin: center;
+    transform: rotate(-45deg);
+}
+
+.price-after-discount{
+    color: #C0226F;
+    font-size: 25px;
 }
 
 .unselectable {

@@ -49,7 +49,7 @@
                     </td>
                     <td>
                         <div class="price-container">
-                            <p>{{item.productPrice}}</p>
+                            <p>EGP {{item.productPrice * ((100 - item.productDiscount) / 100)}}</p>
                         </div>
                     </td>
                     <td>
@@ -63,7 +63,7 @@
                     </td>
                     <td>
                         <div class="subtotal-container">
-                            <p>{{item.productPrice * item.productQuantity}}</p>
+                            <p>EGP {{(item.productPrice * ((100 - item.productDiscount) / 100)) * item.productQuantity}}</p>
                         </div>
                     </td>
                 </tr>
