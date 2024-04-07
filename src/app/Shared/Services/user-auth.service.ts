@@ -1,5 +1,5 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -14,6 +14,7 @@ export class UserAuthService {
   private registerUrl: string = 'http://localhost:5016/api/Account/register';
   private isUserLoggedSubject: BehaviorSubject<boolean>;
   private jwtHelper = new JwtHelperService();
+  loginSuccessEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private httpClient: HttpClient) {
     this.isUserLoggedSubject = new BehaviorSubject<boolean>(this.UserState);
@@ -32,6 +33,7 @@ export class UserAuthService {
       tap((response) => {
         console.log('Login successful:', response);
         localStorage.setItem('token', response.token);
+        this.loginSuccessEvent.emit(true);
         this.isUserLoggedSubject.next(true);
       })
     );

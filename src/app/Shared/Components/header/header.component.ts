@@ -40,17 +40,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadComponentData();
-    this._BasketService.getUserBasketObs().subscribe({
-      next: (basket) => {
-        this.basketCount = basket.basketItems.length;
-      }
+
+    this.isUserLogged = this.AuthService.UserState;
+    this.AuthService.loginSuccessEvent.subscribe((isLoggedIn: boolean) => {
+      this.isUserLogged = isLoggedIn;
     });
 
-    this._BasketService.basketItemsCount.subscribe({
-      next: (count) => {
-        this.basketCount = count;
-      }
-    })
+    if (this.isUserLogged) {
+      this._BasketService.getUserBasketObs().subscribe({
+        next: (basket) => {
+          this.basketCount = basket.basketItems.length;
+        }
+      });
+
+      this._BasketService.basketItemsCount.subscribe({
+        next: (count) => {
+          this.basketCount = count;
+        }
+      })
+    } 
 
     this.lang = this.detectLanguage() || 'en';
     document.documentElement.lang = this.lang;
@@ -61,7 +69,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.lang = event.lang;
     });
 
-    this.isUserLogged = this.AuthService.UserState;
+
   }
 
   private detectLanguage() {
@@ -72,7 +80,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     return lang;
-
   }
 
   private loadComponentData(): void {
@@ -84,6 +91,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribeSubscriptions();
+    this.AuthService.loginSuccessEvent.unsubscribe();
+
   }
 
   private unsubscribeSubscriptions(): void {
