@@ -1,5 +1,5 @@
 import { ProductService } from './../../Shared/Services/product.service';
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { IPage, IProduct } from '../../Shared/Models/product';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
@@ -33,7 +33,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private categorySetsSubscription: Subscription | undefined;
   private categoryItemsSubscription: Subscription | undefined;
   private routeSubscription: Subscription | undefined;
-  
+  @Output() priceRangeChange: EventEmitter<{ minPrice: number, maxPrice: number }> = new EventEmitter();
+
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -77,6 +78,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   private loadComponentData(pageNum : number): void {
+    debugger
     if(this.searchValue != undefined){
       this.categoryItemsSubscription = this.ProductService.SearchInProducts(this.type, this.searchValue).subscribe(
         (data) => {
@@ -84,7 +86,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
           this.total = data.count;
-
+          this.startPrice = data.minimumPrice;
+          this.endPrice = data.maximumPrice;
+          this.emitPriceRange(this.startPrice, this.endPrice);
         });
     }
     else if(!Number.isNaN(this.startPrice) || !Number.isNaN(this.endPrice)|| this.color != undefined){
@@ -95,6 +99,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
           this.total = data.count;
+          this.startPrice = data.minimumPrice;
+          this.endPrice = data.maximumPrice;
+          this.emitPriceRange(this.startPrice, this.endPrice);
 
         });
       else{
@@ -104,6 +111,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
             this.pageSize = data.pageSize;
             this.pageIndex = data.pageIndex;
             this.total = data.count;
+            this.startPrice = data.minimumPrice;
+          this.endPrice = data.maximumPrice;
+          this.emitPriceRange(this.startPrice, this.endPrice);
+
           });
       }
 
@@ -114,8 +125,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.page = data;
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
-          //this.total = data.count;
           this.total = 10;
+          this.startPrice = data.minimumPrice;
+          this.endPrice = data.maximumPrice;
+          this.emitPriceRange(this.startPrice, this.endPrice);
+
 
         });
     }
@@ -126,6 +140,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
           this.total = data.count;
+          this.startPrice = data.minimumPrice;
+          this.endPrice = data.maximumPrice;
+          this.emitPriceRange(this.startPrice, this.endPrice);
 
         });
     }
@@ -136,6 +153,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
           this.total = data.count;
+          this.startPrice = data.minimumPrice;
+          this.endPrice = data.maximumPrice;
+          this.emitPriceRange(this.startPrice, this.endPrice);
 
         });
     }
@@ -202,6 +222,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   pageChanged(event: any) {
     this.applyPagination(event);
+  }
+
+  emitPriceRange(minPrice: number, maxPrice: number) {
+    this.priceRangeChange.emit({ minPrice, maxPrice });
   }
 
 }

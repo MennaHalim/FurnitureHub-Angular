@@ -2,11 +2,13 @@ import { Component, OnInit, Query } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { QueryParamGuard } from '../../Shared/Guards/query-param.guard';
 import { ActivatedRoute, Router } from '@angular/router';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field'
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, MatFormFieldModule, MatSelectModule],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
@@ -27,7 +29,6 @@ export class SearchComponent {
 
 
   onSearch(event: Event) {
-    this.getDataFromUrl();
     event.preventDefault();
 
     const form = event.target as HTMLFormElement;
@@ -38,5 +39,13 @@ export class SearchComponent {
     queryParams['search'] = query; 
     
     this.router.navigate(['/products/categories/', this.type], { queryParams });
+  }
+
+  selectSet(){
+    this.type ='sets'
+  }
+
+  selectItem(){
+    this.type ='items'
   }
 }

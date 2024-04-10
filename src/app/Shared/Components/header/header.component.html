@@ -101,11 +101,15 @@
         <a href="#"><i class="fa-regular fa-heart"></i></a>
         <a routerLink="/basket" class="position-relative">
             <i class="fa-solid fa-cart-shopping"></i>
+            @if(isUserLogged){
             <span class="badge bg-info cart-count">{{basketCount}}</span>
+            }
         </a>
     </div>
    
-    <div [style.display]="SeachBarDispaly ? 'block' : 'none'">
-        <app-search ></app-search>
-    </div>
+    
 </header>
+
+<div [style.display]="SeachBarDispaly? 'block' : 'none'">
+    <app-search ></app-search>
+</div>

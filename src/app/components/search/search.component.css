@@ -1,6 +1,7 @@
 .search-container {
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .ecommerce-search {
@@ -30,4 +31,15 @@
 .ecommerce-search i {
     color: #888;
     font-size: 20px;
+}
+
+.button-dropdown{
+    background-color: #1a2854 !important;
+    color: white ;
+    margin-right: 5px;
+}
+
+
+.dropdown-item:hover{
+background-color: white;
 }

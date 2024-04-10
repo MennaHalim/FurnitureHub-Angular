@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private AuthService: UserAuthService) { }
 
   basketCount: number = 0;
+  
 
 
   ngOnInit(): void {
@@ -52,13 +53,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.basketCount = basket.basketItems.length;
         }
       });
-
-      this._BasketService.basketItemsCount.subscribe({
-        next: (count) => {
-          this.basketCount = count;
-        }
-      })
+    
     } 
+    this._BasketService.basketItemsCount.subscribe({
+      next: (count) => {
+        this.basketCount = count;
+      }
+    })
 
     this.lang = this.detectLanguage() || 'en';
     document.documentElement.lang = this.lang;
@@ -120,5 +121,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.AuthService.logout();
     window.location.reload();
   }
+
+
 
 }

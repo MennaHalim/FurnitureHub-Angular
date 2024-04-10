@@ -47,11 +47,9 @@
 
 .dropdown-content {
     display: none;
-    position: absolute;
+    right: 2px;
+    top: 23px;
     background-color: #f9f9f9;
-
-
-
 }
 
 .icons {
@@ -278,7 +276,48 @@ nav ul {
 
 
 
-
+/* For screens wider than 768px (tablets and desktops) */
+@media (min-width: 768px) {
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .start-icons, .header-text, .nav, .icons {
+      display: inline-flex;
+      align-items: center;
+    }
+  
+    /* Additional styles for specific elements on larger screens */
+  }
+  
+  /* For screens narrower than 768px (mobile devices) */
+  @media (max-width: 767px) {
+    .header {
+      display: block; /* Stack elements vertically on mobile */
+    }
+  
+    .start-icons, .header-text, .nav, .icons {
+      display: block;
+      margin-bottom: 10px; /* Add spacing between elements */
+    }
+  
+    /* Specific mobile styles for elements like dropdown menus, navigation, etc. */
+  }
+  
+  /* Dropdown menu styles for mobile */
+@media (max-width: 767px) {
+    .dropdown-content {
+      position: absolute;
+      top: 100%; /* Position below the triggering element */
+      left: 0; /* Align to left side of parent */
+      z-index: 10; /* Ensure dropdown stays on top */
+    }
+  
+    /* Additional styles for mobile dropdown behavior */
+  }
+  
 
 
  

@@ -36,4 +36,8 @@ export class SignInComponent {
       );
     }
   }
+
+  navihateToRegister(){
+    this.router.navigate(['/register'])
+  }
 }

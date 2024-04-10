@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, OnDestroy, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
@@ -43,13 +43,14 @@ import { ProductsTypes } from '../../Shared/Enums/products-types';
   templateUrl: './shopping-options.component.html',
   styleUrl: './shopping-options.component.css'
 })
-export class ShoppingOptionsComponent implements OnInit, OnDestroy {
+export class ShoppingOptionsComponent implements OnInit, OnDestroy, OnChanges {
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  minPrice: number = 0;
-  maxPrice: number = 200000;
+  @Input() minPrice: number = 0;
+  @Input() maxPrice: number = 200000;
+
   colors: string[] = ['Jute', 'gray', 'white', 'brown', 'black', 'blue', 'beige'];
 
   isCategoryExpanded: boolean = false;
@@ -63,10 +64,10 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy {
   goButtonClicked: boolean = false;
   categoryId: number = 0;
   productTypeId: number = 0;
-  type: string = 'sets'
   startValue: number = this.minPrice;
   endValue: number = this.maxPrice;
   color: string = '';
+  type: string = 'sets';
 
 
 
@@ -98,6 +99,15 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['minPrice'] || changes['maxPrice']) {
+      this.startValue = this.minPrice; 
+      this.endValue = this.maxPrice;
+    }
+
+  }
+
+
   ngOnInit(): void {
     this.getDataFromUrl();
 
@@ -106,7 +116,7 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy {
       this.selectOption(this.type);
     }
 
-    this.getMinAndMaxPrice();
+    console.log(this.minPrice, this.maxPrice)
   }
 
   private getDataFromUrl() {
@@ -154,26 +164,21 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy {
       this.type = 'items';
       this.reloadProducts();
     }
-    this.getMinAndMaxPrice();
   }
 
   selectType(id: number) {
     this.productTypeId = id;
     this.reloadProducts();
-    this.getMinAndMaxPrice();
   }
 
   selectColor(color: string) {
     this.color = color;
     this.reloadProducts();
-    this.getMinAndMaxPrice();
-
   }
 
   selectPrice() {
     this.goButtonClicked = true;
     this.reloadProducts();
-    this.getMinAndMaxPrice();
   }
 
   reloadProducts() {
@@ -196,6 +201,7 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy {
         queryParams['minPrice'] = this.startValue;
         queryParams['maxPrice'] = this.endValue;
       }
+
       this.router.navigate(['/products/categories/', this.type, this.productTypeId], { queryParams });
     }
   }
@@ -272,5 +278,6 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy {
 
     this.changeDetectorRef.detectChanges();
   }
+
 
 }
