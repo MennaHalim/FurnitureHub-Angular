@@ -5,11 +5,12 @@ import { ShopByService } from './../../Shared/Services/shop-by.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-shop-by',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, TranslateModule],
   templateUrl: './shop-by.component.html',
   styleUrl: './shop-by.component.css'
 })
@@ -21,6 +22,8 @@ export class ShopByComponent implements OnInit, OnDestroy {
   categoryItemsTypesData: ICategoryItemsTypes | null = null;
   private categorySetsTypesSubscription: Subscription | undefined;
   private categoryItemsTypesSubscription: Subscription | undefined;
+  lang: string = 'en';
+  langChangeSubscription: Subscription | undefined
   selectedTab: string = 'shopBySet';
   scrollLeftActive: boolean = false;
   scrollRightActive: boolean = true;
@@ -28,7 +31,8 @@ export class ShopByComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private shopByService: ShopByService,
-    private ProductService: ProductService) { }
+    private ProductService: ProductService,
+    private translate: TranslateService,) { }
 
   ngOnInit(): void {
     this.getCategoryIdFromUrl();
@@ -38,7 +42,27 @@ export class ShopByComponent implements OnInit, OnDestroy {
         this.loadComponentData();
       };
     });
+    this.lang = this.detectLanguage() || 'en';
+    document.documentElement.lang = this.lang;
+
+    this.translate.use(this.lang);
+
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
+      this.lang = event.lang;
+    });
+
   }
+
+  private detectLanguage() {
+    const lang = localStorage.getItem('lang');
+    if (lang == null) {
+      localStorage.setItem("lang", 'en');
+      lang == 'en';
+    }
+
+    return lang;
+  }
+  
 
   private getCategoryIdFromUrl() {
     this.route.queryParams.subscribe(params => {

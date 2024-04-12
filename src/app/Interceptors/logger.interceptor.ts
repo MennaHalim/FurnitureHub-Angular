@@ -11,6 +11,5 @@ export const loggerInterceptor = (req: HttpRequest<unknown>, next: (req: HttpReq
     });
   }
 
-  console.log(authReq.url)
   return next(authReq);
 };

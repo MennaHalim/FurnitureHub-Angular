@@ -6,16 +6,17 @@ import { ICustomerReviewToCreate, ISet } from '../../Shared/Models/product';
 import { CapitalizeSpacePipe } from "../../Shared/Pipes/capitalize-space.pipe";
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { switchMap } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { IBasketItem } from '../../Shared/Models/basket';
 import { BasketService } from '../../Shared/Services/basket.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details',
   standalone: true,
   templateUrl: './details.component.html',
   styleUrl: './details.component.css',
-  imports: [CapitalizeSpacePipe, CommonModule, ReactiveFormsModule]
+  imports: [CapitalizeSpacePipe, CommonModule, ReactiveFormsModule, TranslateModule]
 })
 export class DetailsComponent implements OnInit {
 
@@ -27,10 +28,13 @@ export class DetailsComponent implements OnInit {
 
 
   productDetails: any;
+  lang: string = 'en';
+  langChangeSubscription: Subscription | undefined
 
   constructor(private _ActivatedRoute: ActivatedRoute,
     private _ProductService: ProductService,
-    private _BasketService: BasketService) { }
+    private _BasketService: BasketService,
+    private translate: TranslateService,) { }
 
   productId!: string | null;
   productType!: any;
@@ -76,6 +80,25 @@ export class DetailsComponent implements OnInit {
         this.productDetails = response;
       }
     });
+    this.lang = this.detectLanguage() || 'en';
+    document.documentElement.lang = this.lang;
+
+    this.translate.use(this.lang);
+
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
+      this.lang = event.lang;
+    });
+
+  }
+
+  private detectLanguage() {
+    const lang = localStorage.getItem('lang');
+    if (lang == null) {
+      localStorage.setItem("lang", 'en');
+      lang == 'en';
+    }
+
+    return lang;
   }
 
   currentIndex: number = 0; // Keep track of the current slide index

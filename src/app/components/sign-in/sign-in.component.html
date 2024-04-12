@@ -8,40 +8,41 @@
         <div class="alert alert-danger" role="alert" [style.display]="errorMessage.length == 0 ? 'none' : 'block'">
           {{ errorMessage }}
         </div>  
-        <h4 class="title">REGISTERED CUSTOMERS</h4>
-        <p>If you have an account, sign in with your email address.</p>
+        <h4 class="title">{{'login.formTitle' | translate}}</h4>
+        <p>{{'login.formParagraph' | translate}}</p>
         <div class="form-group">
-          <input type="email" id="email" name="email" [(ngModel)]="email" required #emailField="ngModel" email placeholder="Email address">
-          <div *ngIf="emailField.touched && emailField.errors?.['required']" class="error">Email is required.</div>
-          <div *ngIf="emailField.errors?.['email']" class="error">Please enter a valid email address.</div>
+          <input type="email" id="email" name="email" [(ngModel)]="email" required #emailField="ngModel" email [placeholder]="'login.emailPlaceholder' | translate">
+          <div *ngIf="emailField.touched && emailField.errors?.['required']" class="error">{{'login.required' | translate}}</div>
+          <div *ngIf="emailField.errors?.['email']" class="error">{{'login.emailValidation' | translate}}</div>
         </div>        
 
         <div class="form-group">
-          <input type="password" id="password" name="password" [(ngModel)]="password" #passwordField="ngModel" required  placeholder="Password">
-          <div *ngIf="passwordField.touched && emailField.errors?.['required']" class="error">Password is required.</div>
+          <input type="password" id="password" name="password" [(ngModel)]="password" #passwordField="ngModel" required  [placeholder]="'login.passwordPlaceholder' | translate">
+          <div *ngIf="passwordField.touched && passwordField.errors?.['required']" class="error">{{'login.required' | translate}}</div>
         </div>
 
         <div class="form-group">
-          <input type="checkbox" id="remember-me" name="remember-me">
-          <label for="remember-me">Remember Me</label>
+          <input type="checkbox" id="remember-me" name="remember-me" [(ngModel)]="rememberMe">
+          <label for="remember-me">{{'login.RememberMe' | translate}}</label>
         </div>
 
         <div class="form-group">
-          <input type="checkbox" id="remember-me" name="remember-me" required>
-          <label for="remember-me">By using this form you agree with the storage and handling of your data by this website.</label>
+          <input type="checkbox" id="agree" name="agree" required [(ngModel)]="agree" #agreeField="ngModel">
+          <label for="agree">{{'login.agreeCheckBox' | translate}}</label>
+          <div *ngIf="submit && agreeField.errors?.['required']" class="error">{{'login.required' | translate}}</div>
+
         </div>
 
-        <button type="submit" [disabled]="signInForm.invalid">Sign In</button>
-        <a href="#">Forgot Your Password?</a>
+        <button type="submit" >{{'login.signIn' | translate}}</button>
+        <a href="#">{{'login.passwordForget' | translate}} </a>
       </form>
     </div>
 
     <div class="col-sm-6">
       <div class="create-account">
-        <h4 class = "title">DON'T HAVE AN ACCOUNT?</h4>
-        <p>By creating an account with our store, you will be able to move through the checkout process faster, store
-          multiple shipping addresses, view and track your orders in your account and more.</p>
-        <button type="submit" (click)="navihateToRegister()">Create an Account</button>
+        <h4 class = "title">{{'login.RegisterTitle' | translate}}</h4>
+        <p>{{'login.RegisterParagraph' | translate}}</p>
+        <button type="submit" (click)="navihateToRegister()">{{'login.registerButton' | translate}}</button>
       </div>
     </div>
   </div>

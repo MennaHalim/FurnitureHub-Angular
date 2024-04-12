@@ -1,7 +1,7 @@
 <div class="parent-container">
     @if(order != null){
     <div class="order-container">
-        <h1>Order #{{order.id}}</h1>
+        <h1>{{'order.Order' | translate}} #{{order.id}}</h1>
         <div class="order-progressbar-container">
             <div class="order-progressbar">
                 <span class="circle background-progress-active"><img src="./assets/Images/credit-card.png"
@@ -27,7 +27,7 @@
             </div>
             @if(order.status == 'Payment Received'){
                 <div class="cancel-order mt-5">
-                    <button (click)="cancelOrder(order.id)">Cancel Order</button>
+                    <button (click)="cancelOrder(order.id)">{{'order.CancelOrder' | translate}}</button>
                 </div>
             }
         </div>
@@ -61,8 +61,8 @@
                 <div class="order-item-card">
                     <img src="{{item.pictureUrl}}" alt="{{item.productName}}" class="mb-2">
                     <p>{{item.productName}}</p>
-                    <p>Quantity = {{item.quantity}}</p>
-                    <button routerLink="/{{item.type}}/details/{{item.productId}}">Details</button>
+                    <p>{{'order.Quantity' | translate}} = {{item.quantity}}</p>
+                    <button routerLink="/{{item.type}}/details/{{item.productId}}">{{'order.Details' | translate}}</button>
                 </div>
                 }
             </div>

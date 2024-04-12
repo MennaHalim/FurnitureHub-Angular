@@ -2,18 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../Shared/Services/order.service';
 import { IOrder } from '../../Shared/Models/order';
 import { RouterLink } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TranslateModule],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css'
 })
 export class OrdersComponent implements OnInit {
 
   orders!: IOrder[];
-  constructor(private _OrderService: OrderService) { }
+  lang: string = 'en';
+  langChangeSubscription: Subscription | undefined
+  
+  constructor(private _OrderService: OrderService,
+    private translate: TranslateService,
+  ) { }
 
   ngOnInit(): void {
     this._OrderService.getAllOrders().subscribe({
@@ -21,6 +28,25 @@ export class OrdersComponent implements OnInit {
         this.orders = getAllOrders;
       }
     })
+    this.lang = this.detectLanguage() || 'en';
+    document.documentElement.lang = this.lang;
+
+    this.translate.use(this.lang);
+
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
+      this.lang = event.lang;
+    });
+
+  }
+
+  private detectLanguage() {
+    const lang = localStorage.getItem('lang');
+    if (lang == null) {
+      localStorage.setItem("lang", 'en');
+      lang == 'en';
+    }
+
+    return lang;
   }
 
   padNumber(number: number) {

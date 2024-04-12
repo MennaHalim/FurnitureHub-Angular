@@ -9,11 +9,17 @@
         "CreateAccount": "Create An Account",
         "wishList" : "My Wish List",
         "set" : "Set",
-        "item" : "Shop by Item"
+        "item" : "Shop by Item",
+        "arabic" : "Arabic",
+        "english" : "English"
 
     },
     "shoppingOptions":{
-        "shoppingOptions" : "Shopping Options"
+        "shoppingOptions" : "Shopping Options",
+        "Categories" : "Categories",
+        "Price" : "Price",
+        "Color" : "Color",
+        "Go" : "Go"
     },
     "login":{
         "RegisterTitle":"DON'T HAVE AN ACCOUNT?",
@@ -26,6 +32,139 @@
         "RememberMe":"Remember Me",
         "agreeCheckBox": "By using this form you agree with the storage and handling of your data by this website.",
         "passwordForget":"Forgot Your Password?",
-        "signIn":"Sign In"
+        "signIn":"Sign In",
+        "required":"Required",
+        "emailValidation": "Please enter a valid email address." 
+    },
+    "footer":{
+        "subscribe" : "Subscribe",
+        "email" : "Your email address",
+        "signUp" : "Sign up to our newsletter",
+        "knowUs": "Know Us",
+        "AboutUs" : "About Us",
+        "privacy" : "Privacy Policy",
+        "terms" : "Terms and Conditions",
+        "services" : "Our Services",
+        "Guarantee" : "Guarantee",
+        "Payment" : "Payment methods",
+        "Returnpolicy" : "Return policy",
+        "help" : "Help & advice",
+        "Blog" : "Blog",
+        "FAQ" : "FAQ",
+        "Store" : "Store Locator",
+        "Contacts" : "Contacts",
+        "ContactUs" : "Contact Us",
+        "Copyright" : "Copyright © 2023 Hub Furniture, Inc. All rights reserved."
+    },
+    "body":{
+        "bedroom" : "Bedroom",
+        "livingRoom" : "Living Room",
+        "outdoor" : "Outdoor",
+        "diningRoom" : "Dining room",
+        "ShopNow" : "Shop Now",
+        "shopByItem" : "Shop by item",
+        "Sofas" :"Sofas",
+        "Beds" : "Beds",
+        "Wardrobes": "Wardrobes",
+        "sofa" : "Sofa 3 seaters",
+        "U-Shape" : "U-Shape",
+        "Loveseat" : "Loveseat",
+        "L-Shape" : "L-Shape",
+        "NewArrivals": "New Arrivals",
+        "follow" : "Follow us on Instagram"
+    },
+    "basket":{
+        "Product" : "Product",
+        "Price" : "Price",
+        "Quantity" : "Quantity",
+        "Subtotal" : "Subtotal",
+        "checkout" : "Proceed to checkout",
+        "clearCart" : "Clear Shopping Cart",
+        "alert" : " There is no items in your basket !"
+    },
+    "checkout":{
+        "ShippingAddress" : "Shipping Address",
+        "FirstName" : " First Name ",
+        "Firstnameisrequired" : "First name is required.",
+        "First2characterslong" : "First name must be at least 2 characters long.",
+        "Firstnameonlyletters" : "First name must contain only letters.",
+        "LastName" : "Last Name",
+        "Lastnameisrequired" : "Last name is required.",
+        "Last2characterslong" : "Last name must be at least 2 characters long.",
+        "Lastnameonlyletters" : "Last name must contain only letters.",
+        "StreetAddress" : "Street Address",
+        "Streetaddressrequired" : "Street address is required.",
+        "City" : "City",
+        "Cityrequired" : "City is required.",
+        "Cityonlyletters" : "City must contain only letters.",
+        "Country" : "Country",
+        "SelectCountry" : "SelectCountry",
+        "Egypt" : "Egypt",
+        "Qena" : "Qena",
+        "Assuit" : "Assuit",
+        "Countryrequired" : "Country is required",
+        "ShippingMethods" : "Shipping Methods",
+        "Deliverymethodrequired" : "Delivery method is required.",
+        "OrderSummary" : "Order Summary",
+        "BasketItems" : "Basket Items",
+        "CARTSUBTOTAL" : "CART SUBTOTAL",
+        "DELIVERYCOST" : "DELIVERY COST",
+        "ORDERCOST" : " ORDER COST",
+        "PLACEORDER" : "PLACE ORDER"
+    },
+    "failOrder":{
+        "Badnews": "Bad news",
+        "content" : "your order isn't paied",
+        "Checkyourbank" : "Check your bank.."
+    },
+    "details": {
+        "Availability" :"Availability:",
+        "AddToCart" : "Add To Cart",
+        "Sizeguide" : "Size guide",
+        "MoreInfo" : "More Info",
+        "Reviews" : "Reviews",
+        "Products" : "Products",
+        "Height" : "Height",
+        "Depth" : "Depth",
+        "Width" : "Width",
+        "color" : "color",
+        "style" : "style",
+        "suitability" : "suitability",
+        "ReviewTitle" : "Write Your Own Review",
+        "Rate" : "Rate",
+        "Name" : "Name",
+        "Namerequired" : "Your Name is required.",
+        "Validations" : "Don't enter numbers or special characters.",
+        "ReviewText" : "Review Text",
+        "Reviewrequired" : "Review is required.",
+        "SubmitReview" : "Submit Review"
+    },
+    "order": {
+        "Order" : "Order",
+        "CancelOrder" : "Cancel Order",
+        "Quantity" : "Quantity",
+        "Details" : "Details"
+    },
+    "orders" : {
+        "Order" : "Order",
+        "Date" : "Date",
+        "Time" : "Time",
+        "Total" : "Total",
+        "Details" : "Details",
+        "noOrders!" : "you have no Orders yet!"
+    },
+    "products" :{
+        "Sale" : "Sale",
+        "OutOfStock" : "Out Of Stock"    
+    },
+    "search" : {
+        "sets" : "Sets",
+        "items" : "Items",
+        "searchfor" : "Search for ..."
+    },
+    "shopBy":{
+        "ShopbySet" : "Shop by Set",
+        "ShopbyItem" : "Shop by Item"
     }
+   
 }

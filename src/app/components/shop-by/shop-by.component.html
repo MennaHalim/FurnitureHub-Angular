@@ -2,11 +2,10 @@
     <ul>
         <li><a (click)="selectTab('shopBySet')" [ngClass]="{ 'select': selectedTab == 'shopBySet'}"
                 routerLink='/products/categories/sets' [queryParams]="{ categoryId: categorySetsTypesData?.id}"
-                role="button">Shop by
-                Set</a></li>
+                role="button">{{'shopBy.ShopbySet' | translate}}</a></li>
         <li><a (click)="selectTab('shopByItem')" [ngClass]="{ 'select': selectedTab == 'shopByItem'}"
                 routerLink='/products/categories/items' [queryParams]="{ categoryId: categoryItemsTypesData?.id}"
-                role="button">Shop by Item</a></li>
+                role="button">{{'shopBy.ShopbyItem' | translate}}</a></li>
     </ul>
 </div>
 

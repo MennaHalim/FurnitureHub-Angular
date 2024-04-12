@@ -9,11 +9,17 @@
         "CreateAccount": "انشاء حساب جديد",
         "wishList" : "قائمة الأمنيات",
         "set" : "",
-        "item" : "تسوق بالقطعة"
+        "item" : "تسوق بالقطعة",
+        "arabic" : "العربية",
+        "english" : "الانجليزية"
 
     },
     "shoppingOptions":{
-        "shoppingOptions" : "خيارات التسوق"
+        "shoppingOptions" : "خيارات التسوق",
+        "Categories" : "القسم",
+        "Price" : "السعر",
+        "Color" : "اللون",
+        "Go" : "ابحث"
     },
     "login":{
         "RegisterTitle":"ليس لديك حساب؟",
@@ -26,6 +32,137 @@
         "RememberMe":"تذكرني",
         "agreeCheckBox": "الموافقة على تخزين ومعالجة بياناتك من قبل هذا الموقع",
         "passwordForget":"هل نسيت كلمة المرور؟",
-        "signIn":"تسجيل الدخول"
+        "signIn":"تسجيل الدخول",
+        "required":"هذا الحقل مطلوب",
+        "emailValidation": "البريد الالكتروني غير صحيح"
+    },
+    "footer":{
+        "subscribe" : "اشتراك",
+        "email" : "عنوان بريدك الالكتروني",
+        "signUp" : "انضم الينا ليصلك عروضنا العصرية",
+        "knowUs": "عن الشركة",
+        "AboutUs" : "من نحن ؟",
+        "privacy" : "سياسة الخصوصية",
+        "terms" : "الشروط والاحكام",
+        "services" : "خدامتنا",
+        "Guarantee" : "الضمان",
+        "Payment" : "طرق الدفع",
+        "Returnpolicy" : "سياسة الاسترجاع",
+        "help" : "النصائح والمساعدة",
+        "Blog" : "مدونة",
+        "FAQ" : "الاسئلة الشائعة",
+        "Store" : "فروعنا",
+        "Contacts" : "اتصل بنا",
+        "ContactUs" : "اتصل بنا",
+        "Copyright" : "حقوق النشر © 2023 Hub Furniture، Inc. جميع الحقوق محفوظة."
+    },"body":{
+        "bedroom" : "غرفة النوم",
+        "livingRoom" : "غرفة المعيشة",
+        "outdoor" : "أثاث الحدائق",
+        "diningRoom" : "غرفة السفرة",
+        "ShopNow" : "تسوق الان",
+        "shopByItem" : "تسوق حسب الصنف",
+        "Sofas" :"كنب",
+        "Beds" : "سراير",
+        "Wardrobes": "دواليب",
+        "sofa" : "كنب 3 مقاعد",
+        "U-Shape" : "كنب حرف U",
+        "Loveseat" : "كنب 2 مقعد",
+        "L-Shape" : "ركنات",
+        "NewArrivals": "الجديد من هب فرنتشر",
+        "follow" : "تابعنا على انستجرام"
+    },
+    "basket":{
+        "Product" : "المنتج",
+        "Price" : "السعر",
+        "Quantity" : "الكمية",
+        "Subtotal" : "الاجمالي",
+        "checkout" : "تأكيد الطلب",
+        "clearCart" : "افراغ سلة التسوق",
+        "alert" : " لا يوجد لديك عناصر في سلة التسوق الخاصة بك"
+    },
+    "checkout":{
+        "ShippingAddress" : "عنوان الشحن",
+        "FirstName" : "الاسم الاول",
+        "Firstnameisrequired" : "هذا الحقل مطلوب",
+        "First2characterslong" : "يجب أن يتكون الاسم من حرفين علي الاقل",
+        "Firstnameonlyletters" : "يجب أن يحتوي الاسم علي حروف فقط",
+        "LastName" : "اسم العائلة",
+        "Lastnameisrequired" : "هذا الحقل مطلوب",
+        "Last2characterslong" : "يجب أن يتكون الاسم من حرفين علي الاقل",
+        "Lastnameonlyletters" :  "يجب أن يحتوي الاسم علي حروف فقط",
+        "StreetAddress" : "عنوان الشارع",
+        "Streetaddressrequired" : "هذا الحقل مطلوب",
+        "City" : "المدينة",
+        "Cityrequired" : "هذا الحقل مطلوب",
+        "Cityonlyletters" : "يجب أن يحتوي اسم المدينة علي حروف فقط",
+        "Country" : "الدولة",
+        "SelectCountry" : "اختر دولة",
+        "Egypt" : "مصر",
+        "Qena" : "قنا",
+        "Assuit" : "أسيوط",
+        "Countryrequired" : "هذا الحقل مطلوب",
+        "ShippingMethods" : "طريقة الشحن",
+        "Deliverymethodrequired" : "هذا الحقل مطلوب",
+        "OrderSummary" : "ملخص الطلب",
+        "BasketItems" : "المنتجات في سلة التسوق",
+        "CARTSUBTOTAL" : "الاجمالي",
+        "DELIVERYCOST" : "تكلفة الشحن",
+        "ORDERCOST" : " اجمالي الطلب",
+        "PLACEORDER" : "اتمام الطلب"
+    },
+    "failOrder":{
+        "Badnews": "",
+        "content" : "للأسف لم تتم عملية الدفع",
+        "Checkyourbank" : "..تحقق من حسابك البنكي"
+    },
+     "details": {
+        "Availability" :"متوفر:",
+        "AddToCart" : "أضف الي السلة",
+        "Sizeguide" : "الأبعاد",
+        "MoreInfo" : "المواصفات",
+        "Reviews" : "التقييمات",
+        "Products" : "المنتجات",
+        "Height" : "الارتفاع",
+        "Depth" : "العمق",
+        "Width" : "العرض",
+        "color" : "اللون",
+        "style" : "ستايل",
+        "suitability" : "للاستخدام",
+        "ReviewTitle" : "اكتب تقييمك",
+        "Rate" : "التقييم",
+        "Name" : "الاسم",
+        "Namerequired" : "الاسم مطلوب",
+        "Validations" : "غير مسموح ادخال غير الحروف",
+        "ReviewText" : "التقييم",
+        "Reviewrequired" : "التقييم مطلوب",
+        "SubmitReview" : "ارسال المراجعة"
+    },
+    "order": {
+        "Order" : "الطلب",
+        "CancelOrder" : "الغاء الطلب",
+        "Quantity" : "الكمية",
+        "Details" : "التفاصيل"
+    },
+    "orders" : {
+        "Order" : "الطلب",
+        "Date" : "التاريخ",
+        "Time" : "الوقت",
+        "Total" : "الاجمالي",
+        "Details" : "التفاصيل",
+        "noOrders" : "ليس لديك طلبات بعد!"
+    },
+    "products" :{
+        "Sale" : "خصم",
+        "OutOfStock" : "نفدت الكمية"    
+    },
+    "search" : {
+        "sets" : "طقم",
+        "items" : "قطعة",
+        "searchfor" : "البحث عن ..."
+    },
+    "shopBy":{
+        "ShopbySet" : "طقم كامل",
+        "ShopbyItem" : "تسوق بالقطعة"
     }
 }

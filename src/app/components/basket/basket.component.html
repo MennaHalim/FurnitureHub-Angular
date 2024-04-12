@@ -4,10 +4,10 @@
         <table class="table table-bordered text-center">
             <thead>
                 <tr>
-                    <th class="col-6" scope="col">Product</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Subtotal</th>
+                    <th class="col-6" scope="col">{{'basket.Product' | translate}}</th>
+                    <th scope="col">{{'basket.Price' | translate}}</th>
+                    <th scope="col">{{'basket.Quantity' | translate}}</th>
+                    <th scope="col">{{'basket.Subtotal' | translate}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,14 +72,14 @@
         </table>
 
         <div class="basket-clear-checkount-container">
-            <button class="checkout-order" [routerLink]="['/checkout', basket?.basketId]">Proceed to checkout</button>
-            <button class="basket-clear" (click)="clearBasket()">Clear Shopping Cart</button>
+            <button class="checkout-order" [routerLink]="['/checkout', basket?.basketId]">{{'basket.checkout' | translate}}</button>
+            <button class="basket-clear" (click)="clearBasket()">{{'basket.clearCart' | translate}}</button>
         </div>
 
     </div>
     }@else{
     <div class="alert alert-warning alert-style" role="alert">
-        There is no items in your basket !
+        {{'basket.alert' | translate}}
     </div>
     }
 </div>

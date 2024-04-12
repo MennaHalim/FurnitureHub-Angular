@@ -1,10 +1,12 @@
-import { ApplicationModule, Component, OnInit } from '@angular/core';
+import { ApplicationModule, Component, OnDestroy, OnInit } from '@angular/core';
 import { Route, Router, RouterModule } from '@angular/router';
 import { userInfo } from '../../../Shared/Models/user';
 import { UserService } from '../../../Shared/Services/user.service';
 import { Subscription } from 'rxjs';
-import { FormsModule } from '@angular/forms';
+import { EmailValidator, FormsModule } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { validate } from 'uuid';
 
 @Component({
   selector: 'app-account-information',
@@ -13,7 +15,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './account-information.component.html',
   styleUrl: './account-information.component.css'
 })
-export class AccountInformationComponent {
+export class AccountInformationComponent implements OnInit, OnDestroy{
   firstName: string = '';
   lastName: string = '';
   newEmail: string = '';
@@ -24,11 +26,25 @@ export class AccountInformationComponent {
   errorMessage: string = '';
   editEmail: boolean = false;
   editPassword: boolean = false;
+  userServiceSubscription : Subscription | undefined;
 
   constructor(private userService: UserService,
     private router : Router) {}
+  
+
+  ngOnInit(): void {
+    this.userServiceSubscription = this.userService.getUserInfo().subscribe(data=>{
+      this.firstName = data.firstName;
+      this.lastName = data.lastName;
+    })
+  }
+
+  ngOnDestroy(): void {
+   this.userServiceSubscription?.unsubscribe()
+  }
 
   updateEmail() {
+    if (this.newEmailInvalid){
     this.validateAndUpdateUserInfo(() => {
       this.userService.changeEmail(this.newEmail, this.password).subscribe(
         response => {
@@ -38,10 +54,11 @@ export class AccountInformationComponent {
         },
         error => {
           console.error(error);
-          this.errorMessage = error.message;
+          this.errorMessage = error.error.message ;
         }
       );
     });
+  }
   }
 
   updatePassword() {
@@ -54,7 +71,7 @@ export class AccountInformationComponent {
         },
         error => {
           console.error(error);
-          this.errorMessage = error.message;
+          this.errorMessage = error.error.message;
         }
       );
     });
@@ -72,16 +89,54 @@ export class AccountInformationComponent {
           },
           error => {
             console.error(error);
-            this.errorMessage = error.message;
+            this.errorMessage = error.error.message;
           }
         );
       },
       error => {
         console.error(error);
-        this.errorMessage = error.message;
+        this.errorMessage = error.error.message;
         this.password = '';
 
       }
     );
+  }
+
+
+
+  firstNameTouched: boolean = false;
+  lastNameTouched: boolean = false;
+  newEmailTouched: boolean = false;
+  passwordTouched: boolean = false;
+  currentPasswordTouched: boolean = false;
+  newPasswordTouched: boolean = false;
+  confirmPasswordTouched: boolean = false;
+
+  get firstNameInvalid(): boolean {
+    return !this.firstName && this.firstNameTouched;
+  }
+
+  get lastNameInvalid(): boolean {
+    return !this.lastName && this.lastNameTouched;
+  }
+
+  get newEmailInvalid(): boolean {
+    return !this.newEmail && this.newEmailTouched;
+  }
+
+  get passwordInvalid(): boolean {
+    return !this.password && this.passwordTouched;
+  }
+
+  get currentPasswordInvalid(): boolean {
+    return !this.currentPassword && this.currentPasswordTouched;
+  }
+
+  get newPasswordInvalid(): boolean {
+    return !this.newPassword && this.newPasswordTouched;
+  }
+
+  get confirmPasswordInvalid(): boolean {
+    return this.confirmPassword !== this.newPassword && this.confirmPasswordTouched;
   }
 }

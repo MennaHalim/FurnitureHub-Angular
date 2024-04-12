@@ -3,75 +3,73 @@
     <!-- Form 1: Shipping Address -->
     <div class="form-container Shipping-Address col-4 ">
         <form [formGroup]="shippingAddressForm">
-            <h2>Shipping Address</h2>
+            <h2>{{'checkout.ShippingAddress' | translate}}</h2>
             <hr>
 
-            <label for="firstName">First Name <span style="color: red;">*</span></label>
+            <label for="firstName">{{'checkout.FirstName' | translate}} <span style="color: red;">*</span></label>
             <input type="text" id="firstName" formControlName="firstName">
             @if(shippingAddressForm.get('firstName')?.invalid && shippingAddressForm.get('firstName')?.touched){
             @if(shippingAddressForm.get('firstName')?.hasError('required')){
-            <div style="color: red;">First name is required.</div>
+            <div style="color: red;">{{'checkout.Firstnameisrequired' | translate}}.</div>
             }
             @else if (shippingAddressForm.get('firstName')?.hasError('minlength')) {
-            <div style="color: red;">First name must be at least 2 characters long.</div>
+            <div style="color: red;">{{'checkout.First2characterslong' | translate}}</div>
             }
             @else if (shippingAddressForm.get('firstName')?.hasError('pattern')) {
-            <div style="color: red;">First name must contain only
-                letters.</div>
+            <div style="color: red;">{{'checkout.Firstnameonlyletters' | translate}}.</div>
             }
             }
 
 
-            <label for="lastName">Last Name <span style="color: red;">*</span></label>
+            <label for="lastName">{{'checkout.LastName' | translate}} <span style="color: red;">*</span></label>
             <input type="text" id="lastName" formControlName="lastName">
             @if(shippingAddressForm.get('lastName')?.invalid && shippingAddressForm.get('lastName')?.touched){
             @if(shippingAddressForm.get('lastName')?.hasError('required')){
-            <div style="color: red;">Last name is required.</div>
+            <div style="color: red;">{{'checkout.Lastnameisrequired' | translate}}</div>
             }
             @else if (shippingAddressForm.get('lastName')?.hasError('minlength')) {
-            <div style="color: red;">Last name must be at least 2 characters long.</div>
+            <div style="color: red;">{{'checkout.Last2characterslong' | translate}}</div>
             }
             @else if (shippingAddressForm.get('lastName')?.hasError('pattern')) {
-            <div style="color: red;">Last name must contain only
-                letters.</div>
+            <div style="color: red;">{{'checkout.Lastnameonlyletters' | translate}}</div>
             }
             }
 
 
 
-            <label for="street">Street Address <span style="color: red;">*</span></label>
+            <label for="street">{{'checkout.StreetAddress' | translate}}<span style="color: red;">*</span></label>
             <input type="text" id="street" formControlName="street">
             @if(shippingAddressForm.get('street')?.invalid && shippingAddressForm.get('street')?.touched){
             @if(shippingAddressForm.get('street')?.hasError('required')){
-            <div style="color: red;">Street address is required.</div>
+            <div style="color: red;">{{'checkout.Streetaddressrequired' | translate}}</div>
             }
             }
 
 
-            <label for="city">City <span style="color: red;">*</span></label>
+            <label for="city">{{'checkout.City' | translate}} <span style="color: red;">*</span></label>
             <input type="text" id="city" formControlName="city">
             @if(shippingAddressForm.get('city')?.invalid && shippingAddressForm.get('city')?.touched){
             @if(shippingAddressForm.get('city')?.hasError('required')){
-            <div style="color: red;">City is required.</div>
+            <div style="color: red;">{{'checkout.Cityrequired' | translate}}</div>
             }
             @else if(shippingAddressForm.get('city')?.hasError('pattern')){
-            <div style="color: red;">City must contain only letters.</div>
+            <div style="color: red;">{{'checkout.Cityonlyletters' | translate}}</div>
             }
             }
 
 
 
 
-            <label for="country">Country <span style="color: red;">*</span></label>
+            <label for="country">{{'checkout.Country' | translate}} <span style="color: red;">*</span></label>
             <select id="country" formControlName="country">
-                <option value="">Select Country</option>
-                <option value="Egypt">Egypt</option>
-                <option value="Qena">Qena</option>
-                <option value="Assuit">Assuit</option>
+                <option value="">{{'checkout.SelectCountry' | translate}}</option>
+                <option value="Egypt">{{'checkout.Egypt' | translate}}</option>
+                <option value="Qena">{{'checkout.Qena' | translate}}</option>
+                <option value="Assuit">{{'checkout.Assuit' | translate}}</option>
             </select>
             @if(shippingAddressForm.get('country')?.invalid && shippingAddressForm.get('country')?.touched){
             @if(shippingAddressForm.get('country')?.hasError('required')){
-            <div style="color: red;">Country is required.</div>
+            <div style="color: red;">{{'checkout.Countryrequired' | translate}}</div>
             }
             }
         </form>
@@ -81,7 +79,7 @@
     <div class="col-4 bg-light p-3 border Shipping-Methods">
         <div class="form-container ">
             <form [formGroup]="deliveryMethodsForm">
-                <h2>Shipping Methods</h2>
+                <h2>{{'checkout.ShippingMethods' | translate}}</h2>
                 <hr>
                 <div class="radio-container">
                     @for (deliveryMethod of deliveryMethods; track $index) {
@@ -103,7 +101,7 @@
                 @if(deliveryMethodsForm.get('shipping_method')?.invalid &&
                 deliveryMethodsForm.get('shipping_method')?.touched){
                 @if(deliveryMethodsForm.get('shipping_method')?.hasError('required')){
-                <div style="color: red;">Delivery method is required.</div>
+                <div style="color: red;">{{'checkout.Deliverymethodrequired' | translate}}</div>
                 }
                 }
             </form>
@@ -112,11 +110,11 @@
 
     <!-- Form 4: Order Summary -->
     <div class="form-container order-summary col-4">
-        <h2>Order Summary</h2>
+        <h2>{{'checkout.OrderSummary'| translate}}</h2>
         <hr>
 
         <section class="basketItems-section">
-            <h3 style="color: #1A2854; font-weight: 500;">Basket Items</h3>
+            <h3 style="color: #1A2854; font-weight: 500;">{{'checkout.BasketItems' | translate}}</h3>
             <hr>
             <div class="cart-items-container">
 
@@ -144,22 +142,22 @@
         <hr>
 
         <section class="basket-subTotal">
-            <h3 style="color: #1A2854; font-weight: 500;">CART SUBTOTAL</h3>
+            <h3 style="color: #1A2854; font-weight: 500;">{{'checkout.CARTSUBTOTAL' | translate}}</h3>
             <p>EGP {{basketSubTotal | number}}</p>
         </section>
         <hr>
         <section class="basket-deliveryCost">
-            <h3 style="color: #1A2854; font-weight: 500;">DELIVERY COST</h3>
+            <h3 style="color: #1A2854; font-weight: 500;">{{'checkout.DELIVERYCOST' | translate}}</h3>
             <p>EGP {{basket?.shippingPrice}}</p>
         </section>
         <hr>
         <section class="basket-OrderCost">
-            <h3 style="color: #1A2854; font-weight: 500;">ORDER COST</h3>
+            <h3 style="color: #1A2854; font-weight: 500;">{{'checkout.ORDERCOST' | translate}}</h3>
             <p>EGP {{basketSubTotal + shippingCost | number}}</p>
         </section>
 
         <div class="complete-order-button-container">
-            <button type="button" class="place-older" (click)="validateForms()">PLACE ORDER</button>
+            <button type="button" class="place-older" (click)="validateForms()">{{'checkout.PLACEORDER' | translate}}</button>
         </div>
     </div>
 </div>

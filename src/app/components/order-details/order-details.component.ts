@@ -4,11 +4,13 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { OrderService } from '../../Shared/Services/order.service';
 import { IOrder } from '../../Shared/Models/order';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-order-details',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, TranslateModule],
   templateUrl: './order-details.component.html',
   styleUrl: './order-details.component.css'
 })
@@ -22,10 +24,13 @@ export class OrderDetailsComponent implements OnInit {
   isreadyForShippingWidth! :boolean
   isShippingWidth! :boolean
   isDeliveredWidth! :boolean
+  lang: string = 'en';
+  langChangeSubscription: Subscription | undefined
 
   constructor(private _HttpClient: HttpClient,
     private _ActivatedRoute: ActivatedRoute,
     private _OrderService: OrderService,
+    private translate: TranslateService,
     private router: Router) { }
 
 
@@ -57,6 +62,25 @@ export class OrderDetailsComponent implements OnInit {
         
       }
     })
+    this.lang = this.detectLanguage() || 'en';
+    document.documentElement.lang = this.lang;
+
+    this.translate.use(this.lang);
+
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
+      this.lang = event.lang;
+    });
+
+  }
+
+  private detectLanguage() {
+    const lang = localStorage.getItem('lang');
+    if (lang == null) {
+      localStorage.setItem("lang", 'en');
+      lang == 'en';
+    }
+
+    return lang;
   }
 
   cancelOrder(id:number){

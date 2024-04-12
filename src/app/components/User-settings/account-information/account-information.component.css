@@ -94,3 +94,12 @@ button{
 input{
   margin-bottom: 1rem;
 }
+
+.bold-label {
+  font-weight:550;
+}
+
+.error{
+  color: rgb(211, 20, 20);
+  font-size: smaller;
+}

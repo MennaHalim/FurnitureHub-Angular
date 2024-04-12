@@ -9,7 +9,7 @@
             <img src="{{item.productPictures[0]}}" class="card-img-top p-0" alt="product image">
 
             @if(item.discount !== 0){
-            <span class="sale">Sale</span>
+            <span class="sale">{{'products.Sale' | translate}}</span>
             }
 
             <div routerLink="/{{item.type}}/details/{{item.id}}" class="options-on-img-container">
@@ -46,7 +46,7 @@
             </svg>
         </div>
         }@else {
-        <span class="badge text-bg-warning out-of-stock-container">Out Of Stock</span>
+        <span class="badge text-bg-warning out-of-stock-container">{{'products.OutOfStock' | translate}}</span>
         }
     </div>
     }

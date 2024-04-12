@@ -9,11 +9,12 @@ import { UserAuthService } from '../../Shared/Services/user-auth.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ProductsTypes } from '../../Shared/Enums/products-types';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [RouterLink, NgxPaginationModule, CommonModule],
+  imports: [RouterLink, NgxPaginationModule, CommonModule, TranslateModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -34,19 +35,41 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private categoryItemsSubscription: Subscription | undefined;
   private routeSubscription: Subscription | undefined;
   @Output() priceRangeChange: EventEmitter<{ minPrice: number, maxPrice: number }> = new EventEmitter();
+  lang: string = 'en';
+  langChangeSubscription: Subscription | undefined
 
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private ProductService: ProductService,
     private _BasketService: BasketService,
-    private _UserAuthService: UserAuthService) { }
+    private _UserAuthService: UserAuthService,
+    private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.applyPagination(1);
     // ////////////////////
     // this._UserAuthService.login('mostafa.ahmed@gmail.com', 'mostafaAhmed123#').subscribe()
     // ////////////////////
+    this.lang = this.detectLanguage() || 'en';
+    document.documentElement.lang = this.lang;
+
+    this.translate.use(this.lang);
+
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
+      this.lang = event.lang;
+    });
+
+  }
+
+  private detectLanguage() {
+    const lang = localStorage.getItem('lang');
+    if (lang == null) {
+      localStorage.setItem("lang", 'en');
+      lang == 'en';
+    }
+
+    return lang;
   }
 
   applyPagination(pageNum:number){

@@ -56,8 +56,7 @@
              <div><label for="street">Street Address*</label></div>
               <input type="text" id="street" name="street" formControlName="street">
               <div *ngIf="contactForm.get('street')?.errors?.['required'] && contactForm.get('street')?.touched" class="validation-error text-danger">
-                Street address is required.
-              
+                Street address is required.        
           </div>
           <div>
            

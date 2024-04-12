@@ -10,15 +10,15 @@
         <span class="dropdown">
             {{'header.egypt' | translate}}
             <div class="dropdown-content">
-                <a href="#">{{'header.oman' | translate}}</a>
+                <a href="#"></a>
             </div>
         </span>
         <span class="text-spacing"></span>
         <span class="dropdown">
-            {{lang == 'en' ? 'English' : 'Arabic'}}
+            {{ 'header.' + (lang === 'en' ? 'english' : 'arabic') | translate }}
             <div class="dropdown-content">
-                <span type="button" (click)="toggleLanguage('ar')" [style.display]="lang == 'ar' ? 'none' : 'block'"> Arabic </span>
-                <span type="button" (click)="toggleLanguage('en')" [style.display]="lang == 'en' ? 'none' : 'block'"> English </span>
+                <span type="button" (click)="toggleLanguage('ar')" [style.display]="lang == 'ar' ? 'none' : 'block'"> {{'header.arabic' | translate}} </span>
+                <span type="button" (click)="toggleLanguage('en')" [style.display]="lang == 'en' ? 'none' : 'block'"> {{'header.english' | translate}} </span>
             </div>
         </span>
     </div>

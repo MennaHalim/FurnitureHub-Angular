@@ -17,7 +17,7 @@
                 </div>
                 <!-- category section  -->
                 <div class="title-container" (click)="toggleCategories()">
-                    <span class="title">Categories
+                    <span class="title">{{'shoppingOptions.Categories' | translate}}
                         <mat-icon class="mat-icon-rtl-mirror">
                             {{isCategoryExpanded ? 'expand_less' : 'expand_more'}}
                         </mat-icon>
@@ -26,10 +26,10 @@
                 <div class="filter-options" [style.display]="isCategoryExpanded ? 'block' : 'none'">
                     <div [style.display]="categoryOptionsDisplay ? 'block' : 'none'">
                         <div class="list-item">
-                            <span type="button" (click)="selectOption('sets')">Shop by Set</span>
+                            <span type="button" (click)="selectOption('sets')">{{'shopBy.ShopbySet' | translate}}</span>
                         </div>
                         <div class="list-item">
-                            <span type="button" (click)="selectOption('items')">Shop by Item</span>
+                            <span type="button" (click)="selectOption('items')">{{'shopBy.ShopbyItem' | translate}}</span>
                         </div>
                     </div>
 
@@ -48,7 +48,7 @@
                 </div>
                 <!-- price section  -->
                 <div class="title-container filter-section" (click)="togglePrice()">
-                    <span class="title">Price
+                    <span class="title">{{'shoppingOptions.Price' | translate}}
                         <mat-icon class="mat-icon-rtl-mirror">
                             {{isPriceExpanded ? 'expand_less' : 'expand_more'}}
                         </mat-icon>
@@ -65,12 +65,12 @@
                             <input [(ngModel)]="startValue" matSliderStartThumb>
                             <input [(ngModel)]="endValue" matSliderEndThumb>
                         </mat-slider>
-                        <button class=" go-badge translate-middle badge rounded-pill" (click)="selectPrice()">Go</button>
+                        <button class=" go-badge translate-middle badge rounded-pill" (click)="selectPrice()">{{'shoppingOptions.Go' | translate}}</button>
                     </div>
                 </div>
                 <!-- color section  -->
                 <div class="title-container filter-section" (click)="toggleColor()">
-                    <span class="title">Color
+                    <span class="title">{{'shoppingOptions.Color' | translate}}
                         <mat-icon class="mat-icon-rtl-mirror">
                             {{isColorExpanded ? 'expand_less' : 'expand_more'}}
                         </mat-icon>

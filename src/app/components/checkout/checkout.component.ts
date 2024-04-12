@@ -7,10 +7,12 @@ import { IDeliverMethod } from '../../Shared/Models/order';
 import { Basket, IBasketItem } from '../../Shared/Models/basket';
 import { NumberPadPipe } from '../../Shared/Pipes/number-pad.pipe';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [ReactiveFormsModule, NumberPadPipe, CommonModule],
+  imports: [ReactiveFormsModule, NumberPadPipe, CommonModule, TranslateModule],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
@@ -20,13 +22,16 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private _ActivatedRoute: ActivatedRoute,
     private _BasketService: BasketService,
-    private _DeliveryMethodService: DeliveryMethodService) { }
+    private _DeliveryMethodService: DeliveryMethodService,
+    private translate: TranslateService) { }
 
   cartId: string | null = '';
   basket!: Basket | null;
   deliveryMethods!: IDeliverMethod[];
   basketSubTotal: number = 0;
   shippingCost: number = 0;
+  lang: string = 'en';
+  langChangeSubscription: Subscription | undefined
 
 
   ngOnInit(): void {
@@ -52,9 +57,26 @@ export class CheckoutComponent implements OnInit {
       }
     });
 
+    this.lang = this.detectLanguage() || 'en';
+    document.documentElement.lang = this.lang;
+
+    this.translate.use(this.lang);
+
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
+      this.lang = event.lang;
+    });
 
   }
 
+  private detectLanguage() {
+    const lang = localStorage.getItem('lang');
+    if (lang == null) {
+      localStorage.setItem("lang", 'en');
+      lang == 'en';
+    }
+
+    return lang;
+  }
 
 
 

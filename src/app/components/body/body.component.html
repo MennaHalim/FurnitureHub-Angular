@@ -8,7 +8,7 @@
             <img src="assets/Images/body/bedroom.jpg" class="card-img-top" alt="...">
             <button class="btn-custom position-absolute bottom-0 start-50 translate-middle-x mb-4"
               style="padding: 10px;" routerLink="/products/categories/sets"
-              [queryParams]="{ categoryId: 2 }">Bedroom</button>
+              [queryParams]="{ categoryId: 2 }">{{'body.bedroom' | translate}}</button>
           </div>
         </div>
       </div>
@@ -18,7 +18,7 @@
             <img src="assets/Images/body/livingroom.jpg" class="card-img-top" alt="...">
             <button class="btn btn-custom position-absolute bottom-0 start-50 translate-middle-x mb-4"
               style="padding: 10px;"routerLink="/products/categories/sets"
-              [queryParams]="{ categoryId: 1 }">Living Room</button>
+              [queryParams]="{ categoryId: 1 }">{{'body.livingRoom' | translate}}</button>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
             <img src="assets/Images/body/outdoor.jpg" class="card-img-top" alt="...">
             <button class="btn btn-custom position-absolute bottom-0 start-50 translate-middle-x mb-4"
               style="padding: 10px;"routerLink="/products/categories/sets"
-              [queryParams]="{ categoryId: 4 }">Outdoor</button>
+              [queryParams]="{ categoryId: 4 }">{{'body.outdoor' | translate}}</button>
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@
             <img src="assets/Images/body/diningroom.jpg" class="card-img-top" alt="...">
             <button class="btn btn-custom position-absolute bottom-0 start-50 translate-middle-x mb-4"
               style="padding: 10px;" routerLink="/products/categories/sets"
-              [queryParams]="{ categoryId: 3 }">Dining Room</button>
+              [queryParams]="{ categoryId: 3 }">{{'body.diningRoom' | translate}}</button>
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
             <img src="assets/Images/body/hammock_1_.jpg" class="card-img-top" alt="...">
             <button class="btn btn-custom position-absolute bottom-50 start-50 translate-middle-x mb-4"
               style="padding: 10px;" routerLink="/products/categories/sets"
-              [queryParams]="{ search: 'hammock' }">Shop Now</button>
+              [queryParams]="{ search: 'hammock' }">{{'body.ShopNow' | translate}}</button>
           </div>
         </div>
       </div>
@@ -66,7 +66,7 @@
             <img src="assets/Images/body/beanbag.jpg" class="card-img-top" alt="...">
             <button class="btn btn-custom position-absolute bottom-50 start-50 translate-middle-x mb-4"
               style="padding: 10px;" routerLink="/products/categories/sets"
-              [queryParams]="{ search: 'beanbag' }">Shop Now</button>
+              [queryParams]="{ search: 'beanbag' }">{{'body.ShopNow' | translate}}</button>
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@
             <img src="assets/Images/body/reclinerchair.jpg" class="card-img-top" alt="...">
             <button class="btn btn-custom position-absolute bottom-50 start-50 translate-middle-x mb-4"
               style="padding: 10px;" routerLink="/products/categories/sets"
-              [queryParams]="{ search: 'reclinerchair' }">Shop Now</button>
+              [queryParams]="{ search: 'reclinerchair' }">{{'body.ShopNow' | translate}}</button>
           </div>
         </div>
       </div>
@@ -87,16 +87,16 @@
 
 
 <div class="center-text">
-  Shop by item
+ {{'body.shopByItem' | translate}}
 </div>
 
 <div class="button-container">
   <a href="#" class="button" routerLink="/products/categories/sets"
-  [queryParams]="{ search: 'sofa' }">Sofas</a>
+  [queryParams]="{ search: 'sofa' }">{{'body.Sofas' | translate}}</a>
   <a href="#" class="button" routerLink="/products/categories/sets"
-  [queryParams]="{ search: 'bed' }">Beds</a>
+  [queryParams]="{ search: 'bed' }">{{'body.Beds' | translate}}</a>
   <a href="#" class="button" routerLink="/products/categories/sets"
-  [queryParams]="{ search: 'wardrobes' }">Wardrobes</a>
+  [queryParams]="{ search: 'wardrobes' }">{{'body.Wardrobes' | translate}}</a>
 </div>
 
 
@@ -105,25 +105,25 @@
     <a href="#">
       <img src="assets/Images/body/Sofa3seaters.jpg" alt="">
     </a>
-    <div class="caption">Sofa 3 seaters</div>
+    <div class="caption">{{'body.sofa' | translate}}</div>
   </div>
   <div class="image-wrapper">
     <a href="#">
       <img src="assets/Images/body/U-shape.png" alt="">
     </a>
-    <div class="caption">U-shape</div>
+    <div class="caption">{{'body.U-Shape' | translate}}</div>
   </div>
   <div class="image-wrapper">
     <a href="#">
       <img src="assets/Images/body/Loveseat.png" alt="">
     </a>
-    <div class="caption">LoveSeat</div>
+    <div class="caption">{{'body.Loveseat' | translate}}</div>
   </div>
   <div class="image-wrapper">
     <a href="#">
       <img src="assets/Images/body/L-shape.jpg" alt="">
     </a>
-    <div class="caption">L-shape</div>
+    <div class="caption">{{'body.L-Shape' | translate}}</div>
   </div>
 </div>
 
@@ -135,14 +135,14 @@
       <div class="image-wrapper">
         <img src="assets/Images/body/shoe_racks.jpg" class="centered-image img-responsive" alt="Image 1">
         <button class="image-button" routerLink="/products/categories/sets"
-        [queryParams]="{ search: 'tv' }">Shop Now</button>
+        [queryParams]="{ search: 'tv' }">{{'body.ShopNow' | translate}}</button>
       </div>
     </div>
     <div class="col">
       <div class="image-wrapper">
         <img src="assets/Images/body/tv.jpg" class="centered-image img-responsive" alt="Image 1">
         <button class="image-button" routerLink="/products/categories/sets"
-        [queryParams]="{ search: 'racks' }">Shop Now</button>
+        [queryParams]="{ search: 'racks' }">{{'body.ShopNow' | translate}}</button>
       </div>
     </div>
   </div>
@@ -152,11 +152,11 @@
 
 
 <div class="center-text">
-  New Arrivals
+  {{'body.NewArrivals' | translate}}
 </div>
 
 
 
 <div class="center-text">
-  Follow us on Instagram
+  {{'body.follow' | translate}}
 </div>

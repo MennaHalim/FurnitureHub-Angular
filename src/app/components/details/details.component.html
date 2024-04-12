@@ -5,7 +5,7 @@
 
     <div class="right-details-container col-6">
         <p class="product-name">{{productDetails?.name}}</p>
-        <p class="product-availability">Availability: <span class="availability-text"
+        <p class="product-availability">{{'details.Availability' | translate}} <span class="availability-text"
                 [ngClass]="{'available': isAvailable()}">{{productDetails?.availability! |
                 capitalizeSpace}}</span>
         </p>
@@ -24,7 +24,7 @@
         <div class="cart-options">
             @if(productDetails?.availability == 'InStock'){
             <div class="add-to-cart-option-container">
-                <button (click)="addProductToCart(productDetails)">Add To Cart</button>
+                <button (click)="addProductToCart(productDetails)">{{'details.AddToCart' | translate}}</button>
             </div>
             }
 
@@ -39,10 +39,9 @@
         </div>
 
         <div class="product-info-container">
-            <button [class.selected]="selectedTab === 'size-guide'" (click)="selectTab('size-guide')">Size
-                guide</button>
-            <button [class.selected]="selectedTab === 'more-info'" (click)="selectTab('more-info')">More Info</button>
-            <button [class.selected]="selectedTab === 'reviews'" (click)="selectTab('reviews')">Reviews</button>
+            <button [class.selected]="selectedTab === 'size-guide'" (click)="selectTab('size-guide')">{{'details.Sizeguide' | translate}}</button>
+            <button [class.selected]="selectedTab === 'more-info'" (click)="selectTab('more-info')">{{'details.MoreInfo' | translate}}</button>
+            <button [class.selected]="selectedTab === 'reviews'" (click)="selectTab('reviews')">{{'details.Reviews' | translate}}</button>
         </div>
 
         <!-- Your content -->
@@ -53,10 +52,10 @@
                 <table class="table table-bordered w-50 text-center table-custome-guide">
                     <thead>
                         <tr class="table-head">
-                            <th>Products</th>
-                            <th>Height</th>
-                            <th>Depth</th>
-                            <th>Width</th>
+                            <th>{{'details.Products' | translate}}</th>
+                            <th>{{'details.Height' | translate}}</th>
+                            <th>{{'details.Depth' | translate}}</th>
+                            <th>{{'details.Width' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,25 +75,25 @@
                 <table class="table table-bordered w-50 text-center table-custome-info">
                     <tbody>
                         <tr>
-                            <th class="col-3">color</th>
+                            <th class="col-3">{{'details.color' | translate}}</th>
                             <td class="text-start">{{productDetails?.color}}</td>
                         </tr>
                         <tr>
-                            <th class="col-3">style</th>
+                            <th class="col-3">{{'details.style' | translate}}</th>
                             <td class="text-start">{{productDetails?.style}}</td>
                         </tr>
                         <tr>
-                            <th class="col-3">suitability</th>
+                            <th class="col-3">{{'details.suitability' | translate}}</th>
                             <td class="text-start">{{productDetails?.suitability}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="reviews" [class.show]="selectedTab === 'reviews'">
-                <h2>Write Your Own Review</h2>
+                <h2>{{'details.ReviewTitle' | translate}}</h2>
                 <form [formGroup]="reviewForm" class="review-form" (ngSubmit)="submitReview()">
                     <div class="rating mb-3">
-                        <h3 class="mb-0">Rate</h3>
+                        <h3 class="mb-0">{{'details.Rate' | translate}}</h3>
                         <input type="number" formControlName="rating" hidden>
                         <i class='bx bx-star star' (click)="setRatingValue(1)" [style.--i]="'0'"></i>
                         <i class='bx bx-star star' (click)="setRatingValue(2)" [style.--i]="'1'"></i>
@@ -103,29 +102,29 @@
                         <i class='bx bx-star star' (click)="setRatingValue(5)" [style.--i]="'3'"></i>
                     </div>
                     <div class="form-group">
-                        <label for="name">Name <span style="color: red;">*</span></label>
+                        <label for="name">{{'details.Name' | translate}} <span style="color: red;">*</span></label>
                         <input type="text" id="name" formControlName="name" required>
                         @if(reviewForm.get('name')?.invalid && reviewForm.get('name')?.touched){
                         @if(reviewForm.get('name')?.hasError('required')){
-                        <div style="color: red;">Your Name is required.</div>
+                        <div style="color: red;">{{'details.Namerequired' | translate}}</div>
                         }@else if(reviewForm.get('name')?.hasError('pattern')){
-                        <div style="color: red;">Don't enter numbers or special characters.</div>
+                        <div style="color: red;">{{'details.Validations' | translate}}</div>
                         }
                         }
                     </div>
                     <div class="form-group mt-2">
-                        <label for="reviewText">Review Text <span style="color: red;">*</span></label>
+                        <label for="reviewText">{{'details.ReviewText' | translate}} <span style="color: red;">*</span></label>
                         <textarea cols="30" rows="5" placeholder="Your Opinion.." id="reviewText"
                             formControlName="reviewText" required></textarea>
                         @if(reviewForm.get('reviewText')?.invalid && reviewForm.get('reviewText')?.touched){
                         @if(reviewForm.get('reviewText')?.hasError('required')){
-                        <div style="color: red;">Review is required.</div>
+                        <div style="color: red;">{{'details.Reviewrequired' | translate}}</div>
                         }@else if(reviewForm.get('reviewText')?.hasError('pattern')){
-                        <div style="color: red;">Don't enter numbers or special characters.</div>
+                        <div style="color: red;">{{'details.Validations' | translate}}</div>
                         }
                         }
                     </div>
-                    <button type="submit" class="submit-review">Submit Review</button>
+                    <button type="submit" class="submit-review">{{'details.SubmitReview' | translate}}</button>
                 </form>
             </div>
         </div>

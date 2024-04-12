@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="account-information.component.css">
 <div class="container">
-<div class="sidebar">
+  <div class="sidebar">
     <div class="account-navigation ">
       <h2><span>Account</span> Navigation</h2>
       <ul>
@@ -8,7 +8,7 @@
         <li><a [routerLink]="['/orders']" class="my-order">My Orders</a></li>
         <li><a [routerLink]="['/wishList']" class="my-wish-list">My Wish List</a></li>
         <li><a [routerLink]="['/address']">Address Book</a></li>
-        <li><a [routerLink]="['/info']" class="Account-Information" >Account Information</a></li>
+        <li><a [routerLink]="['/info']" class="Account-Information">Account Information</a></li>
         <li><a [routerLink]="['/gdpr']" class="GDPR">GDPR</a></li>
         <li><a [routerLink]="['/revimyReviewsew']">My Product Reviews</a></li>
         <li><a [routerLink]="['/mewsLetter']" class="Newsletter-Subscriptions">Newsletter Subscriptions</a></li>
@@ -24,57 +24,90 @@
       <h2>ACCOUNT INFORMATION</h2>
       <div class="row">
         <div class="form-group">
+
+          <div class="alert alert-danger" role="alert" [style.display]="errorMessage.length == 0 ? 'none' : 'block'">
+            {{errorMessage}}
+          </div>  
+
           <label for="firstName">First Name</label>
-          <input type="text" class="form-control" [(ngModel)]="firstName"   name="firstName" id="firstName" placeholder="First name" aria-label="First name">
+          <input type="text" class="form-control" [(ngModel)]="firstName" name="firstName" id="firstName"
+            placeholder="First name" aria-label="First name" required
+            [ngClass]="{ 'is-invalid': firstNameInvalid && firstNameTouched }"
+            (blur)="firstNameTouched = true">
+          <div class="invalid-feedback" *ngIf="firstNameInvalid && firstNameTouched">First name is required</div>
         </div>
         <div class="form-group">
           <label for="lastName">Last Name</label>
-          <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName"  id="lastName" placeholder="Last name" aria-label="Last name">
+          <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName" id="lastName"
+            placeholder="Last name" aria-label="Last name" required
+            [ngClass]="{ 'is-invalid': lastNameInvalid && lastNameTouched }"
+            (blur)="lastNameTouched = true">
+          <div class="invalid-feedback" *ngIf="lastNameInvalid && lastNameTouched">Last name is required</div>
         </div>
       </div>
-
-      <div class="form-group">
-        <input type="checkbox" [(ngModel)]="editEmail">Change Email
+  
+      <div class="form-group bold-label">
+        <input type="checkbox" [(ngModel)]="editEmail"> Change Email
       </div>
       <div *ngIf="editEmail">
-        <form (ngSubmit)="updateEmail()">
+        <form (ngSubmit)="updateEmail()" emailForm="ngForm">
           <div class="form-group">
             <label for="newEmail">New Email</label>
-            <input type="email" class="form-control" [(ngModel)]="newEmail" name="newEmail"  id="newEmail" placeholder="New Email" aria-label="New Email">
+            <input type="email" class="form-control" [(ngModel)]="newEmail" name="newEmail" id="newEmail" email
+              placeholder="New Email" aria-label="New Email" required
+              [ngClass]="{ 'is-invalid': newEmailInvalid && newEmailTouched }"
+              (blur)="newEmailTouched = true" #emailField="ngModel">
+            <div class="invalid-feedback" *ngIf="newEmailInvalid && newEmailTouched">New email is required</div>
+            <div  *ngIf="emailField.errors?.['email']" class="error">Invalid Email</div>
           </div>
+          </form>
+          <form (ngSubmit)="updatePassword()" passwordForm="ngForm">
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" [(ngModel)]="password" name="password" id="password" placeholder="Password" aria-label="Password">
+            <input type="password" class="form-control" [(ngModel)]="password" name="password" id="password"
+              placeholder="Password" aria-label="Password" required
+              [ngClass]="{ 'is-invalid': passwordInvalid && passwordTouched }"
+              (blur)="passwordTouched = true">
+            <div class="invalid-feedback" *ngIf="passwordInvalid && passwordTouched">Password is required</div>
           </div>
           <button type="submit" class="btn btn-primary">Save Email</button>
         </form>
       </div>
-
-      <div class="form-group">
-        <input type="checkbox" [(ngModel)]="editPassword">Change Password
+  
+      <div class="form-group bold-label">
+        <input type="checkbox" [(ngModel)]="editPassword"> Change Password
       </div>
       <div *ngIf="editPassword">
         <form (ngSubmit)="updatePassword()">
           <div class="form-group">
             <label for="currentPassword">Current Password</label>
-            <input type="password" class="form-control" [(ngModel)]="currentPassword"  name="currentPassword" id="currentPassword" placeholder="Current Password" aria-label="Current Password">
+            <input type="password" class="form-control" [(ngModel)]="currentPassword" name="currentPassword"
+              id="currentPassword" placeholder="Current Password" aria-label="Current Password" required
+              [ngClass]="{ 'is-invalid': currentPasswordInvalid && currentPasswordTouched }"
+              (blur)="currentPasswordTouched = true">
+            <div class="invalid-feedback" *ngIf="currentPasswordInvalid && currentPasswordTouched">Current password is required</div>
           </div>
           <div class="form-group">
             <label for="newPassword">New Password</label>
-            <input type="password" class="form-control" [(ngModel)]="newPassword" name="newPassword" id="newPassword" placeholder="New Password" aria-label="New Password">
+            <input type="password" class="form-control" [(ngModel)]="newPassword" name="newPassword" id="newPassword"
+              placeholder="New Password" aria-label="New Password" required
+              [ngClass]="{ 'is-invalid': newPasswordInvalid && newPasswordTouched }"
+              (blur)="newPasswordTouched = true">
+            <div class="invalid-feedback" *ngIf="newPasswordInvalid && newPasswordTouched">New password is required</div>
           </div>
           <div class="form-group">
             <label for="confirmPassword">Confirm Password</label>
-            <input type="password" class="form-control" [(ngModel)]="confirmPassword"  name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" aria-label="Confirm Password">
+            <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword"
+              id="confirmPassword" placeholder="Confirm Password" aria-label="Confirm Password" required
+              [ngClass]="{ 'is-invalid': confirmPasswordInvalid && confirmPasswordTouched }"
+              (blur)="confirmPasswordTouched = true">
+            <div class="invalid-feedback" *ngIf="confirmPasswordInvalid && confirmPasswordTouched">Passwords do not match</div>
           </div>
           <button type="submit" class="btn btn-primary">Save Password</button>
         </form>
       </div>
-
-    </div>
-    <div class="button-container">  
-      <button class="btn btn-primary">Save</button>
-      <button [routerLink]="['/home']" class="btn btn-secondary">Back</button>
     </div>
   </div>
+  
+
 </div>
