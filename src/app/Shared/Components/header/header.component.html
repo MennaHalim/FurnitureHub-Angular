@@ -51,7 +51,7 @@
                         <ul class="dropdown-submenu">
                             <!-- Sets -->
                             @for (set of item.categorySetsTypes; track $index) {
-                            <li><a href="#">{{set.name}}</a></li>
+                            <li><a [routerLink]="['/products/categories/sets', set.id]" [queryParams]="{ categoryId: item.id }">{{set.name}}</a></li>
                             }
                         </ul>
                     </li>
@@ -64,8 +64,8 @@
                             'header.item' | translate
                         }}</a>
                         <ul class="dropdown-submenu">
-                            @for (item of item.categoryItemsTypes; track $index) {
-                            <li><a href="#">{{item.name}}</a></li>
+                            @for (iitem of item.categoryItemsTypes; track $index) {
+                            <li><a [routerLink]="['/products/categories/items', iitem.id]" [queryParams]="{ categoryId: item.id }">{{iitem.name}}</a></li>
                             }
 
                         </ul>

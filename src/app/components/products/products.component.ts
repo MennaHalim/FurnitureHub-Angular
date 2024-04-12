@@ -101,7 +101,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   private loadComponentData(pageNum : number): void {
-    debugger
     if(this.searchValue != undefined){
       this.categoryItemsSubscription = this.ProductService.SearchInProducts(this.type, this.searchValue).subscribe(
         (data) => {
