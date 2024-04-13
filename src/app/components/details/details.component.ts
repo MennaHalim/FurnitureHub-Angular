@@ -1,5 +1,5 @@
-import { CustomerReview, ICustomerReview, IProduct } from './../../Shared/Models/product';
-import { ProductService } from './../../Shared/Services/product.service';
+import { CustomerReview, ICustomerReview, IProduct } from '../../Shared/Models/product';
+import { ProductService } from '../../Shared/Services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICustomerReviewToCreate, ISet } from '../../Shared/Models/product';

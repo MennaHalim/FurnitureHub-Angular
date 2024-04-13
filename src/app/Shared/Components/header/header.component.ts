@@ -7,7 +7,7 @@ import { CapitalizeSpacePipe } from '../../Pipes/capitalize-space.pipe';
 import { BasketService } from '../../Services/basket.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { SearchComponent } from '../../../Components/search/search.component';
+import { SearchComponent } from '../../../components/search/search.component';
 import { UserAuthService } from '../../Services/user-auth.service';
 
 @Component({
