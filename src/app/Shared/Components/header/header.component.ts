@@ -9,7 +9,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from '../../../Components/search/search.component';
 import { UserAuthService } from '../../Services/user-auth.service';
-import { UserService } from '../../Services/user.service';
 
 @Component({
   selector: 'app-header',
