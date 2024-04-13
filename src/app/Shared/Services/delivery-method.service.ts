@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IDeliverMethod } from '../Models/order';
+import { baseURL } from '../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeliveryMethodService {
 
-  baseUrl: string = "http://localhost:5016/api/orders";
+  baseUrl: string = baseURL + "/api/orders";
 
   constructor(private httpClient: HttpClient) { }
 

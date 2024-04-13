@@ -2,14 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICategoryItemsTypes, ICategorySetsTypes } from '../Models/category';
 import { Observable, tap } from 'rxjs';
+import { baseURL } from '../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopByService {
 
-  private getCategorySetsTypesUrl: string = 'http://localhost:5016/api/Products/sets/types';
-  private getCategoryItemsTypesUrl: string = 'http://localhost:5016/api/Products/items/types';
+  private getCategorySetsTypesUrl: string = baseURL+'/api/Products/sets/types';
+  private getCategoryItemsTypesUrl: string = baseURL+'/api/Products/items/types';
 
   constructor(private httpClient: HttpClient) { }
 

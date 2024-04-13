@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IOrder } from '../Models/order';
+import { baseURL } from '../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { IOrder } from '../Models/order';
 export class OrderService {
 
 
-  private url: string = 'http://localhost:5016/api/orders';
+  private url: string = baseURL+'/api/orders';
 
   constructor(private _HttpClient: HttpClient) { }
 

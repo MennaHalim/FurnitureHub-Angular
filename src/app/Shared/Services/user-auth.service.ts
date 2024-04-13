@@ -4,14 +4,15 @@ import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RegistrationUser } from '../Models/user';
+import { baseURL } from '../environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAuthService {
-  private AuthUrl: string = 'http://localhost:5016/api/Account/login';
-  private registerUrl: string = 'http://localhost:5016/api/Account/register';
+  private AuthUrl: string = baseURL+'/api/Account/login';
+  private registerUrl: string = baseURL+'/api/Account/register';
   private isUserLoggedSubject: BehaviorSubject<boolean>;
   private jwtHelper = new JwtHelperService();
   loginSuccessEvent: EventEmitter<boolean> = new EventEmitter<boolean>();

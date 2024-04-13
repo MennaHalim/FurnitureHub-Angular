@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ICustomerReviewToCreate, IPage } from '../Models/product';
 import { Observable, tap } from 'rxjs';
 import { ProductsTypes } from '../Enums/products-types';
+import { baseURL } from '../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ProductService {
 
   constructor(private _HttpClient: HttpClient) { }
 
-  baseUrl: string = 'http://localhost:5016/api/products/';
+  baseUrl: string = baseURL+'/api/products/';
 
   getSetsByCategory(categoryId: number, pageIndex:number=1): Observable<IPage> {
     return this._HttpClient.get<IPage>(this.baseUrl + `sets?categoryId=${categoryId}` + `&pageIndex=${pageIndex}`);

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { Basket, IBasket } from '../Models/basket';
 import { IStripe } from '../Models/order';
+import { baseURL } from '../environment';
 
 
 @Injectable({
@@ -14,8 +15,8 @@ export class BasketService {
 
   constructor(private _HttpClient: HttpClient) { }
   subscription: Subscription | undefined;
-  baseUrl: string = 'http://localhost:5016/api/';
-  domain: string = 'http://localhost:4200';
+  baseUrl: string = baseURL+'/api/';
+  domain: string = 'https://furniture-hub-angular-2.vercel.app/';
   myToken: any = {
     token: JSON.stringify(localStorage.getItem('etoken'))
   }

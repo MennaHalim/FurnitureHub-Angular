@@ -1,0 +1,1 @@
+export const baseURL = "http://HubFurniture-API.somee.com"
