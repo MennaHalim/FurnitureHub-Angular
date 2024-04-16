@@ -151,7 +151,7 @@
         "Time" : "Time",
         "Total" : "Total",
         "Details" : "Details",
-        "noOrders!" : "you have no Orders yet!"
+        "noOrders" : "you have no Orders yet!"
     },
     "products" :{
         "Sale" : "Sale",

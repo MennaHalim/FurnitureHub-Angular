@@ -1,1 +1,1 @@
-export const baseURL = "http://HubFurniture-API.somee.com"
+export const baseURL = "https://HubFurniture-API.somee.com"
