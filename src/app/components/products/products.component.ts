@@ -101,6 +101,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   private loadComponentData(pageNum : number): void {
+ 
+
     if(this.searchValue != undefined){
       this.categoryItemsSubscription = this.ProductService.SearchInProducts(this.type, this.searchValue).subscribe(
         (data) => {
@@ -114,7 +116,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         });
     }
     else if(!Number.isNaN(this.startPrice) || !Number.isNaN(this.endPrice)|| this.color != undefined){
-      if (this.type='sets')
+      if (this.type==='sets')
       this.categoryItemsSubscription = this.ProductService.FilterProducts(ProductsTypes.Set,this.categoryId,this.productTypeId,
         NaN,this.color,this.startPrice, this.endPrice).subscribe( (data) => {
           this.page = data;

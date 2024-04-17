@@ -130,7 +130,6 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy, OnChanges {
         this.goButtonClicked = true;
       }
     })
-
     this.route.params.subscribe(params => {
       this.type = params['type'];
       this.productTypeId = +params['productTypeId'];
