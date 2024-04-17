@@ -15,11 +15,14 @@ import { ShoppingOptionsComponent } from '../../components/shopping-options/shop
 export class BlankLayoutComponent {
     @Input() minPrice: number = 0;
   @Input() maxPrice: number = 200000;
+  @Input() startPrice: number = 0;
+  @Input() endPrice: number = 200000;
 
-  onPriceRangeChanged(event: { minPrice: number, maxPrice: number }) {
+  onPriceRangeChanged(event: { minPrice: number, maxPrice: number, startPrice: number, endPrice :number }) {
     this.minPrice = event.minPrice;
     this.maxPrice = event.maxPrice;
-    console.log(this.minPrice, this.maxPrice)
+    this.startPrice = event.startPrice;
+    this.endPrice = event.endPrice;
   }
 
 }

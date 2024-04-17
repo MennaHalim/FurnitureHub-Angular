@@ -1,7 +1,7 @@
 import { ProductService } from './../../Shared/Services/product.service';
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { IPage, IProduct } from '../../Shared/Models/product';
-import { Subscription } from 'rxjs';
+import { Subscription, min } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { BasketService } from '../../Shared/Services/basket.service';
 import { IBasketItem } from '../../Shared/Models/basket';
@@ -31,10 +31,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   searchValue :string ='';
   startPrice: number = 0;
   endPrice: number = 0 ;
+  minPrice: number = 0;
+  maxPrice: number = 0 ;
   private categorySetsSubscription: Subscription | undefined;
   private categoryItemsSubscription: Subscription | undefined;
   private routeSubscription: Subscription | undefined;
-  @Output() priceRangeChange: EventEmitter<{ minPrice: number, maxPrice: number }> = new EventEmitter();
+  @Output() priceRangeChange: EventEmitter<{ minPrice: number, maxPrice: number, startPrice: number, endPrice :number }> = new EventEmitter();
   lang: string = 'en';
   langChangeSubscription: Subscription | undefined
 
@@ -110,9 +112,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
           this.total = data.count;
-          this.startPrice = data.minimumPrice;
-          this.endPrice = data.maximumPrice;
-          this.emitPriceRange(this.startPrice, this.endPrice);
+          this.minPrice = this.startPrice =data.minimumPrice;
+          this.maxPrice = this.endPrice = data.maximumPrice;
+          this.emitPriceRange(this.minPrice, this.maxPrice, this.startPrice, this.endPrice);
         });
     }
     else if(!Number.isNaN(this.startPrice) || !Number.isNaN(this.endPrice)|| this.color != undefined){
@@ -125,8 +127,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.total = data.count;
           this.startPrice = data.minimumPrice;
           this.endPrice = data.maximumPrice;
-          this.emitPriceRange(this.startPrice, this.endPrice);
-
+          this.emitPriceRange(this.minPrice, this.maxPrice, this.startPrice, this.endPrice);
         });
       else{
         this.categoryItemsSubscription = this.ProductService.FilterProducts(ProductsTypes.Item,this.categoryId,NaN,
@@ -137,8 +138,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
             this.total = data.count;
             this.startPrice = data.minimumPrice;
           this.endPrice = data.maximumPrice;
-          this.emitPriceRange(this.startPrice, this.endPrice);
-
+          this.emitPriceRange(this.minPrice, this.maxPrice, this.startPrice, this.endPrice);
           });
       }
 
@@ -150,10 +150,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
           this.total = 10;
-          this.startPrice = data.minimumPrice;
-          this.endPrice = data.maximumPrice;
-          this.emitPriceRange(this.startPrice, this.endPrice);
-
+          this.minPrice = this.startPrice =data.minimumPrice;
+          this.maxPrice = this.endPrice = data.maximumPrice;
+          this.emitPriceRange(this.minPrice, this.maxPrice, this.startPrice, this.endPrice);
 
         });
     }
@@ -164,10 +163,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
           this.total = data.count;
-          this.startPrice = data.minimumPrice;
-          this.endPrice = data.maximumPrice;
-          this.emitPriceRange(this.startPrice, this.endPrice);
-
+          this.minPrice = this.startPrice =data.minimumPrice;
+          this.maxPrice = this.endPrice = data.maximumPrice;
+          this.emitPriceRange(this.minPrice, this.maxPrice, this.startPrice, this.endPrice);
         });
     }
     else if (this.type === 'sets') {
@@ -177,10 +175,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
           this.total = data.count;
-          this.startPrice = data.minimumPrice;
-          this.endPrice = data.maximumPrice;
-          this.emitPriceRange(this.startPrice, this.endPrice);
-
+          this.minPrice = this.startPrice =data.minimumPrice;
+          this.maxPrice = this.endPrice = data.maximumPrice;
+          this.emitPriceRange(this.minPrice, this.maxPrice, this.startPrice, this.endPrice);
         });
     }
 
@@ -248,8 +245,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.applyPagination(event);
   }
 
-  emitPriceRange(minPrice: number, maxPrice: number) {
-    this.priceRangeChange.emit({ minPrice, maxPrice });
+  emitPriceRange(minPrice: number, maxPrice: number, startPrice :number, endPrice :number) {
+    this.priceRangeChange.emit({ minPrice, maxPrice, startPrice, endPrice });
   }
 
 }

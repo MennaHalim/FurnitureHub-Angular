@@ -50,6 +50,8 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() minPrice: number = 0;
   @Input() maxPrice: number = 200000;
+  @Input() startValue: number = this.minPrice;
+  @Input() endValue: number = this.maxPrice;
 
   colors: string[] = ['Jute', 'gray', 'white', 'brown', 'black', 'blue', 'beige'];
 
@@ -64,8 +66,6 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy, OnChanges {
   goButtonClicked: boolean = false;
   categoryId: number = 0;
   productTypeId: number = 0;
-  startValue: number = this.minPrice;
-  endValue: number = this.maxPrice;
   color: string = '';
   type: string = 'sets';
 
