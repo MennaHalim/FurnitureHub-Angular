@@ -70,6 +70,25 @@
                     </tbody>
                 </table>
                 }
+                @else{
+                    <table class="table table-bordered w-50 text-center table-custome-guide">
+                        <thead>
+                            <tr class="table-head">
+                                <th>{{'details.Height' | translate}}</th>
+                                <th>{{'details.Depth' | translate}}</th>
+                                <th>{{'details.Width' | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{productDetails.height}} cm</td>
+                                <td>{{productDetails.depth}} cm</td>
+                                <td>{{productDetails.width}} cm</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                }
             </div>
             <div class="more-info" [class.show]="selectedTab === 'more-info'">
                 <table class="table table-bordered w-50 text-center table-custome-info">
