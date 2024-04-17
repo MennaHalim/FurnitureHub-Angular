@@ -1,9 +1,9 @@
-<div class="row mt-3 gap-4">
+<div class="row mt-3 ">
     @for (item of page?.data! | paginate: { id: 'productPaginate',
     itemsPerPage: pageSize,
     currentPage: pageIndex,
     totalItems: total } ; track $index ) {
-    <div class="card col-5 remove-border product-cart p-0">
+    <div class="card col-1  remove-border product-cart p-2">
 
         <div class="img-container">
             <img src="{{item.productPictures[0]}}" class="card-img-top p-0" alt="product image">
