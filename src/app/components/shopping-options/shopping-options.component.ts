@@ -116,7 +116,6 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy, OnChanges {
       this.selectOption(this.type);
     }
 
-    console.log(this.minPrice, this.maxPrice)
   }
 
   private getDataFromUrl() {

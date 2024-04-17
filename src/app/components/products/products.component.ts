@@ -103,9 +103,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   private loadComponentData(pageNum : number): void {
- 
-
-    if(this.searchValue != undefined){
+     if(this.searchValue != undefined){
       this.categoryItemsSubscription = this.ProductService.SearchInProducts(this.type, this.searchValue).subscribe(
         (data) => {
           this.page = data;
@@ -180,6 +178,19 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.emitPriceRange(this.minPrice, this.maxPrice, this.startPrice, this.endPrice);
         });
     }
+    else if (this.type === 'items') {
+      this.categorySetsSubscription = this.ProductService.getItemsByCategoryAndItemType(this.categoryId, this.productTypeId , pageNum).subscribe(
+        (data) => {
+          this.page = data;
+          this.pageSize = data.pageSize;
+          this.pageIndex = data.pageIndex;
+          this.total = data.count;
+          this.minPrice = this.startPrice =data.minimumPrice;
+          this.maxPrice = this.endPrice = data.maximumPrice;
+          this.emitPriceRange(this.minPrice, this.maxPrice, this.startPrice, this.endPrice);
+        });
+    }
+
 
   }
 

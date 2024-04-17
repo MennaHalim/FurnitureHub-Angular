@@ -22,6 +22,10 @@ export class ProductService {
     return this._HttpClient.get<IPage>(this.baseUrl + `sets?categoryId=${categoryId}` + `&setTypeId=${setTypeId}` + `&pageIndex=${pageIndex}`);
   }
 
+  getItemsByCategoryAndItemType(categoryId: number, setTypeId: number, pageIndex:number=1): Observable<IPage> {
+    return this._HttpClient.get<IPage>(this.baseUrl + `items?categoryId=${categoryId}` + `&itemTypeId=${setTypeId}` + `&pageIndex=${pageIndex}`);
+  }
+
   getItemsByCategory(categoryId: number, pageIndex:number=1): Observable<IPage> {
     return this._HttpClient.get<IPage>(this.baseUrl + `items?categoryId=${categoryId}` + `&pageIndex=${pageIndex}`);
   }
