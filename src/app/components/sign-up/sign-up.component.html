@@ -2,58 +2,58 @@
   <div class="row">
     <div class="col-sm-6">
       <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <h4>Create an account</h4>
+        <h4>{{'signUp.CreateAccount' | translate}}</h4>
         <div class="alert alert-danger" role="alert" [style.display]="errorMessage.length == 0 ? 'none' : 'block'">
           {{ errorMessage }}
         </div> 
         <!-- Personal Information Section -->
-        <h5 class="personal">Personal Information*</h5>
+        <h5 class="personal">{{'signUp.PersonalInformation' | translate}}</h5>
         <div class="form-group">
-          <input type="text" id="first-name" placeholder="First Name" formControlName="firstName">
+          <input type="text" id="first-name" [placeholder]="'signUp.FirstName' | translate" formControlName="firstName">
           <div *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched">
-            <small class="text-danger">First Name is required.</small>
+            <small class="text-danger">{{'signUp.FirstNameRequired' | translate}}</small>
           </div>
         </div>
         <div class="form-group">
-          <input type="text" id="last-name" placeholder="Last Name" formControlName="lastName">
+          <input type="text" id="last-name" [placeholder]="'signUp.LastName' | translate" formControlName="lastName">
           <div *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched">
-            <small class="text-danger">Last Name is required.</small>
+            <small class="text-danger">{{'signUp.LastNameRequired' | translate}}</small>
           </div>
         </div>
         <!-- Email and Password Section -->
-        <h5 class="email">Sign-in Information*</h5>
+        <h5 class="email">{{'signUp.Sign-inInformation' | translate}}</h5>
         <div class="form-group">
-          <input type="email" id="new-email" placeholder="Email Address*" formControlName="newEmail">
+          <input type="email" id="new-email" [placeholder]="'signUp.EmailAddress' | translate" formControlName="newEmail">
           <div *ngIf="signupForm.get('newEmail')?.invalid && signupForm.get('newEmail')?.touched">
-            <small class="text-danger">Please enter a valid email address.</small>
+            <small class="text-danger">{{'signUp.emailValidation' | translate}}</small>
           </div>
         </div>
         <div class="form-group"> 
-          <input type="password" id="new-password" placeholder="Password*" formControlName="newPassword">
+          <input type="password" id="new-password" [placeholder]="'signUp.Password' | translate" formControlName="newPassword">
           <div *ngIf="signupForm.get('newPassword')?.invalid && signupForm.get('newPassword')?.touched">
             <small class="text-danger">
               <ul>
-                <li>At least 6 characters long.</li>
-                <li>At least one uppercase letter</li>
-                <li>At least one lowercase letter</li>
-                <li>At least one number</li>
-                <li>At least one special character</li>
+                <li>{{'signUp.passwordValidation1' | translate}}</li>
+                <li>{{'signUp.passwordValidation2' | translate}}</li>
+                <li>{{'signUp.passwordValidation3' | translate}}</li>
+                <li>{{'signUp.passwordValidation4' | translate}}</li>
+                <li>{{'signUp.passwordValidation5' | translate}}</li>
             </ul>
             </small>
           </div>
         </div>
         <div class="form-group">
-          <input type="password" id="confirm-password" placeholder="Confirm Password*" formControlName="confirmPassword">
+          <input type="password" id="confirm-password" [placeholder]="'signUp.ConfirmPassword' | translate" formControlName="confirmPassword">
           <div *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched">
-            <small class="text-danger">Passwords must match.</small>
+            <small class="text-danger">{{'signUp.Passwordsmustmatch' | translate}}</small>
           </div>
         </div>
         <!-- Remember Checkbox -->
         <!-- Back Button -->
         <div class="form-group d-flex justify-content-between">
-          <button type="button" (click)="goBack()">Back</button>
+          <button type="button" (click)="goBack()">{{'signUp.Back' | translate}}</button>
           <!-- Submit Button -->
-          <button type="submit">Create Account</button>
+          <button type="submit">{{'signUp.CreateAccountbtn' | translate}}</button>
         </div>
       </form>
     </div>

@@ -48,10 +48,6 @@ function confirmPasswordValidator(passwordKey: string, confirmPasswordKey: strin
 }
 
 
-
-
-
-
 @Component({
   selector: 'app-sign-up',
   standalone: true,
@@ -92,6 +88,25 @@ export class SignUpComponent implements OnInit, OnDestroy {
     }, {
       validators: confirmPasswordValidator('newPassword', 'confirmPassword')
     });
+
+    this.lang = this.detectLanguage() || 'en';
+    document.documentElement.lang = this.lang;
+
+    this.translate.use(this.lang);
+
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
+      this.lang = event.lang;
+    });
+  }
+
+  private detectLanguage() {
+    const lang = localStorage.getItem('lang');
+    if (lang == null) {
+      localStorage.setItem("lang", 'en');
+      lang == 'en';
+    }
+
+    return lang;
   }
 
 

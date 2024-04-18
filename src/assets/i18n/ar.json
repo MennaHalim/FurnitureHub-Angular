@@ -164,5 +164,33 @@
     "shopBy":{
         "ShopbySet" : "طقم كامل",
         "ShopbyItem" : "تسوق بالقطعة"
+    },
+    "signUp" : {
+        "CreateAccount" : "انشاء حساب جديد",
+        "PersonalInformation" : "المعلومات الشخصية*",
+        "FirstName" : "الاسم الاول",
+        "FirstNameRequired" : "الاسم الاول مطلوب",
+        "LastName" : "اسم العائلة",
+        "LastNameRequired" : "اسم العائلة مطلوب",
+        "Sign-inInformation" : "معلومات تسجيل الدخول*",
+        "EmailAddress" : "البريد الالكتروني*",
+        "emailValidation" : "البريد الالكتروني غير صحيح",
+        "Password" : "كلمة المرور*",
+        "passwordValidation1" : "يجب ان تحتوي علي 6 احرف علي الاقل",
+        "passwordValidation2": "على الأقل حرف كبير واحد.",
+        "passwordValidation3": "على الأقل حرف صغير واحد.",
+        "passwordValidation4": "على الأقل رقم واحد.",
+        "passwordValidation5": "على الأقل حرف خاص واحد.",
+        "ConfirmPassword": "تأكيد كلمة المرور*",
+        "PasswordsMustMatch": "يجب أن تتطابق كلمتا المرور.",
+        "Back": "الرجوع",
+        "CreateAccountbtn" : "انشاء حساب"
+    },
+    "orderSuccess": {
+        "order-success": "تهانينا",
+        "message": "تم دفع طلبك بنجاح",
+        "message2": "انتقل إلى طلباتك لرؤيتها..",
+        "Orders": "الطلبات"
     }
+    
 }

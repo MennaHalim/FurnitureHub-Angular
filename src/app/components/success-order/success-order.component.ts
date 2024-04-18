@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { BasketService } from '../../Shared/Services/basket.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-success-order',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TranslateModule],
   templateUrl: './success-order.component.html',
   styleUrl: './success-order.component.css'
 })
 export class SuccessOrderComponent implements OnInit {
 
-  constructor(private _BasketService: BasketService,
+  lang: string = 'en';
+  langChangeSubscription: Subscription | undefined
+
+  constructor(
+    private translate: TranslateService,
+    private _BasketService: BasketService,
     private _router: ActivatedRoute) { }
 
   shippingAddress: any;
@@ -30,6 +37,25 @@ export class SuccessOrderComponent implements OnInit {
       this._BasketService.deleteBasketAfterPayment(this.basketId).subscribe();
     })
 
+    this.lang = this.detectLanguage() || 'en';
+    document.documentElement.lang = this.lang;
+
+    this.translate.use(this.lang);
+
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
+      this.lang = event.lang;
+    });
+
+  }
+
+  private detectLanguage() {
+    const lang = localStorage.getItem('lang');
+    if (lang == null) {
+      localStorage.setItem("lang", 'en');
+      lang == 'en';
+    }
+
+    return lang;
   }
 
 }

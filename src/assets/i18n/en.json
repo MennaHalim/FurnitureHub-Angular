@@ -165,6 +165,33 @@
     "shopBy":{
         "ShopbySet" : "Shop by Set",
         "ShopbyItem" : "Shop by Item"
+    },
+    "signUp" : {
+        "CreateAccount" : "Create an account",
+        "PersonalInformation" : " Personal Information*",
+        "FirstName" : "First Name",
+        "FirstNameRequired" : " First Name is required.",
+        "LastName" : "Last Name",
+        "LastNameRequired" : " Last Name is required.",
+        "Sign-inInformation" : "Sign-in Information*",
+        "EmailAddress" : "Email Address*",
+        "emailValidation" : "Please enter a valid email address.",
+        "Password" : "Password*",
+        "passwordValidation1" : "At least 6 characters long.",
+        "passwordValidation2" : "At least one uppercase letter.",
+        "passwordValidation3" : "At least one lowercase letter.",
+        "passwordValidation4" : "At least one number.",
+        "passwordValidation5" : "At least one special character.",
+        "ConfirmPassword" : "Confirm Password*",
+        "Passwordsmustmatch" : "Passwords must match.",
+        "Back" : "Back",
+        "CreateAccountbtn" : "Create Account"
+    },
+    "orderSuccess" : {
+        "order-success" : "Congratulations",
+        "message" : "your order is payied successfully",
+        "message2" : "Go to your orders to see it..",
+        "Orders" : "Orders"
     }
    
 }
