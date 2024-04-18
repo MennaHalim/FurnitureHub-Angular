@@ -192,6 +192,23 @@
         "message" : "your order is payied successfully",
         "message2" : "Go to your orders to see it..",
         "Orders" : "Orders"
+    },
+    "AccountNaigation" : {
+        "Account" : "Account",
+        "Navigation" : "Navigation",
+        "MyAccount" : "My Account",
+        "MyOrders" : "My Orders",
+        "MyWishList" : "My Wish List",
+        "Address Book" : "Address Book",
+        "AccountInformation" : "Account Information",
+        "GDPR" : "GDPR",
+        "MyProductReviews" : "My Product Reviews",
+        "Newsletter Subscriptions" : "Newsletter Subscriptions",
+        "Compare" : "Compare",
+        "noItemsToCompare" : "You have no items to compare.",
+        "MyWish" : "My Wish",
+        "List" : "List",
+        "noItemsInWishList" : "You have no items in your wish list."
     }
    
 }

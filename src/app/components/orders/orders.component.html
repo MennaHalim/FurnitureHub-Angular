@@ -1,6 +1,6 @@
 <div class="parent-container">
     <div class="order-container row gap-5">
-        @if(orders != null && orders.length > 0){
+        @if(!isAlertDisplayed && orders != null){
         @for (order of orders; track $index;) {
         @if(order.status !== 'Pending' && order.status !== 'Cancelled'){
         <div class="order-card col-sm-6

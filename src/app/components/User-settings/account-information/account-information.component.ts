@@ -7,7 +7,7 @@ import { EmailValidator, FormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { validate } from 'uuid';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-account-information',
@@ -28,8 +28,12 @@ export class AccountInformationComponent implements OnInit, OnDestroy{
   editEmail: boolean = false;
   editPassword: boolean = false;
   userServiceSubscription : Subscription | undefined;
+  lang: string = 'en';
+  langChangeSubscription: Subscription | undefined
+
 
   constructor(private userService: UserService,
+    private translate: TranslateService,
     private router : Router) {}
   
 
@@ -38,6 +42,26 @@ export class AccountInformationComponent implements OnInit, OnDestroy{
       this.firstName = data.firstName;
       this.lastName = data.lastName;
     })
+    
+    this.lang = this.detectLanguage() || 'en';
+    document.documentElement.lang = this.lang;
+
+    this.translate.use(this.lang);
+
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
+      this.lang = event.lang;
+    });
+
+  }
+
+  private detectLanguage() {
+    const lang = localStorage.getItem('lang');
+    if (lang == null) {
+      localStorage.setItem("lang", 'en');
+      lang == 'en';
+    }
+
+    return lang;
   }
 
   ngOnDestroy(): void {

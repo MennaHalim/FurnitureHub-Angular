@@ -17,7 +17,8 @@ export class OrdersComponent implements OnInit {
   orders!: IOrder[];
   lang: string = 'en';
   langChangeSubscription: Subscription | undefined
-  
+  isAlertDisplayed: boolean = true;
+
   constructor(private _OrderService: OrderService,
     private translate: TranslateService,
   ) { }
@@ -26,6 +27,8 @@ export class OrdersComponent implements OnInit {
     this._OrderService.getAllOrders().subscribe({
       next: (getAllOrders) => {
         this.orders = getAllOrders;
+        this.showAlert();
+        console.log(this.isAlertDisplayed)
       }
     })
     this.lang = this.detectLanguage() || 'en';
@@ -37,6 +40,18 @@ export class OrdersComponent implements OnInit {
       this.lang = event.lang;
     });
 
+
+  }
+
+  showAlert() {
+    if (this.orders != null) {
+      for (let i = 0; i < this.orders.length; i++) {
+        if (this.orders[i].status !== 'Pending' && this.orders[i].status !== 'Cancelled'){
+          this.isAlertDisplayed = false;
+          break
+        }
+      }
+    }
   }
 
   private detectLanguage() {
@@ -51,7 +66,7 @@ export class OrdersComponent implements OnInit {
 
   padNumber(number: number) {
     return number < 10 ? '0' + number : number;
-}
+  }
 
   getDate(order: IOrder) {
     const date = new Date(order.orderDate);
