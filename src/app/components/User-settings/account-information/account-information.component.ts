@@ -7,11 +7,12 @@ import { EmailValidator, FormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { validate } from 'uuid';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-account-information',
   standalone: true,
-  imports: [RouterModule, FormsModule, CommonModule],
+  imports: [RouterModule, FormsModule, CommonModule, TranslateModule],
   templateUrl: './account-information.component.html',
   styleUrl: './account-information.component.css'
 })

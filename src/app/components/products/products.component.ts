@@ -147,7 +147,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.page = data;
           this.pageSize = data.pageSize;
           this.pageIndex = data.pageIndex;
-          this.total = 10;
+          this.total = data.count;
           this.minPrice = this.startPrice =data.minimumPrice;
           this.maxPrice = this.endPrice = data.maximumPrice;
           this.emitPriceRange(this.minPrice, this.maxPrice, this.startPrice, this.endPrice);

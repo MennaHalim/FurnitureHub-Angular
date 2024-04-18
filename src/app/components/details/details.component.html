@@ -70,7 +70,7 @@
                     </tbody>
                 </table>
                 }
-                @else{
+                @else if(productDetails?.height != undefined && productDetails?.depth != undefined && productDetails?.width != undefined){
                     <table class="table table-bordered w-50 text-center table-custome-guide">
                         <thead>
                             <tr class="table-head">
@@ -81,9 +81,9 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{productDetails.height}} cm</td>
-                                <td>{{productDetails.depth}} cm</td>
-                                <td>{{productDetails.width}} cm</td>
+                                <td>{{productDetails?.height}} cm</td>
+                                <td>{{productDetails?.depth}} cm</td>
+                                <td>{{productDetails?.width}} cm</td>
                             </tr>
                         </tbody>
                     </table>
