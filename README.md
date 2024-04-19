@@ -1,27 +1,25 @@
-# HubFurniture
+#  HubFurniture E-Commerce
+This project is a full-stack e-commerce platform that replicates the functionalities of HubFurniture, an Egyptian furniture company. It includes an admin panel for managing products and orders, a backend API for communication with the database, and a frontend application for seamless customer interaction.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.2.
+## Overview
+The FurnitureHub Angular Frontend is built using HTML, CSS, TypeScript, and the Angular framework, offering a rich user interface for browsing products, managing carts, and placing orders. This repository houses the codebase for the client-side application.
 
-## Development server
+## Features
+1. User Authentication: Customers can register, log in, and securely access their accounts to manage orders and preferences.
+2. Product Browsing: Seamless navigation through a wide range of furniture products, with filtering for a tailored shopping experience.
+3. Shopping Cart Management: Users can add items to their carts, adjust quantities, and remove items as needed.
+4. Order Placement: Smooth checkout process for placing orders, with integration for secure payment processing.
+5. Responsive Design: The application is optimized for various devices, ensuring a consistent experience across desktops, tablets, and mobile phones.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Technologies Used
+- Angular 17 Framework: Utilized for building a dynamic and interactive user interface.
+- HTML & CSS: Standard web technologies for structuring content and styling elements.
+- Bootstrap: Front-end framework for responsive design and layout components.
+- TypeScript: Languages for adding interactivity and functionality to the application.
 
-## Code scaffolding
+## Security
+- Authentication: Implemented using JWT (JSON Web Tokens) for secure user authentication and authorization.
+- HTTPS: Utilized to ensure encrypted communication between the client and server, enhancing security during data transmission
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Special Thanks
+- We extend our heartfelt gratitude to [Eng. Mostafa Saqly](https://www.linkedin.com/in/mostafa-saqly/) for his invaluable guidance, unwavering support, and insightful feedback throughout the development of this project. His expertise and mentorship have been instrumental in shaping our understanding and approach. Thank you for your dedication and encouragement.
