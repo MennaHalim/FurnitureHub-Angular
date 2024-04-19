@@ -69,7 +69,7 @@ export class AccountInformationComponent implements OnInit, OnDestroy{
   }
 
   updateEmail() {
-    if (this.newEmailInvalid){
+    // if (this.newEmailInvalid){
     this.validateAndUpdateUserInfo(() => {
       this.userService.changeEmail(this.newEmail, this.password).subscribe(
         response => {
@@ -83,7 +83,7 @@ export class AccountInformationComponent implements OnInit, OnDestroy{
         }
       );
     });
-  }
+  // }
   }
 
   updatePassword() {

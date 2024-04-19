@@ -59,10 +59,7 @@
               (blur)="newEmailTouched = true" #emailField="ngModel">
             <div class="invalid-feedback" *ngIf="newEmailInvalid && newEmailTouched">New email is required</div>
             <div  *ngIf="emailField.errors?.['email']" class="error">Invalid Email</div>
-          </div>
-          </form>
-          <form (ngSubmit)="updatePassword()" passwordForm="ngForm">
-          <div class="form-group">
+
             <label for="password">Password</label>
             <input type="password" class="form-control" [(ngModel)]="password" name="password" id="password"
               placeholder="Password" aria-label="Password" required
