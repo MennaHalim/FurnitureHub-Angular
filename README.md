@@ -5,11 +5,11 @@ This project is a full-stack e-commerce platform that replicates the functionali
 The FurnitureHub Angular Frontend is built using HTML, CSS, TypeScript, and the Angular framework, offering a rich user interface for browsing products, managing carts, and placing orders. This repository houses the codebase for the client-side application.
 
 ## Features
-1- User Authentication: Customers can register, log in, and securely access their accounts to manage orders and preferences.
-2- Product Browsing: Seamless navigation through a wide range of furniture products, with filtering for a tailored shopping experience.
-3- Shopping Cart Management: Users can add items to their carts, adjust quantities, and remove items as needed.
-4- Order Placement: Smooth checkout process for placing orders, with integration for secure payment processing.
-5- Responsive Design: The application is optimized for various devices, ensuring a consistent experience across desktops, tablets, and mobile phones.
+1. User Authentication: Customers can register, log in, and securely access their accounts to manage orders and preferences.
+2. Product Browsing: Seamless navigation through a wide range of furniture products, with filtering for a tailored shopping experience.
+3. Shopping Cart Management: Users can add items to their carts, adjust quantities, and remove items as needed.
+4. Order Placement: Smooth checkout process for placing orders, with integration for secure payment processing.
+5. Responsive Design: The application is optimized for various devices, ensuring a consistent experience across desktops, tablets, and mobile phones.
 
 ## Technologies Used
 - Angular 17 Framework: Utilized for building a dynamic and interactive user interface.
