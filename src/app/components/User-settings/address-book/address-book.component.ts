@@ -4,11 +4,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { Address } from '../../../Shared/Models/address';
 import { AddressService } from '../../../Shared/Services/address.service';
+import { transition } from '@angular/animations';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-address-book',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule],
+  imports: [RouterModule, ReactiveFormsModule, CommonModule, TranslateModule],
   templateUrl: './address-book.component.html',
   styleUrl: './address-book.component.css'
 })
@@ -16,10 +19,13 @@ export class AddressBookComponent implements OnInit {
   contactForm!: FormGroup;
   addressId = 0;
   addresses: Address[] = [];
+  lang: string = 'en';
+  langChangeSubscription: Subscription | undefined;
 
   constructor(private formBuilder: FormBuilder,
      private addressService: AddressService,
-     private router : Router) { }
+     private router : Router,
+     private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.contactForm = this.formBuilder.group({
@@ -42,6 +48,26 @@ export class AddressBookComponent implements OnInit {
         this.fillFormWithAddress(userAddress);
       }
     });
+
+    this.lang = this.detectLanguage() || 'en';
+    document.documentElement.lang = this.lang;
+
+    this.translate.use(this.lang);
+
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
+      this.lang = event.lang;
+    });
+
+  }
+
+  private detectLanguage() {
+    const lang = localStorage.getItem('lang');
+    if (lang == null) {
+      localStorage.setItem("lang", 'en');
+      lang == 'en';
+    }
+
+    return lang;
   }
 
   fillFormWithAddress(address: Address) {

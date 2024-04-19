@@ -191,6 +191,23 @@
         "message": "تم دفع طلبك بنجاح",
         "message2": "انتقل إلى طلباتك لرؤيتها..",
         "Orders": "الطلبات"
+    }, 
+    "AccountNaivgation" : {
+        "Account" : "الحساب",
+        "Navigation" : "",
+        "MyAccount" : "حسابي",
+        "MyOrders" : "طلباتي",
+        "MyWishList" : "قائمة الرغبات الخاصة بي",
+        "AddressBook" : "دليل العناوين",
+        "AccountInformation" : "معلومات الحساب",
+        "GDPR" : "GDPR",
+        "MyProductReviews" : "تقييمات منتجاتي",
+        "NewsletterSubscriptions" : "اشتراكات النشرة الإخبارية",
+        "Compare" : " مقارنة المنتجات",
+        "noItemsToCompare" : "لا توجد عناصر للمقارنة",
+        "MyWish" : "قائمة الرغبات",
+        "List" : "",
+        "noItemsInWishList" : "لا توجد عناصر في قائمة الرغبات"
     }
     
 }
