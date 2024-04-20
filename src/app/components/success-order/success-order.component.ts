@@ -28,6 +28,7 @@ export class SuccessOrderComponent implements OnInit, OnDestroy {
   orderId: number | null = 0;
 
   ngOnInit(): void {
+    this._BasketService.basketItemsCount.next(0);
 
     this._router.paramMap.subscribe(params => {
       this.sessionId = params.get('sessionId');

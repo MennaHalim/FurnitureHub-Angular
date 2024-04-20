@@ -52,8 +52,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.basketCount = basket.basketItems.length;
         }
       });
-    
     } 
+    
     this._BasketService.basketItemsCount.subscribe({
       next: (count) => {
         this.basketCount = count;
