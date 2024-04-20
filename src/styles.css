@@ -14,3 +14,7 @@ body {
     margin: 0;
     font-family: "Poppins", arial, tahoma;
 }
+
+html{
+    scroll-behavior: auto !important;
+}

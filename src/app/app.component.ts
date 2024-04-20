@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { Router, RouterOutlet, Scroll } from '@angular/router';
 import { FooterComponent } from './Shared/Components/footer/footer.component';
 import { HeaderComponent } from './Shared/Components/header/header.component';
 import { BlankLayoutComponent } from "./Layouts/blank-layout/blank-layout.component";
 import { BasketComponent } from './components/basket/basket.component';
 import { BodyComponent } from './components/body/body.component';
 import { DetailsComponent } from './components/details/details.component';
+import { ViewportScroller } from '@angular/common';
+import { filter } from 'rxjs';
 
 
 
@@ -25,10 +27,17 @@ import { DetailsComponent } from './components/details/details.component';
 export class AppComponent {
   title = 'hub_furniture';
   isOverlayVisible = false;
+  movieData: any;
 
   toggleSearchOverlay() {
     this.isOverlayVisible = !this.isOverlayVisible;
   }
 
+  constructor(private router: Router, private viewportScroller: ViewportScroller,
+    changeDetectorRef: ChangeDetectorRef) {
+      router.events.subscribe(e => {
+          viewportScroller.scrollToPosition([0,0]);
+        });
+      }
 
 }
