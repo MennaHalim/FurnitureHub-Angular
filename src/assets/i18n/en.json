@@ -188,7 +188,7 @@
         "CreateAccountbtn" : "Create Account"
     },
     "orderSuccess" : {
-        "order-success" : "Congratulations",
+        "orderSuccess" : "Congratulations",
         "message" : "your order is payied successfully",
         "message2" : "Go to your orders to see it..",
         "Orders" : "Orders"
