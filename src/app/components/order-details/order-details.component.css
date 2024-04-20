@@ -172,3 +172,13 @@
 .cancel-order button:hover{
     background: red;
 }
+
+.order-item-card{
+    height: 394px;
+    padding: 0 !important;
+    margin-left: 10px;
+}
+
+.order-image{
+    width: inherit;
+}
