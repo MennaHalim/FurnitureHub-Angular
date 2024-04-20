@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserAuthService } from '../../Shared/Services/user-auth.service';
 import { CommonModule } from '@angular/common';
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
-export class SignInComponent implements OnInit{
+export class SignInComponent implements OnInit, OnDestroy{
   email: string = '';
   password: string = '';
   errorMessage: string = '';
@@ -29,6 +29,7 @@ export class SignInComponent implements OnInit{
      private router: Router,
      private translate: TranslateService,
     ) {} 
+  
 
   ngOnInit(): void {
     this.lang = this.detectLanguage() || 'en';
@@ -74,5 +75,9 @@ export class SignInComponent implements OnInit{
 
   navihateToRegister(){
     this.router.navigate(['/register'])
+  }
+
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
   }
 }

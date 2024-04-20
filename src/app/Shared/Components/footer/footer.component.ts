@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { UserAuthService } from '../../Services/user-auth.service';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, OnDestroy {
   lang: string = 'en';
   langChangeSubscription: Subscription | undefined
 
@@ -20,6 +20,7 @@ export class FooterComponent implements OnInit {
   constructor(
      private translate: TranslateService,
     ) {} 
+  
 
   ngOnInit(): void {
     this.lang = this.detectLanguage() || 'en';
@@ -41,6 +42,10 @@ export class FooterComponent implements OnInit {
     }
 
     return lang;
+  }
+
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
   }
 
 }

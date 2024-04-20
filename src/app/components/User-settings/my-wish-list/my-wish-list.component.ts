@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -10,13 +10,14 @@ import { Subscription } from 'rxjs';
   templateUrl: './my-wish-list.component.html',
   styleUrl: './my-wish-list.component.css'
 })
-export class MyWishListComponent {
+export class MyWishListComponent implements OnInit, OnDestroy {
   lang: string = 'en';
   langChangeSubscription: Subscription | undefined
 
   constructor(
      private translate: TranslateService,
     ) {} 
+  
 
   ngOnInit(): void {
     this.lang = this.detectLanguage() || 'en';
@@ -38,6 +39,10 @@ export class MyWishListComponent {
     }
 
     return lang;
+  }
+
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
   }
   
 }

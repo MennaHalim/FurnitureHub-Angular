@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { OrderService } from '../../Shared/Services/order.service';
 import { IOrder } from '../../Shared/Models/order';
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './order-details.component.html',
   styleUrl: './order-details.component.css'
 })
-export class OrderDetailsComponent implements OnInit {
+export class OrderDetailsComponent implements OnInit, OnDestroy {
 
   orderId!: number;
   order!: IOrder;
@@ -32,6 +32,7 @@ export class OrderDetailsComponent implements OnInit {
     private _OrderService: OrderService,
     private translate: TranslateService,
     private router: Router) { }
+  
 
 
   ngOnInit(): void {
@@ -91,6 +92,9 @@ export class OrderDetailsComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
+  }
 
 }
 

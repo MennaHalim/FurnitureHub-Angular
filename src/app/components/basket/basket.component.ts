@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, concatWith } from 'rxjs';
 import { Basket, IBasketItem } from '../../Shared/Models/basket';
 import { NumberPadPipe } from '../../Shared/Pipes/number-pad.pipe';
@@ -13,13 +13,13 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.css'
 })
-export class BasketComponent implements OnInit {
+export class BasketComponent implements OnInit, OnDestroy {
   lang: string = 'en';
   langChangeSubscription: Subscription | undefined
   constructor(private _BasketService: BasketService,
     private _router: Router,
     private translate: TranslateService) { }
-
+  
   basket!: Basket | null;
   subscription: Subscription | undefined;
 
@@ -100,4 +100,10 @@ export class BasketComponent implements OnInit {
   //-------------------------------------------
   //___________________________________________
   //-------------------------------------------
+
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
+    this.subscription?.unsubscribe();
+  }
+
 }

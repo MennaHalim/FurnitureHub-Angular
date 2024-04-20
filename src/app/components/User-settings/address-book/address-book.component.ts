@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { Address } from '../../../Shared/Models/address';
 import { AddressService } from '../../../Shared/Services/address.service';
 import { transition } from '@angular/animations';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subscription, UnsubscriptionError } from 'rxjs';
 
 @Component({
   selector: 'app-address-book',
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './address-book.component.html',
   styleUrl: './address-book.component.css'
 })
-export class AddressBookComponent implements OnInit {
+export class AddressBookComponent implements OnInit, OnDestroy {
   contactForm!: FormGroup;
   addressId = 0;
   addresses: Address[] = [];
@@ -26,6 +26,7 @@ export class AddressBookComponent implements OnInit {
      private addressService: AddressService,
      private router : Router,
      private translate: TranslateService) { }
+  
 
   ngOnInit(): void {
     this.contactForm = this.formBuilder.group({
@@ -115,5 +116,9 @@ export class AddressBookComponent implements OnInit {
     } else {
       console.log('Form is invalid. Please fill out all required fields.');
     }
+  }
+
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
   }
 }

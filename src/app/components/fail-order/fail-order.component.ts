@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './fail-order.component.html',
   styleUrl: './fail-order.component.css'
 })
-export class FailOrderComponent {
+export class FailOrderComponent implements OnInit, OnDestroy {
   
   lang: string = 'en';
   langChangeSubscription: Subscription | undefined
@@ -17,6 +17,7 @@ export class FailOrderComponent {
   constructor(
      private translate: TranslateService,
     ) {} 
+ 
 
   ngOnInit(): void {
     this.lang = this.detectLanguage() || 'en';
@@ -38,6 +39,10 @@ export class FailOrderComponent {
     }
 
     return lang;
+  }
+
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
   }
 
 }

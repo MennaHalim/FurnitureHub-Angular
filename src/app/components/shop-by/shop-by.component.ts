@@ -90,6 +90,7 @@ export class ShopByComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribeSubscriptions();
+    this.langChangeSubscription?.unsubscribe();
   }
 
   private unsubscribeSubscriptions(): void {

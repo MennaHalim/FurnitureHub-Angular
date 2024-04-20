@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BasketService } from '../../Shared/Services/basket.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './success-order.component.html',
   styleUrl: './success-order.component.css'
 })
-export class SuccessOrderComponent implements OnInit {
+export class SuccessOrderComponent implements OnInit, OnDestroy {
 
   lang: string = 'en';
   langChangeSubscription: Subscription | undefined
@@ -20,6 +20,7 @@ export class SuccessOrderComponent implements OnInit {
     private translate: TranslateService,
     private _BasketService: BasketService,
     private _router: ActivatedRoute) { }
+  
 
   shippingAddress: any;
   sessionId: string | null = '';
@@ -56,6 +57,10 @@ export class SuccessOrderComponent implements OnInit {
     }
 
     return lang;
+  }
+
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
   }
 
 }

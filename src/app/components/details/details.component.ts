@@ -1,6 +1,6 @@
 import { CustomerReview, ICustomerReview, IProduct } from '../../Shared/Models/product';
 import { ProductService } from '../../Shared/Services/product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICustomerReviewToCreate, ISet } from '../../Shared/Models/product';
 import { CapitalizeSpacePipe } from "../../Shared/Pipes/capitalize-space.pipe";
@@ -18,7 +18,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styleUrl: './details.component.css',
   imports: [CapitalizeSpacePipe, CommonModule, ReactiveFormsModule, TranslateModule]
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, OnDestroy {
 
   selectedTab: string = 'size-guide';
 
@@ -35,6 +35,7 @@ export class DetailsComponent implements OnInit {
     private _ProductService: ProductService,
     private _BasketService: BasketService,
     private translate: TranslateService,) { }
+  
 
   productId!: string | null;
   productType!: any;
@@ -239,7 +240,9 @@ export class DetailsComponent implements OnInit {
   }
 
 
-
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
+  }
 
 }
 

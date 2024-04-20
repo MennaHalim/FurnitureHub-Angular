@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './gdpr.component.html',
   styleUrl: './gdpr.component.css'
 })
-export class GDPRComponent {
+export class GDPRComponent implements OnInit, OnDestroy {
 
   lang: string = 'en';
   langChangeSubscription: Subscription | undefined
@@ -18,7 +18,7 @@ export class GDPRComponent {
   constructor(
      private translate: TranslateService,
     ) {} 
-
+  
   ngOnInit(): void {
     this.lang = this.detectLanguage() || 'en';
     document.documentElement.lang = this.lang;
@@ -40,5 +40,10 @@ export class GDPRComponent {
 
     return lang;
   }
+
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
+  }
+
 
 }

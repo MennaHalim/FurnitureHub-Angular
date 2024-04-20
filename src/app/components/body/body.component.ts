@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { routes } from '../../app.routes';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { UserAuthService } from '../../Shared/Services/user-auth.service';
   templateUrl: './body.component.html',
   styleUrl: './body.component.css'
 })
-export class BodyComponent {
+export class BodyComponent implements OnInit, OnDestroy {
 
   lang: string = 'en';
   langChangeSubscription: Subscription | undefined
@@ -20,6 +20,7 @@ export class BodyComponent {
   constructor(
      private translate: TranslateService,
     ) {} 
+  
 
   ngOnInit(): void {
     this.lang = this.detectLanguage() || 'en';
@@ -41,6 +42,10 @@ export class BodyComponent {
     }
 
     return lang;
+  }
+
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
   }
   
 }

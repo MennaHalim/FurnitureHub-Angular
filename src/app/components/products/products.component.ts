@@ -197,6 +197,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribeSubscriptions();
+    this.langChangeSubscription?.unsubscribe();
   }
 
 

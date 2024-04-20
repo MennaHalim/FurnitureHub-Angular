@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { routes } from '../../../app.routes';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -11,13 +11,14 @@ import { Subscription } from 'rxjs';
   templateUrl: './news-letter-subscriptions.component.html',
   styleUrl: './news-letter-subscriptions.component.css'
 })
-export class NewsLetterSubscriptionsComponent {
+export class NewsLetterSubscriptionsComponent implements OnInit, OnDestroy{
   lang: string = 'en';
   langChangeSubscription: Subscription | undefined
 
   constructor(
      private translate: TranslateService,
     ) {} 
+  
 
   ngOnInit(): void {
     this.lang = this.detectLanguage() || 'en';
@@ -41,5 +42,7 @@ export class NewsLetterSubscriptionsComponent {
     return lang;
   }
   
-
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
+  }
 }

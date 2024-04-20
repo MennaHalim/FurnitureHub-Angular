@@ -61,6 +61,7 @@ export class MyAccountComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.InfoSubscription?.unsubscribe();
     this.AddressSubscription?.unsubscribe();
+    this.langChangeSubscription?.unsubscribe();
   }
 
 

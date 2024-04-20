@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { OrderService } from '../../Shared/Services/order.service';
 import { IOrder } from '../../Shared/Models/order';
 import { RouterLink } from '@angular/router';
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css'
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, OnDestroy {
 
   orders!: IOrder[];
   lang: string = 'en';
@@ -22,6 +22,7 @@ export class OrdersComponent implements OnInit {
   constructor(private _OrderService: OrderService,
     private translate: TranslateService,
   ) { }
+  
 
   ngOnInit(): void {
     this._OrderService.getAllOrders().subscribe({
@@ -84,6 +85,10 @@ export class OrdersComponent implements OnInit {
     const meridian = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12 || 12;
     return `${hours}:${minutes}:${seconds} ${meridian}`;
+  }
+
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
   }
 
 }

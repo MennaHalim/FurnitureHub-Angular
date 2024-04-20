@@ -66,6 +66,7 @@ export class AccountInformationComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
    this.userServiceSubscription?.unsubscribe()
+   this.langChangeSubscription?.unsubscribe()
   }
 
   updateEmail() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Query } from '@angular/core';
+import { Component, OnDestroy, OnInit, Query } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { QueryParamGuard } from '../../Shared/Guards/query-param.guard';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
-export class SearchComponent implements OnInit{
+export class SearchComponent implements OnInit, OnDestroy{
   type: string = 'sets';
   lang: string = 'en';
   langChangeSubscription: Subscription | undefined
@@ -24,6 +24,7 @@ export class SearchComponent implements OnInit{
     private router: Router,
     private translate: TranslateService,) {
      }
+  
 
   ngOnInit(): void {
     this.lang = this.detectLanguage() || 'en';
@@ -80,5 +81,9 @@ export class SearchComponent implements OnInit{
       else{
         this.selectedType = 'قطعة'
       }
+  }
+
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
   }
 }

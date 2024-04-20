@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BasketService } from '../../Shared/Services/basket.service';
@@ -16,14 +16,13 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
-export class CheckoutComponent implements OnInit {
-
-
+export class CheckoutComponent implements OnInit, OnDestroy {
 
   constructor(private _ActivatedRoute: ActivatedRoute,
     private _BasketService: BasketService,
     private _DeliveryMethodService: DeliveryMethodService,
     private translate: TranslateService) { }
+ 
 
   cartId: string | null = '';
   basket!: Basket | null;
@@ -179,6 +178,10 @@ export class CheckoutComponent implements OnInit {
       }
     }
 
+  }
+
+  ngOnDestroy(): void {
+    this.langChangeSubscription?.unsubscribe();
   }
 
 
