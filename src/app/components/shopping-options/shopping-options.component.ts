@@ -13,7 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { takeUntil } from 'rxjs/operators';
+import { min, takeUntil } from 'rxjs/operators';
 import { Subject, Subscription } from 'rxjs'
 import { ICategorySetsTypes, ICategoryItemsTypes, IType } from '../../Shared/Models/category';
 import { ShopByService } from '../../Shared/Services/shop-by.service';
@@ -50,8 +50,10 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() minPrice: number = 0;
   @Input() maxPrice: number = 200000;
-  @Input() startValue: number = this.minPrice;
-  @Input() endValue: number = this.maxPrice;
+  // @Input() startValue: number = this.minPrice;
+  // @Input() endValue: number = this.maxPrice;
+  startValue: number = this.minPrice;
+  endValue: number = this.maxPrice;
 
   colors: string[] = ['Jute', 'gray', 'white', 'brown', 'black', 'blue', 'beige'];
 
@@ -124,10 +126,10 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy, OnChanges {
       this.color = params['color'];
       this.startValue = +params['minPrice'];
       this.endValue = +params['maxPrice'];
-      if ((this.startValue != this.minPrice || this.endValue != this.maxPrice)
-        && !Number.isNaN(this.startValue) && !Number.isNaN(this.endValue)) {
-        this.goButtonClicked = true;
-      }
+      // // if ((this.startValue != this.minPrice || this.endValue != this.maxPrice) &&
+      //   if(!Number.isNaN(this.startValue) && !Number.isNaN(this.endValue)) {
+      //   this.goButtonClicked = true;
+      // }
     })
     this.route.params.subscribe(params => {
       this.type = params['type'];
@@ -180,6 +182,7 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   reloadProducts() {
+
     const queryParams: { [key: string]: any } = { categoryId: this.categoryId };
 
     if (Number.isNaN(this.productTypeId)) {
@@ -187,8 +190,8 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy, OnChanges {
         queryParams['color'] = this.color;
       }
       if (this.goButtonClicked) {
-        queryParams['minPrice'] = this.startValue;
-        queryParams['maxPrice'] = this.endValue;
+        queryParams['minPrice'] = Math.floor(this.startValue);
+        queryParams['maxPrice'] = Math.floor(this.endValue);
       }
       this.router.navigate(['/products/categories/', this.type], { queryParams });
     } else {
@@ -196,40 +199,14 @@ export class ShoppingOptionsComponent implements OnInit, OnDestroy, OnChanges {
         queryParams['color'] = this.color;
       }
       if (this.goButtonClicked) {
-        queryParams['minPrice'] = this.startValue;
-        queryParams['maxPrice'] = this.endValue;
+        queryParams['minPrice'] = Math.floor(this.startValue);
+        queryParams['maxPrice'] = Math.floor(this.endValue);
       }
 
       this.router.navigate(['/products/categories/', this.type, this.productTypeId], { queryParams });
     }
   }
 
-  getMinAndMaxPrice() {
-    if (this.type = 'sets')
-      this.productService.FilterProducts(ProductsTypes.Set, this.categoryId, this.productTypeId,
-        NaN, this.color, NaN, NaN).subscribe((data) => {
-          this.minPrice = data.minimumPrice;
-          this.maxPrice = data.maximumPrice;
-          if (Number.isNaN(this.startValue) || Number.isNaN(this.endValue)) {
-            this.startValue = this.minPrice;
-            this.endValue = this.maxPrice;
-          }
-
-        });
-    else {
-      this.productService.FilterProducts(ProductsTypes.Item, this.categoryId, NaN,
-        this.productTypeId, this.color, NaN, NaN).subscribe((data) => {
-          this.minPrice = data.minimumPrice;
-          this.maxPrice = data.maximumPrice;
-          if (Number.isNaN(this.startValue) || Number.isNaN(this.endValue)) {
-            this.startValue = this.minPrice;
-            this.endValue = this.maxPrice;
-          }
-        });
-    }
-
-    this.changeDetectorRef.detectChanges();
-  }
 
   ngOnDestroy(): void {
     this.destroy$.next();
