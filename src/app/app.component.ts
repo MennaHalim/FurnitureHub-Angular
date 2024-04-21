@@ -17,7 +17,7 @@ import { Header2Component } from './Shared/Components/header2/header2.component'
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [Header2Component,
+  imports: [HeaderComponent,
     RouterOutlet,
     FooterComponent,
     BodyComponent,
