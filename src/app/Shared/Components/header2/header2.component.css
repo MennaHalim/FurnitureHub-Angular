@@ -194,6 +194,10 @@ nav ul {
     color: inherit;
 }
 
+.logo{
+    padding: 0;
+}
+
 .logo a:hover {
     text-decoration: underline;
 }
@@ -330,6 +334,10 @@ nav ul {
 @media (max-width: 768px) {
     .dropdown-menu li{
         display: none; 
+    }
+
+    .logoImage{
+        width: 230px;
     }
 }
 

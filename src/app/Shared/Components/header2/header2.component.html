@@ -31,12 +31,12 @@
         </button>
 
         <div class="logo" [style.display]="lang == 'ar' ? 'none' : 'block'">
-            <a href="#"><img src="./assets/Images/body/logo.png" alt="Logo"></a>
+            <a href="#"><img class = "logoImage" src="./assets/Images/body/logo.png" alt="Logo"></a>
         </div>
 
         <div class="logo">
             <a href="#" [style.display]="lang == 'en' ? 'none' : 'block'"><img
-                    src="./assets/Images/body/logo-Arabic.png" alt="Logo"></a>
+                class = "logoImage" src="./assets/Images/body/logo-Arabic.png" alt="Logo"></a>
         </div>
 
         <div class="collapse navbar-collapse " id="navbarNavDropdown">
@@ -106,3 +106,7 @@
         </div>
     </div>
 </nav>
+
+<div [style.display]="SeachBarDispaly? 'block' : 'none'">
+    <app-search ></app-search>
+</div>

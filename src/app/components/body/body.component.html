@@ -101,25 +101,25 @@
 
 
 <div class="image-container">
-  <div class="image-wrapper">
+  <div class="image-wrapper itemImage">
     <a [routerLink]="['/products/categories/items', 2]" [queryParams]="{ categoryId: 1 }">
       <img src="assets/Images/body/Sofa3seaters.jpg" alt="">
     </a>
     <div class="caption">{{'body.sofa' | translate}}</div>
   </div>
-  <div class="image-wrapper">
+  <div class="image-wrapper itemImage">
     <a [routerLink]="['/products/categories/sets', 2]" [queryParams]="{ categoryId: 1 }">
       <img src="assets/Images/body/U-shape.png" alt="">
     </a>
     <div class="caption">{{'body.U-Shape' | translate}}</div>
   </div>
-  <div class="image-wrapper">
+  <div class="image-wrapper itemImage">
     <a [routerLink]="['/products/categories/items', 3]" [queryParams]="{ categoryId: 1 }">
       <img src="assets/Images/body/Loveseat.png" alt="">
     </a>
     <div class="caption">{{'body.Loveseat' | translate}}</div>
   </div>
-  <div class="image-wrapper">
+  <div class="image-wrapper itemImage">
     <a [routerLink]="['/products/categories/sets', 3]" [queryParams]="{ categoryId: 1 }">
       <img src="assets/Images/body/L-shape.jpg" alt="">
     </a>
@@ -132,7 +132,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col">
-      <div class="image-wrapper">
+      <div class="image-wrapper ">
         <img src="assets/Images/body/shoe_racks.jpg" class="centered-image img-responsive" alt="Image 1">
         <button class="image-button" routerLink="/products/categories/sets"
         [queryParams]="{ search: 'tv' }">{{'body.ShopNow' | translate}}</button>
@@ -140,7 +140,7 @@
     </div>
     <div class="col">
       <div class="image-wrapper">
-        <img src="assets/Images/body/tv.jpg" class="centered-image img-responsive" alt="Image 1">
+        <img src="assets/Images/body/tv.jpg" class="centered-image img-responsive " alt="Image 1">
         <button class="image-button" routerLink="/products/categories/sets"
         [queryParams]="{ search: 'racks' }">{{'body.ShopNow' | translate}}</button>
       </div>

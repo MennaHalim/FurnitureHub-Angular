@@ -134,6 +134,12 @@ img {
 
 
 
+ 
+@media (max-width: 768px) {
+  .itemImage{
+    width: 100%;
+  }
+}
 
 
 
