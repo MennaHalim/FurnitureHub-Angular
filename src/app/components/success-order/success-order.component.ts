@@ -19,9 +19,7 @@ export class SuccessOrderComponent implements OnInit, OnDestroy {
   constructor(
     private translate: TranslateService,
     private _BasketService: BasketService,
-    private _router: ActivatedRoute) {
-    this._BasketService.basketItemsCount.next(0);
-    }
+    private _router: ActivatedRoute) {}
   
 
   shippingAddress: any;
