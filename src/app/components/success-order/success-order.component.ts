@@ -19,7 +19,9 @@ export class SuccessOrderComponent implements OnInit, OnDestroy {
   constructor(
     private translate: TranslateService,
     private _BasketService: BasketService,
-    private _router: ActivatedRoute) { }
+    private _router: ActivatedRoute) {
+    this._BasketService.basketItemsCount.next(0);
+    }
   
 
   shippingAddress: any;
@@ -28,10 +30,7 @@ export class SuccessOrderComponent implements OnInit, OnDestroy {
   orderId: number | null = 0;
 
   ngOnInit(): void {
-    
-
     this._router.paramMap.subscribe(params => {
-      this._BasketService.basketItemsCount.next(0);
       this.sessionId = params.get('sessionId');
       this.basketId = params.get('basketId');
       this.orderId = Number(params.get('orderId'));
