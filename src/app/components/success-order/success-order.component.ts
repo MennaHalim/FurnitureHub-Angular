@@ -32,9 +32,10 @@ export class SuccessOrderComponent implements OnInit, OnDestroy {
       this.sessionId = params.get('sessionId');
       this.basketId = params.get('basketId');
       this.orderId = Number(params.get('orderId'));
-      console.log(this.orderId);
       this._BasketService.payOrder(this.orderId).subscribe();
-      this._BasketService.deleteBasketAfterPayment(this.basketId).subscribe();
+      this._BasketService.deleteBasketAfterPayment(this.basketId).subscribe(() => {
+        this._BasketService.basketItemsCount.next(0);
+      });
     })
 
     this.lang = this.detectLanguage() || 'en';
