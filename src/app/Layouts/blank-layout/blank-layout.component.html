@@ -1,11 +1,12 @@
+
 <div class="container">
     <div class="row">
-        <div class="col-4">
-            <app-shopping-options [minPrice]="minPrice" [maxPrice]="maxPrice" ></app-shopping-options>
+        <div class=" col-md-4 overlay-mobile">
+            <app-shopping-options [minPrice]="minPrice" [maxPrice]="maxPrice"></app-shopping-options>
         </div>
-        <div class="col-8">
+        <div class=" lower-div col-md-8">
             <app-shop-by></app-shop-by>
             <app-products (priceRangeChange)="onPriceRangeChanged($event)"></app-products>
         </div>
     </div>
-</div>a
+</div>

@@ -1,0 +1,15 @@
+@media (max-width: 767px) {
+    .overlay-mobile {
+        position: absolute;
+        top: 2;
+        left: 2;
+        width: 100%;
+        z-index: 999;
+        background-color: white; 
+        height: 50px;
+    }
+
+    .lower-div{
+        margin-top: 55px;
+    }
+}

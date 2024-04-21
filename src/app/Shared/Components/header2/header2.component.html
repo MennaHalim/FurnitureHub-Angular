@@ -1,0 +1,99 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary upper-nav">
+    <div class="container-fluid">
+        <div class="start-icons">
+            <a href="#"><i class="fa-sharp fa fa-phone"></i></a>
+            <span>15135</span>
+            <span class="icon-spacing"></span>
+            <a href="#"><i class="fa fa-location-dot"></i></a>
+            <span>{{'header.stores' | translate}}</span>
+        </div>
+        <div class="header-text">
+            <li class="dropdown nav-item">
+                <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{'header.egypt' | translate}}
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="upper-nav-dropdown">
+                        <a class="dropdown-item " href="#">{{'header.oman' | translate}}</a>
+                    </li>
+                </ul>
+            </li>
+            <span class="text-spacing"></span>
+            <li class="dropdown nav-item">
+                <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ 'header.' + (lang === 'en' ? 'english' : 'arabic') | translate }}
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="upper-nav-dropdown">
+                        <a class="dropdown-item " type="button" (click)="toggleLanguage('ar')"
+                            [style.display]="lang == 'ar' ? 'none' : 'block'"> {{'header.arabic' | translate}} </a>
+                        <a class="dropdown-item " type="button" (click)="toggleLanguage('en')"
+                            [style.display]="lang == 'en' ? 'none' : 'block'"> {{'header.english' | translate}} </a>
+                    </li>
+
+                </ul>
+            </li>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary lower-nav">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="logo" [style.display]="lang == 'ar' ? 'none' : 'block'">
+            <a href="#"><img src="./assets/Images/body/logo.png" alt="Logo"></a>
+        </div>
+
+        <div class="logo">
+            <a href="#" [style.display]="lang == 'en' ? 'none' : 'block'"><img
+                    src="./assets/Images/body/logo-Arabic.png" alt="Logo"></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                @for (item of categorySetsAndItemsTypesData; track $index) {
+                <li class="nav-item dropdown dropdown-lower-nav">
+                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" 
+                        routerLink='/products/categories/sets' [queryParams]="{ categoryId: item.id }">
+                        {{item.name |capitalizeSpace}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        <li class="sub-dropdown">
+                            <!-- Living Room Set -->
+                            <a class="dropdown-item" routerLink='/products/categories/sets' [queryParams]="{ categoryId: item.id }">{{item.name |
+                                capitalizeSpace}}
+                                {{'header.set' | translate}}</a>
+    
+                            <ul class="dropdown-submenu">
+                                <!-- Sets -->
+                                @for (set of item.categorySetsTypes; track $index) {
+                                <li><a [routerLink]="['/products/categories/sets', set.id]" [queryParams]="{ categoryId: item.id }">{{set.name}}</a></li>
+                                }
+                            </ul>
+                        </li>
+
+                        <li class="sub-dropdown">
+                            <!-- shop by item -->
+                            <a class="dropdown-item" routerLink='/products/categories/items' [queryParams]="{ categoryId: item.id }">{{
+                                'header.item' | translate
+                            }}</a>
+                            <ul class="dropdown-submenu">
+                                @for (iitem of item.categoryItemsTypes; track $index) {
+                                <li><a [routerLink]="['/products/categories/items', iitem.id]" [queryParams]="{ categoryId: item.id }">{{iitem.name}}</a></li>
+                                }
+    
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

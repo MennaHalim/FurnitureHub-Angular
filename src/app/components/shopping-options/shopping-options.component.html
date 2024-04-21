@@ -1,16 +1,11 @@
 <button class="show-options-icon" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
-    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    <mat-icon *ngIf="!sidenav.opened"> <i class="fa fa-filter" aria-hidden="true"></i> </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> <i class="fa-solid fa-xmark"></i> </mat-icon>
 </button>
 <mat-sidenav #sidenav="matSidenav" mode="side" opened>
     <mat-drawer-container>
         <mat-drawer #drawer opened="true" mode="side" position="start" style="width: 320px;">
             <mat-nav-list>
-                <button class="show-options-icon close-sidenav" mat-icon-button *ngIf="sidenav.opened"
-                    (click)="sidenav.toggle()">
-                    <mat-icon>close</mat-icon>
-                </button>
-
                 <div class="title-container">
                     <span class="title"
                     >{{'shoppingOptions.shoppingOptions' | translate}}</span>

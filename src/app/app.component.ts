@@ -8,6 +8,7 @@ import { BodyComponent } from './components/body/body.component';
 import { DetailsComponent } from './components/details/details.component';
 import { ViewportScroller } from '@angular/common';
 import { filter } from 'rxjs';
+import { Header2Component } from './Shared/Components/header2/header2.component';
 
 
 
@@ -16,7 +17,7 @@ import { filter } from 'rxjs';
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [HeaderComponent,
+  imports: [Header2Component,
     RouterOutlet,
     FooterComponent,
     BodyComponent,
