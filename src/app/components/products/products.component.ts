@@ -212,18 +212,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   }
 
-  private updateProductCount(set: IProduct) {
+  private updateProductCount(product: IProduct) {
     let basket = this._BasketService.basket;
 
     if (basket !== null && basket.basketItems !== null) {
       for (let item of basket.basketItems) {
-        if (item.productId == set.id) {
+        if (item.productId == product.id && item.type == product.type) {
           item.productQuantity += 1;
           return;
         }
       };
 
-      let basketItem: IBasketItem = this.initializeBasketItemForAddingToCart(set)
+      let basketItem: IBasketItem = this.initializeBasketItemForAddingToCart(product)
 
       basket.basketItems.push(basketItem);
     }
