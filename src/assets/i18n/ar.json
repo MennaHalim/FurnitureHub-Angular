@@ -187,7 +187,7 @@
         "CreateAccountbtn" : "انشاء حساب"
     },
     "orderSuccess": {
-        "order-success": "تهانينا",
+        "orderSuccess": "تهانينا",
         "message": "تم دفع طلبك بنجاح",
         "message2": "انتقل إلى طلباتك لرؤيتها..",
         "Orders": "الطلبات"
