@@ -21,6 +21,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class DetailsComponent implements OnInit, OnDestroy {
 
   selectedTab: string = 'size-guide';
+  isSaving: boolean = false;
 
   selectTab(tab: string): void {
     this.selectedTab = tab;
@@ -164,6 +165,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   submitReview() {
     if (this.reviewForm.valid) {
+      this.isSaving = true;
       let customerReview: CustomerReview = new CustomerReview();
 
       customerReview.customerName = this.reviewForm.get('name')?.value;
@@ -183,7 +185,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
         next: (response) => {
           this.productDetails = response;
           this.reviewForm.reset();
-
+          this.isSaving = false;
           const allStar = document.querySelectorAll<HTMLElement>('.rating .star');
           allStar.forEach(star => {
             star.classList.replace('bxs-star', 'bx-star');

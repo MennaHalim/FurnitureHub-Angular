@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { Basket, IBasket } from '../Models/basket';
 import { IStripe } from '../Models/order';
 import { baseURL } from '../environment';
+import { Token } from '@angular/compiler';
 
 
 @Injectable({
@@ -80,6 +81,11 @@ export class BasketService {
       shippingAddress
     )
   }
+
+   headers = new HttpHeaders({
+    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    'Content-Type': 'application/json'
+  });
 
   payOrder(orderId: number | null):Observable<any>{
     return this._HttpClient.post<IStripe>(

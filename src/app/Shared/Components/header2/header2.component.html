@@ -8,31 +8,17 @@
             <span>{{'header.stores' | translate}}</span>
         </div>
         <div class="header-text">
-            <li class="dropdown nav-item">
-                <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{'header.egypt' | translate}}
+            <li>
+                <a class="localization-btn" href="#" role="button" (click)="toggleLanguage('ar')"
+                [style.display]="lang == 'ar' ? 'none' : 'block'"> 
+                    {{ 'header.' + (lang === 'en' ? 'arabic' : 'english') | translate }}
                 </a>
-                <ul class="dropdown-menu">
-                    <li class="upper-nav-dropdown">
-                        <a class="dropdown-item " href="#">{{'header.oman' | translate}}</a>
-                    </li>
-                </ul>
-            </li>
-            <span class="text-spacing"></span>
-            <li class="dropdown nav-item">
-                <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ 'header.' + (lang === 'en' ? 'english' : 'arabic') | translate }}
+                <a class="localization-btn" href="#" role="button" (click)="toggleLanguage('en')"
+                [style.display]="lang == 'ar' ? 'block' : 'none'"> 
+                    {{ 'header.' + (lang === 'ar' ? 'english' : 'arabic') | translate }}
                 </a>
-                <ul class="dropdown-menu">
-                    <li class="upper-nav-dropdown">
-                        <a class="dropdown-item " type="button" (click)="toggleLanguage('ar')"
-                            [style.display]="lang == 'ar' ? 'none' : 'block'"> {{'header.arabic' | translate}} </a>
-                        <a class="dropdown-item " type="button" (click)="toggleLanguage('en')"
-                            [style.display]="lang == 'en' ? 'none' : 'block'"> {{'header.english' | translate}} </a>
-                    </li>
-
-                </ul>
             </li>
+            
         </div>
     </div>
 </nav>
@@ -53,8 +39,8 @@
                     src="./assets/Images/body/logo-Arabic.png" alt="Logo"></a>
         </div>
 
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse " id="navbarNavDropdown">
+            <ul class="navbar-nav mx-auto ">
                 @for (item of categorySetsAndItemsTypesData; track $index) {
                 <li class="nav-item dropdown dropdown-lower-nav">
                     <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
@@ -94,6 +80,29 @@
                 </li>
                 }
             </ul>
+        </div>
+
+        <div class="icons">
+
+            <i class="fa-solid fa-magnifying-glass me-2" (click)="toggleSeachDisplay()"></i>
+            <div class="dropdown me-0">
+                <a ><i class="fa-regular fa-circle-user "></i></a>
+                <div class="dropdown-content text-nowrap ">
+                    <ul>
+                        <li><a class="m-0 p-2 ps-3" [routerLink]="['/account']">{{'header.myAccout' | translate}}</a></li>
+                        <li><a class="m-0 p-2 ps-3" [routerLink]="['/register']">{{'header.CreateAccount' | translate}}</a></li>
+                        <li class=" border-bottom-0"><a class="m-0 p-0 ps-3" [routerLink]="['/login']" [style.display]="!isUserLogged ? 'block' : 'none'"  >{{'header.signIn' | translate}}</a></li>
+                        <li class=" border-bottom-0 m-0 p-0"><a class="m-0 p-0 ps-3" (click)="logout()" [style.display]="isUserLogged ? 'block' : 'none'" type="button">{{'header.logout' | translate}}</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <a routerLink="/basket" class="position-relative">
+                <i class="fa-solid fa-cart-shopping"></i>
+                @if(isUserLogged){
+                <span class="badge bg-info cart-count">{{basketCount}}</span>
+                }
+            </a>
         </div>
     </div>
 </nav>

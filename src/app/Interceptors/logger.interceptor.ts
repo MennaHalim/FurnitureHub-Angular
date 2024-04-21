@@ -9,8 +9,10 @@ export const loggerInterceptor = (req: HttpRequest<unknown>, next: (req: HttpReq
     authReq = req.clone({
       headers: req.headers.set('Authorization', `Bearer ${token}`)
     });
+    
+    console.log(authReq.headers)
   }
 
-  console.log(authReq.headers)
+  
   return next(authReq);
 };
