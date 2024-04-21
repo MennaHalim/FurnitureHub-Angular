@@ -100,10 +100,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     if (this.shippingAddressForm.valid &&
       this.deliveryMethodsForm.valid) {
-
+      this.isLoading = true;
       this._BasketService.createCheckOutSession(this.basket?.basketId, this.shippingAddressForm.value).subscribe({
         next: (response) => {
-          this.isLoading = true;
+          
           window.open(response.stripeUrl, '_self');
         }
       });
